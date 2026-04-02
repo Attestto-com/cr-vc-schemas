@@ -1,0 +1,37 @@
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://schemas.attestto.org/cr/driving/v1"
+  ],
+  "id": "urn:uuid:b4c5d6e7-f8a9-0123-789a-bcdef0123456",
+  "type": ["VerifiableCredential", "AccidentReport"],
+  "issuer": "did:sns:cosevi",
+  "issuanceDate": "2026-03-25T16:20:00Z",
+  "credentialSubject": {
+    "id": "urn:uuid:accident-2026-03-25-001",
+    "accident": {
+      "timestamp": "2026-03-25T15:45:00Z",
+      "location": "Interseccion Avenida 2 con Calle 14, San Jose Centro",
+      "latitude": 9.9328,
+      "longitude": -84.0795,
+      "severity": "minor",
+      "parties": [
+        {
+          "conductorDID": "did:sns:maria-ejemplo",
+          "vehicleDID": "did:sns:vehiculo-bcd-456",
+          "insurancePolicyRef": "INS-SOAT-2026-0089123",
+          "role": "driver"
+        },
+        {
+          "conductorDID": "did:sns:jorge-ejemplo",
+          "vehicleDID": "did:sns:vehiculo-efg-789",
+          "insurancePolicyRef": "INS-SOAT-2026-0091456",
+          "role": "driver"
+        }
+      ],
+      "reportNumber": "COSEVI-ACC-2026-004521",
+      "officerDID": "did:sns:oficial-ramirez-0789",
+      "description": "Colision leve en interseccion. Vehiculo 1 procedia por Avenida 2 en direccion este. Vehiculo 2 ingreso por Calle 14 sin respetar senal de alto. Danos materiales menores en ambos vehiculos. Sin lesiones personales."
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://schemas.attestto.org/cr/driving/v1"
+  ],
+  "id": "urn:uuid:b8c9d0e1-f2a3-4567-1234-56789abcdef0",
+  "type": ["VerifiableCredential", "VehicleRegistration"],
+  "issuer": "did:sns:registro-nacional",
+  "issuanceDate": "2024-06-15T09:00:00Z",
+  "credentialSubject": {
+    "id": "did:sns:vehiculo-bcd-456",
+    "vehicle": {
+      "plate": "BCD-456",
+      "vin": "JTDKN3DU5A0123456",
+      "ownerDID": "did:sns:maria-ejemplo",
+      "registrationDate": "2024-06-15",
+      "vehicleType": "sedan",
+      "make": "Toyota",
+      "model": "Corolla",
+      "year": 2023,
+      "color": "Gris Plata",
+      "engineNumber": "2ZR-FE-0123456",
+      "seatingCapacity": 5
+    }
+  }
+}

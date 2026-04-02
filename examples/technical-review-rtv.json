@@ -1,0 +1,28 @@
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://schemas.attestto.org/cr/driving/v1"
+  ],
+  "id": "urn:uuid:c9d0e1f2-a3b4-5678-2345-6789abcdef01",
+  "type": ["VerifiableCredential", "VehicleTechnicalReview"],
+  "issuer": "did:sns:riteve-heredia",
+  "issuanceDate": "2026-02-20T08:30:00Z",
+  "credentialSubject": {
+    "id": "did:sns:vehiculo-bcd-456",
+    "technicalReview": {
+      "result": "approved",
+      "inspectionDate": "2026-02-20",
+      "expiresAt": "2027-02-20",
+      "inspectorDID": "did:sns:inspector-mora-castro",
+      "centerDID": "did:sns:riteve-heredia",
+      "centerName": "RITEVE — Sede Heredia",
+      "defects": [],
+      "emissions": {
+        "co2": 120.5,
+        "hc": 45.2,
+        "result": "pass"
+      },
+      "mileage": 34500
+    }
+  }
+}

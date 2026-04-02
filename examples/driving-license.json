@@ -1,0 +1,48 @@
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://schemas.attestto.org/cr/driving/v1"
+  ],
+  "id": "urn:uuid:a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+  "type": ["VerifiableCredential", "DrivingLicense"],
+  "issuer": "did:sns:cosevi",
+  "issuanceDate": "2026-04-01T10:30:00Z",
+  "expirationDate": "2032-04-01T23:59:59Z",
+  "credentialSubject": {
+    "id": "did:sns:maria-ejemplo",
+    "license": {
+      "licenseNumber": "CR-2026-045678",
+      "document_number": "CR-2026-045678",
+      "categories": ["B", "A1"],
+      "driving_privileges": [
+        { "vehicle_category_code": "B" },
+        { "vehicle_category_code": "A1" }
+      ],
+      "issueDate": "2026-04-01",
+      "issue_date": "2026-04-01",
+      "expiresAt": "2032-04-01",
+      "expiry_date": "2032-04-01",
+      "photoHash": "sha256:a3f2b8c9d1e4f567890abcdef1234567890abcdef1234567890abcdef12345678",
+      "points": 12,
+      "status": "active",
+      "bloodType": "O+",
+      "restrictions": ["lentes correctivos"],
+      "issuingAuthority": "did:sns:cosevi",
+      "issuing_authority": "Consejo de Seguridad Vial",
+      "issuing_country": "CR",
+      "un_distinguishing_sign": "CR",
+      "family_name": "Rodriguez Solano",
+      "given_name": "Maria Isabel",
+      "birth_date": "1992-07-15",
+      "age_over_18": true,
+      "nationality": "CR"
+    }
+  },
+  "credentialStatus": {
+    "id": "https://status.attestto.org/cr/credentials/status/1#4567",
+    "type": "StatusList2021Entry",
+    "statusPurpose": "revocation",
+    "statusListIndex": "4567",
+    "statusListCredential": "https://status.attestto.org/cr/credentials/status-list/1"
+  }
+}

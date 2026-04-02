@@ -1,0 +1,26 @@
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://schemas.attestto.org/cr/driving/v1"
+  ],
+  "id": "urn:uuid:f2a3b4c5-d6e7-8901-5678-9abcdef01234",
+  "type": ["VerifiableCredential", "DriverIdentity"],
+  "issuer": "did:sns:cosevi",
+  "issuanceDate": "2026-04-01T10:30:00Z",
+  "credentialSubject": {
+    "id": "did:sns:maria-ejemplo",
+    "driverIdentity": {
+      "nationalIdType": "cedula",
+      "nationalIdRef": "****-****-5678",
+      "nationality": "CR",
+      "dateOfBirth": "1992-07-15",
+      "birth_date": "1992-07-15",
+      "fullName": "Maria Isabel Rodriguez Solano",
+      "family_name": "Rodriguez Solano",
+      "given_name": "Maria Isabel",
+      "verificationMethod": "in-person-kyc",
+      "verificationDate": "2026-04-01T10:15:00Z",
+      "verifierDID": "did:sns:cosevi"
+    }
+  }
+}

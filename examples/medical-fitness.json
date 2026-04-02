@@ -1,0 +1,32 @@
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://schemas.attestto.org/cr/driving/v1"
+  ],
+  "id": "urn:uuid:a7b8c9d0-e1f2-3456-0123-456789abcdef",
+  "type": ["VerifiableCredential", "MedicalFitnessCredential"],
+  "issuer": "did:sns:clinica-salud-integral",
+  "issuanceDate": "2026-03-05T11:00:00Z",
+  "credentialSubject": {
+    "id": "did:sns:maria-ejemplo",
+    "fitness": {
+      "status": "fit",
+      "categories": ["B", "A1"],
+      "issuedDate": "2026-03-05",
+      "expiresAt": "2027-03-05T23:59:59Z",
+      "physicianDID": "did:sns:dra-vargas-rojas",
+      "physicianName": "Dra. Ana Vargas Rojas",
+      "physicianLicense": "CM-12456",
+      "clinicDID": "did:sns:clinica-salud-integral",
+      "clinicName": "Clinica Salud Integral — Escazu",
+      "restrictions": ["lentes correctivos"]
+    }
+  },
+  "credentialStatus": {
+    "id": "https://status.attestto.org/cr/credentials/status/3#567",
+    "type": "StatusList2021Entry",
+    "statusPurpose": "revocation",
+    "statusListIndex": "567",
+    "statusListCredential": "https://status.attestto.org/cr/credentials/status-list/1"
+  }
+}

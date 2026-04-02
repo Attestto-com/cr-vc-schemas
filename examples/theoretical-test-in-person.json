@@ -1,0 +1,35 @@
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://schemas.attestto.org/cr/driving/v1"
+  ],
+  "id": "urn:uuid:d4e5f6a7-b8c9-0123-def0-123456789abc",
+  "type": ["VerifiableCredential", "TheoreticalTestResult"],
+  "issuer": "did:sns:dgev",
+  "issuanceDate": "2026-03-10T10:45:00Z",
+  "credentialSubject": {
+    "id": "did:sns:carlos-ejemplo",
+    "theoreticalTest": {
+      "status": "failed",
+      "score": 55,
+      "passingScore": 70,
+      "category": "B",
+      "testDate": "2026-03-10T09:00:00Z",
+      "modality": "in-person",
+      "testCenterDID": "did:sns:sede-dgev-san-jose",
+      "testCenterName": "Sede DGEV San Jose — La Uruca",
+      "examVersionHash": "sha256:e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8",
+      "totalQuestions": 40,
+      "correctAnswers": 22,
+      "durationMinutes": 45,
+      "language": "es",
+      "proctoring": {
+        "method": "in-person-supervised",
+        "sessionId": "e5f6a7b8-c9d0-1234-ef01-23456789abcd",
+        "anomaliesDetected": 0,
+        "identityVerified": true
+      },
+      "attemptNumber": 2
+    }
+  }
+}

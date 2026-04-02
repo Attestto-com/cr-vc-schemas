@@ -1,0 +1,55 @@
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://schemas.attestto.org/cr/driving/v1"
+  ],
+  "id": "urn:uuid:f6a7b8c9-d0e1-2345-f012-3456789abcde",
+  "type": ["VerifiableCredential", "PracticalTestResult"],
+  "issuer": "did:sns:dgev",
+  "issuanceDate": "2026-03-20T16:15:00Z",
+  "credentialSubject": {
+    "id": "did:sns:maria-ejemplo",
+    "practicalTest": {
+      "status": "approved",
+      "category": "B",
+      "testDate": "2026-03-20T14:00:00Z",
+      "expiresAt": "2026-06-18T23:59:59Z",
+      "evaluatorDID": "did:sns:evaluador-jimenez",
+      "evaluatorName": "Roberto Jimenez Mora",
+      "evaluatorLicense": "DGEV-EVAL-2024-0892",
+      "testCenterDID": "did:sns:sede-dgev-san-jose",
+      "testCenterName": "Sede DGEV San Jose — La Uruca",
+      "vehicleDID": "did:sns:vehiculo-practica-012",
+      "vehiclePlate": "SJO-012",
+      "vehicleType": "sedan",
+      "route": {
+        "description": "Ruta urbana: Sede La Uruca — Paseo Colon — Sabana — retorno por La Uruca",
+        "distanceKm": 8.5,
+        "durationMinutes": 25,
+        "conditions": "urbano"
+      },
+      "maneuvers": [
+        { "name": "Estacionamiento en paralelo", "result": "pass" },
+        { "name": "Estacionamiento en reversa (90 grados)", "result": "pass" },
+        { "name": "Giro en U", "result": "pass" },
+        { "name": "Incorporacion a via rapida", "result": "pass", "observations": "Verifico espejo y punto ciego correctamente" },
+        { "name": "Frenado de emergencia", "result": "pass" },
+        { "name": "Marcha atras en linea recta", "result": "pass" },
+        { "name": "Giro a la izquierda en interseccion", "result": "pass" },
+        { "name": "Respeto de senal de alto", "result": "pass" },
+        { "name": "Cambio de carril", "result": "pass" },
+        { "name": "Arranque en pendiente", "result": "pass", "observations": "Vehiculo automatico — maniobra simplificada" }
+      ],
+      "generalObservations": "Conductora segura y atenta. Buen uso de espejos. Respeta distancia de seguimiento.",
+      "weatherConditions": "soleado",
+      "timeOfDay": "diurno"
+    }
+  },
+  "credentialStatus": {
+    "id": "https://status.attestto.org/cr/credentials/status/4#234",
+    "type": "StatusList2021Entry",
+    "statusPurpose": "revocation",
+    "statusListIndex": "234",
+    "statusListCredential": "https://status.attestto.org/cr/credentials/status-list/1"
+  }
+}

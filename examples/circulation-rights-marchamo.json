@@ -1,0 +1,23 @@
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://schemas.attestto.org/cr/driving/v1"
+  ],
+  "id": "urn:uuid:d0e1f2a3-b4c5-6789-3456-789abcdef012",
+  "type": ["VerifiableCredential", "CirculationRights"],
+  "issuer": "did:sns:hacienda-cr",
+  "issuanceDate": "2025-11-28T15:00:00Z",
+  "credentialSubject": {
+    "id": "did:sns:vehiculo-bcd-456",
+    "circulationRights": {
+      "fiscalYear": 2026,
+      "paymentDate": "2025-11-28",
+      "amount": 185000.00,
+      "currency": "CRC",
+      "municipality": "Escazu",
+      "validFrom": "2026-01-01",
+      "validUntil": "2026-12-31",
+      "receiptNumber": "MH-2026-0045678"
+    }
+  }
+}

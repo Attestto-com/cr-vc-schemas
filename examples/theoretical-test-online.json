@@ -1,0 +1,45 @@
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://schemas.attestto.org/cr/driving/v1"
+  ],
+  "id": "urn:uuid:b2c3d4e5-f6a7-8901-bcde-f12345678901",
+  "type": ["VerifiableCredential", "TheoreticalTestResult"],
+  "issuer": "did:sns:dgev",
+  "issuanceDate": "2026-03-15T14:22:00Z",
+  "credentialSubject": {
+    "id": "did:sns:maria-ejemplo",
+    "theoreticalTest": {
+      "status": "approved",
+      "score": 88,
+      "passingScore": 70,
+      "category": "B",
+      "testDate": "2026-03-15T14:00:00Z",
+      "expiresAt": "2026-06-13T23:59:59Z",
+      "modality": "online",
+      "testCenterDID": "did:sns:academia-tica-conduccion",
+      "testCenterName": "Academia Tica de Conduccion S.A.",
+      "examVersionHash": "sha256:e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8",
+      "totalQuestions": 40,
+      "correctAnswers": 35,
+      "durationMinutes": 38,
+      "language": "es",
+      "proctoring": {
+        "method": "remote-biometric",
+        "telemetryHash": "sha256:1a2b3c4d5e6f7890abcdef1234567890abcdef1234567890abcdef1234567890",
+        "sessionId": "c3d4e5f6-a7b8-9012-cdef-123456789012",
+        "anomaliesDetected": 0,
+        "livenessVerified": true,
+        "identityVerified": true
+      },
+      "attemptNumber": 1
+    }
+  },
+  "credentialStatus": {
+    "id": "https://status.attestto.org/cr/credentials/status/2#891",
+    "type": "StatusList2021Entry",
+    "statusPurpose": "revocation",
+    "statusListIndex": "891",
+    "statusListCredential": "https://status.attestto.org/cr/credentials/status-list/1"
+  }
+}
