@@ -111,22 +111,117 @@ Capa 3 (chain):   did-registry-program en Solana ← Hash on-chain (indestructib
 
 Esto responde directamente a la **observacion #5 del MICITT**: integridad documental con hashing y sellado de tiempo, blockchain opcional pero valorable. En nuestro modelo no es opcional — es la tercera capa de confianza que funciona sin servidores.
 
+## Tres Categorias de Entidades
+
+El ecosistema tiene tres tipos de entidades, cada una con necesidades distintas de identidad on-chain:
+
+| Entidad | DID | On-chain? | Que se ancla | Por que |
+|---|---|---|---|---|
+| **Institucion** | `did:web:cosevi.attestto.id` | Si (SAS) | DID document hash, claves publicas | Ancla de confianza. Verificable sin servidor. |
+| **Persona** | `did:web:maria.attestto.id` | Si (solo hashes) | Indice de hashes de VCs recibidas | Recovery: si pierde el wallet, sabe que credenciales tenia y quien las emitio |
+| **Objeto/Vehiculo** | SBT via SAS | Si (historial completo) | Registro, RTV, seguro, multas, propietarios | Historial publico. Acumula credenciales de multiples emisores. No tiene wallet. |
+
+### Por que las personas necesitan on-chain
+
+Si Maria pierde su telefono, pierde todas sus VCs. Sin un indice on-chain, tendria que ir presencialmente a cada emisor (COSEVI, consultorio, INS) a pedir re-emision. Con el indice on-chain, el recovery es automatico:
+
+```
+1. Maria pierde su telefono
+2. Compra telefono nuevo, instala Attestto ID
+3. Se autentica con passkey (biometrico synced via iCloud/Google)
+   → Recupera acceso a did:web:maria.attestto.id
+4. El wallet consulta Solana via SAS:
+   "Que attestations existen para did:web:maria.attestto.id?"
+   → Respuesta:
+     { hash: "abc...", issuer: "did:web:cosevi.attestto.id", type: "DrivingLicense" }
+     { hash: "def...", issuer: "did:web:clinica.attestto.id", type: "MedicalFitness" }
+     { hash: "ghi...", issuer: "did:web:ins.attestto.id", type: "SOATCredential" }
+5. Para cada VC, el wallet contacta al emisor automaticamente:
+   → POST /api/vc/re-issue { holderDID, vcHash }
+   → El emisor verifica: hash coincide + DID autenticado
+   → Re-emite la VC al nuevo wallet via OpenID4VCI
+6. Maria tiene todas sus credenciales de vuelta sin visitar ninguna sede
+```
+
+**Attestto no almacena las VCs de Maria** (eso seria centralizado). La cadena almacena solo **hashes** y **DIDs de emisores** — suficiente para saber a quien pedirle re-emision. El emisor ya tiene los datos en su sistema; solo firma una nueva VC.
+
+### Por que los vehiculos necesitan on-chain
+
+Un vehiculo no tiene wallet ni puede presentar credenciales. Su historial es publico y acumula credenciales de multiples emisores a lo largo de su vida:
+
+```
+Vehiculo BCD-456 (SBT en Solana):
+  PDA: [placa "BCD-456"] → { vin, owner_did, status }
+  Attestations vinculadas:
+    VehicleRegistration   (Registro Nacional, al inscribir)
+    VehicleTechnicalReview (RTV, anual)
+    CirculationRights      (Hacienda, anual)
+    SOATCredential         (INS, anual)
+    TrafficViolation[]     (COSEVI, por evento)
+    AccidentReport[]       (COSEVI/INS, por evento)
+    OwnershipTransfer[]    (Registro Nacional, por venta)
+```
+
+Un oficial de transito consulta el SBT del vehiculo y ve todo: placa, RTV, seguro, marchamo, multas, accidentes — en una sola consulta on-chain, sin llamar a 6 sistemas distintos.
+
+## Resiliencia: Que pasa cuando algo falla
+
+Las 3 capas de verificacion son independientes. Cualquier combinacion de 2 de 3 es suficiente:
+
+### Attestto se cae
+
+```
+Capa 1 CAIDA:  attestto.id no responde
+Capa 2 VIVA:   Passkey sigue en el dispositivo (iCloud/Google sync)
+Capa 3 VIVA:   Solana tiene los hashes + DIDs de emisores
+
+→ VCs existentes se verifican contra hashes on-chain
+→ El DID document hash esta en Solana — verificable sin attestto.id
+→ Los emisores pueden re-emitir VCs usando el hash como referencia
+```
+
+### Solana se cae
+
+```
+Capa 1 VIVA:   attestto.id responde → DID documents disponibles
+Capa 2 VIVA:   Passkey funciona → autenticacion OK
+Capa 3 CAIDA:  Solana no responde
+
+→ Verificacion web normal funciona (did:web es HTTP, no necesita chain)
+→ Solo pierde la capa de integridad on-chain temporalmente
+→ Solana no ha tenido caida >30min en su historia — riesgo minimo
+```
+
+### Attestto + Solana se caen (catastrofico)
+
+```
+Capa 1 CAIDA:  attestto.id no responde
+Capa 2 VIVA:   Passkey sigue en el dispositivo
+Capa 3 CAIDA:  Solana no responde
+
+→ Las VCs en el wallet del ciudadano siguen siendo validas
+  (tienen la firma del emisor embebida — se verifican offline)
+→ No se pueden emitir ni revocar credenciales hasta recovery
+→ Escenario extremadamente improbable (requiere fallo simultaneo
+  de Cloudflare + Solana)
+```
+
 ## Diagrama de Adopcion Progresiva
 
 ```
 Dia 1                    Cuando este lista           Maxima soberania
   |                           |                              |
   v                           v                              v
-did:web:cosevi.attestto.id  did:web:csv.go.cr              did-registry on-chain
+did:web:cosevi.attestto.id  did:web:csv.go.cr              did:sns:cosevi (opt-in)
   |                           |                              |
-  | Attestto hospeda          | Institucion hospeda          | Solana hospeda
+  | Attestto hospeda          | Institucion hospeda          | On-chain (SNS)
   | Zero infra                | Requiere SSL + uptime        | Zero servidor
   | Activacion inmediata      | Requiere equipo TI           | Solo keypair
   |                           |                              |
-  +------ Capa 3: hash siempre anclado en Solana via did-registry-program ------+
+  +------------ Capa 3: hashes siempre anclados en Solana via SAS ------------+
 ```
 
-**Lo importante:** Las credenciales emitidas en cualquier nivel son interoperables. Un verificador puede validar una VC firmada por `did:web:cosevi.attestto.id` o por `did:web:csv.go.cr` — el protocolo es el mismo. La migracion entre niveles no invalida las credenciales existentes. Y en todos los niveles, el hash de la credencial esta anclado on-chain como prueba de integridad.
+**Lo importante:** Las credenciales emitidas en cualquier nivel son interoperables. Un verificador puede validar una VC firmada por `did:web:cosevi.attestto.id` o por `did:web:csv.go.cr` — el protocolo es el mismo. La migracion entre niveles no invalida las credenciales existentes. Y en todos los niveles, el hash de la credencial esta anclado on-chain via SAS como prueba de integridad.
 
 ## El Servicio de Attestto
 
@@ -138,11 +233,12 @@ Para el Nivel 1, Attestto ofrece:
 4. **Trust Registry** — La institucion aparece automaticamente como emisor autorizado
 5. **Rotacion automatica de claves** — Sin intervencion de la institucion
 6. **Revocacion (StatusList2021)** — Revocar una credencial con una llamada API
-7. **Anclaje automatico en blockchain** — Hash de cada VC anclado en Solana via `did-registry-program`
+7. **Anclaje automatico en blockchain** — Hash de cada VC anclado en Solana via SAS
 8. **CDN de respaldo** — Si la institucion migra a Nivel 2, `attestto.id` sigue como fallback
-9. **SLA 99.9%** — Garantia de disponibilidad del endpoint DID
+9. **Recovery automatico** — Ciudadanos recuperan todas sus VCs con passkey + indice on-chain
+10. **SLA 99.9%** — Garantia de disponibilidad del endpoint DID
 
-La institucion no necesita entender DIDs, JSON-LD, blockchain ni criptografia. Solo necesita llamar a un API con los datos de la credencial que quiere emitir. El anclaje on-chain, la resolucion DID y el respaldo CDN son automaticos.
+La institucion no necesita entender DIDs, JSON-LD, blockchain ni criptografia. Solo necesita llamar a un API con los datos de la credencial que quiere emitir. El anclaje on-chain, la resolucion DID, el respaldo CDN y el recovery de credenciales son automaticos.
 
 ## Relacion con la PKI Nacional (BCCR)
 
