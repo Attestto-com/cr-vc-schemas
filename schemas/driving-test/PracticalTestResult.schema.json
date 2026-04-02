@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.attestto.org/cr/driving/v1/PracticalTestResult.schema.json",
+  "title": "Resultado de Prueba Practica de Manejo",
+  "description": "Evaluacion de conduccion real del vehiculo con evaluador presencial. Incluye maniobras evaluadas, ruta, vehiculo utilizado, y observaciones del evaluador. Siempre presencial — no existe modalidad remota.",
+  "type": "object",
+  "required": ["credentialSubject"],
+  "properties": {
+    "credentialSubject": {
+      "type": "object",
+      "required": ["id", "practicalTest"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^did:" },
+        "practicalTest": {
+          "type": "object",
+          "required": ["status", "category", "testDate", "evaluatorDID", "testCenterDID", "vehiclePlate", "maneuvers"],
+          "properties": {
+            "status": { "type": "string", "enum": ["approved", "failed"] },
+            "category": { "type": "string", "enum": ["A1", "A2", "A3", "B", "B1", "B2", "B3", "B4", "C1", "C2", "C3", "D1", "D2", "D3", "E1", "E2", "E3"] },
+            "testDate": { "type": "string", "format": "date-time" },
+            "expiresAt": { "type": "string", "format": "date-time", "description": "Resultado valido por 90 dias" },
+            "evaluatorDID": { "type": "string", "pattern": "^did:", "description": "DID del evaluador de manejo habilitado" },
+            "evaluatorName": { "type": "string" },
+            "evaluatorLicense": { "type": "string", "description": "Numero de habilitacion como evaluador ante la DGEV" },
+            "testCenterDID": { "type": "string", "pattern": "^did:" },
+            "testCenterName": { "type": "string" },
+            "vehicleDID": { "type": "string", "pattern": "^did:", "description": "DID del vehiculo utilizado en la prueba" },
+            "vehiclePlate": { "type": "string" },
+            "vehicleType": { "type": "string" },
+            "route": {
+              "type": "object",
+              "properties": {
+                "description": { "type": "string" },
+                "distanceKm": { "type": "number", "minimum": 0 },
+                "durationMinutes": { "type": "integer", "minimum": 1 },
+                "conditions": { "type": "string", "enum": ["urbano", "rural", "autopista", "mixto"] }
+              }
+            },
+            "maneuvers": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "required": ["name", "result"],
+                "properties": {
+                  "name": { "type": "string", "description": "Ej: estacionamiento paralelo, giro en U, incorporacion a via, frenado de emergencia, marcha atras" },
+                  "result": { "type": "string", "enum": ["pass", "fail", "not-evaluated"] },
+                  "observations": { "type": "string" }
+                }
+              }
+            },
+            "generalObservations": { "type": "string" },
+            "weatherConditions": { "type": "string" },
+            "timeOfDay": { "type": "string", "enum": ["diurno", "nocturno", "crepuscular"] }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://schemas.attestto.org/cr/driving/v1"
+  ],
+  "type": ["VerifiableCredential", "PracticalTestResult"],
+  "credentialSubject": {
+    "id": "did:sns:conductor-did",
+    "practicalTest": {
+      "type": "PracticalTestResultValue",
+      "status": "approved | failed",
+      "category": "string (B, C, D, etc.)",
+      "testDate": "dateTime",
+      "expiresAt": "dateTime (resultado valido por 90 dias)",
+      "evaluatorDID": "did:sns:evaluador-did",
+      "evaluatorName": "string",
+      "evaluatorLicense": "string (numero de habilitacion como evaluador)",
+      "testCenterDID": "did:sns:centro-evaluacion",
+      "testCenterName": "string",
+      "vehicleDID": "did:sns:vehiculo-usado-en-prueba",
+      "vehiclePlate": "string",
+      "vehicleType": "string (sedan, motocicleta, camion, bus)",
+      "route": {
+        "description": "string (descripcion general de la ruta)",
+        "distanceKm": "decimal",
+        "durationMinutes": "integer",
+        "conditions": "string (urbano, rural, autopista, mixto)"
+      },
+      "maneuvers": [
+        {
+          "name": "string (estacionamiento paralelo, giro en U, incorporacion, etc.)",
+          "result": "pass | fail | not-evaluated",
+          "observations": "string (opcional)"
+        }
+      ],
+      "generalObservations": "string (observaciones del evaluador)",
+      "weatherConditions": "string (soleado, lluvioso, nublado)",
+      "timeOfDay": "string (diurno, nocturno, crepuscular)"
+    }
+  },
+  "issuer": "did:sns:dgev",
+  "issuanceDate": "dateTime",
+  "credentialStatus": {
+    "id": "https://status.attestto.org/cr/credentials/status/4",
+    "type": "StatusList2021Entry",
+    "statusPurpose": "revocation",
+    "statusListIndex": "integer",
+    "statusListCredential": "https://status.attestto.org/cr/credentials/status-list/1"
+  }
+}

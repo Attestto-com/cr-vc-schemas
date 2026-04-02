@@ -9,7 +9,8 @@ Esquemas JSON-LD y JSON Schema para Credenciales Verificables del ecosistema via
 | Esquema | Tipo de VC | Emisor | Directorio |
 |---|---|---|---|
 | **DrivingLicense** | Licencia de conducir digital (mDL, ISO 18013-5) | COSEVI/DGEV | `schemas/mdl/` |
-| **DrivingTestResult** | Resultado de prueba teorica | DGEV / proveedor certificado | `schemas/driving-test/` |
+| **TheoreticalTestResult** | Prueba teorica (conocimientos, en linea o presencial) | DGEV / proveedor certificado | `schemas/driving-test/` |
+| **PracticalTestResult** | Prueba practica (conduccion real con evaluador) | DGEV / proveedor certificado | `schemas/driving-test/` |
 | **MedicalFitnessCredential** | Dictamen medico de aptitud | Consultorio autorizado | `schemas/medical/` |
 | **VehicleRegistration** | Registro vehicular (placa) | Registro Nacional | `schemas/vehicle/` |
 | **VehicleTechnicalReview** | Revision tecnica (RTV) | Centro RTV | `schemas/vehicle/` |
@@ -30,8 +31,8 @@ cr-vc-schemas/
       DrivingLicense.jsonld       Ejemplo de VC
       DrivingLicense.schema.json  JSON Schema para validacion
     driving-test/
-      DrivingTestResult.jsonld
-      DrivingTestResult.schema.json
+      TheoreticalTestResult.jsonld + .schema.json
+      PracticalTestResult.jsonld + .schema.json
     medical/
       MedicalFitnessCredential.jsonld
       MedicalFitnessCredential.schema.json

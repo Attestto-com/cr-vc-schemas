@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.attestto.org/cr/driving/v1/TheoreticalTestResult.schema.json",
+  "title": "Resultado de Prueba Teorica de Manejo",
+  "description": "Examen de conocimientos teoricos (en linea con proctoring o presencial en sede). Incluye puntaje, hash del banco de preguntas, y evidencia de proctoring.",
+  "type": "object",
+  "required": ["credentialSubject"],
+  "properties": {
+    "credentialSubject": {
+      "type": "object",
+      "required": ["id", "theoreticalTest"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^did:" },
+        "theoreticalTest": {
+          "type": "object",
+          "required": ["status", "score", "passingScore", "category", "testDate", "modality", "testCenterDID", "examVersionHash"],
+          "properties": {
+            "status": { "type": "string", "enum": ["approved", "failed"] },
+            "score": { "type": "integer", "minimum": 0, "maximum": 100 },
+            "passingScore": { "type": "integer", "minimum": 0, "maximum": 100 },
+            "category": { "type": "string", "enum": ["A1", "A2", "A3", "B", "B1", "B2", "B3", "B4", "C1", "C2", "C3", "D1", "D2", "D3", "E1", "E2", "E3"] },
+            "testDate": { "type": "string", "format": "date-time" },
+            "expiresAt": { "type": "string", "format": "date-time", "description": "Resultado valido por 90 dias desde la fecha de aprobacion" },
+            "modality": { "type": "string", "enum": ["online", "in-person"], "description": "online = prueba remota con proctoring biometrico; in-person = en sede fisica supervisada" },
+            "testCenterDID": { "type": "string", "pattern": "^did:", "description": "DID del proveedor certificado que administro el examen" },
+            "testCenterName": { "type": "string" },
+            "examVersionHash": { "type": "string", "description": "SHA-256 del banco de preguntas usado. El banco es propiedad exclusiva de la DGEV." },
+            "totalQuestions": { "type": "integer", "minimum": 1 },
+            "correctAnswers": { "type": "integer", "minimum": 0 },
+            "durationMinutes": { "type": "integer", "minimum": 1, "description": "Duracion real del examen en minutos" },
+            "language": { "type": "string", "enum": ["es", "en"], "default": "es" },
+            "proctoring": {
+              "type": "object",
+              "description": "Evidencia de supervision del examen. Aplica tanto a modalidad online como presencial.",
+              "properties": {
+                "method": { "type": "string", "enum": ["remote-biometric", "in-person-supervised"], "description": "remote-biometric = liveness + ID scan + telemetria; in-person-supervised = supervisor fisico en sede" },
+                "telemetryHash": { "type": "string", "description": "Hash WORM de la telemetria completa de la sesion" },
+                "sessionId": { "type": "string", "format": "uuid" },
+                "anomaliesDetected": { "type": "integer", "minimum": 0 },
+                "livenessVerified": { "type": "boolean", "description": "Si se verifico prueba de vida biometrica" },
+                "identityVerified": { "type": "boolean", "description": "Si se verifico la identidad contra documento oficial" }
+              }
+            },
+            "attemptNumber": { "type": "integer", "minimum": 1 }
+          }
+        }
+      }
+    }
+  }
+}

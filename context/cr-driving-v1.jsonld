@@ -7,7 +7,8 @@
     "xsd": "http://www.w3.org/2001/XMLSchema#",
 
     "DrivingLicense": "cr:DrivingLicense",
-    "DrivingTestResult": "cr:DrivingTestResult",
+    "TheoreticalTestResult": "cr:TheoreticalTestResult",
+    "PracticalTestResult": "cr:PracticalTestResult",
     "MedicalFitnessCredential": "cr:MedicalFitnessCredential",
     "VehicleRegistration": "cr:VehicleRegistration",
     "VehicleTechnicalReview": "cr:VehicleTechnicalReview",
@@ -33,8 +34,8 @@
       }
     },
 
-    "testResult": {
-      "@id": "cr:testResult",
+    "theoreticalTest": {
+      "@id": "cr:theoreticalTest",
       "@context": {
         "status": { "@id": "cr:status", "@type": "xsd:string" },
         "score": { "@id": "cr:score", "@type": "xsd:integer" },
@@ -42,19 +43,57 @@
         "category": { "@id": "cr:category", "@type": "xsd:string" },
         "testDate": { "@id": "cr:testDate", "@type": "xsd:dateTime" },
         "expiresAt": { "@id": "cr:expiresAt", "@type": "xsd:dateTime" },
-        "testCenterId": { "@id": "cr:testCenterId", "@type": "@id" },
+        "modality": { "@id": "cr:modality", "@type": "xsd:string" },
+        "testCenterDID": { "@id": "cr:testCenterDID", "@type": "@id" },
         "testCenterName": { "@id": "cr:testCenterName", "@type": "xsd:string" },
         "examVersionHash": { "@id": "cr:examVersionHash", "@type": "xsd:string" },
+        "totalQuestions": { "@id": "cr:totalQuestions", "@type": "xsd:integer" },
+        "correctAnswers": { "@id": "cr:correctAnswers", "@type": "xsd:integer" },
+        "durationMinutes": { "@id": "cr:durationMinutes", "@type": "xsd:integer" },
+        "language": { "@id": "cr:language", "@type": "xsd:string" },
         "proctoring": {
           "@id": "cr:proctoring",
           "@context": {
             "method": { "@id": "cr:method", "@type": "xsd:string" },
             "telemetryHash": { "@id": "cr:telemetryHash", "@type": "xsd:string" },
             "sessionId": { "@id": "cr:sessionId", "@type": "xsd:string" },
-            "anomaliesDetected": { "@id": "cr:anomaliesDetected", "@type": "xsd:integer" }
+            "anomaliesDetected": { "@id": "cr:anomaliesDetected", "@type": "xsd:integer" },
+            "livenessVerified": { "@id": "cr:livenessVerified", "@type": "xsd:boolean" },
+            "identityVerified": { "@id": "cr:identityVerified", "@type": "xsd:boolean" }
           }
         },
         "attemptNumber": { "@id": "cr:attemptNumber", "@type": "xsd:integer" }
+      }
+    },
+
+    "practicalTest": {
+      "@id": "cr:practicalTest",
+      "@context": {
+        "status": { "@id": "cr:status", "@type": "xsd:string" },
+        "category": { "@id": "cr:category", "@type": "xsd:string" },
+        "testDate": { "@id": "cr:testDate", "@type": "xsd:dateTime" },
+        "expiresAt": { "@id": "cr:expiresAt", "@type": "xsd:dateTime" },
+        "evaluatorDID": { "@id": "cr:evaluatorDID", "@type": "@id" },
+        "evaluatorName": { "@id": "cr:evaluatorName", "@type": "xsd:string" },
+        "evaluatorLicense": { "@id": "cr:evaluatorLicense", "@type": "xsd:string" },
+        "testCenterDID": { "@id": "cr:testCenterDID", "@type": "@id" },
+        "testCenterName": { "@id": "cr:testCenterName", "@type": "xsd:string" },
+        "vehicleDID": { "@id": "cr:vehicleDID", "@type": "@id" },
+        "vehiclePlate": { "@id": "cr:vehiclePlate", "@type": "xsd:string" },
+        "vehicleType": { "@id": "cr:vehicleType", "@type": "xsd:string" },
+        "route": {
+          "@id": "cr:route",
+          "@context": {
+            "description": { "@id": "cr:routeDescription", "@type": "xsd:string" },
+            "distanceKm": { "@id": "cr:distanceKm", "@type": "xsd:decimal" },
+            "durationMinutes": { "@id": "cr:durationMinutes", "@type": "xsd:integer" },
+            "conditions": { "@id": "cr:conditions", "@type": "xsd:string" }
+          }
+        },
+        "maneuvers": { "@id": "cr:maneuvers", "@container": "@set" },
+        "generalObservations": { "@id": "cr:generalObservations", "@type": "xsd:string" },
+        "weatherConditions": { "@id": "cr:weatherConditions", "@type": "xsd:string" },
+        "timeOfDay": { "@id": "cr:timeOfDay", "@type": "xsd:string" }
       }
     },
 

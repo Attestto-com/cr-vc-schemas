@@ -3,27 +3,34 @@
     "https://www.w3.org/2018/credentials/v1",
     "https://schemas.attestto.org/cr/driving/v1"
   ],
-  "type": ["VerifiableCredential", "DrivingTestResult"],
+  "type": ["VerifiableCredential", "TheoreticalTestResult"],
   "credentialSubject": {
     "id": "did:sns:conductor-did",
-    "testResult": {
-      "type": "DrivingTestResultValue",
+    "theoreticalTest": {
+      "type": "TheoreticalTestResultValue",
       "status": "approved | failed",
       "score": "integer (0-100)",
       "passingScore": "integer",
-      "category": "string (B, C, D, E, F)",
+      "category": "string (B, C, D, etc.)",
       "testDate": "dateTime",
       "expiresAt": "dateTime (resultado valido por 90 dias)",
-      "testCenterId": "did:sns:proveedor-certificado",
+      "modality": "online | in-person",
+      "testCenterDID": "did:sns:proveedor-certificado",
       "testCenterName": "string",
-      "examVersionHash": "string (hash SHA-256 del banco de preguntas utilizado)",
+      "examVersionHash": "string (SHA-256 del banco de preguntas utilizado)",
+      "totalQuestions": "integer",
+      "correctAnswers": "integer",
+      "durationMinutes": "integer",
+      "language": "es | en",
       "proctoring": {
-        "method": "in-person | remote-biometric",
+        "method": "remote-biometric | in-person-supervised",
         "telemetryHash": "string (hash WORM de la telemetria de la sesion)",
-        "sessionId": "string (UUID de la sesion)",
-        "anomaliesDetected": "integer"
+        "sessionId": "string (UUID)",
+        "anomaliesDetected": "integer",
+        "livenessVerified": "boolean",
+        "identityVerified": "boolean"
       },
-      "attemptNumber": "integer (numero de intento)"
+      "attemptNumber": "integer"
     }
   },
   "issuer": "did:sns:dgev",
