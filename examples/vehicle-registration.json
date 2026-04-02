@@ -5,14 +5,14 @@
   ],
   "id": "urn:uuid:b8c9d0e1-f2a3-4567-1234-56789abcdef0",
   "type": ["VerifiableCredential", "VehicleRegistration"],
-  "issuer": "did:sns:registro-nacional",
+  "issuer": "did:web:registro-nacional.attestto.id",
   "issuanceDate": "2024-06-15T09:00:00Z",
   "credentialSubject": {
-    "id": "did:sns:vehiculo-bcd-456",
+    "id": "did:web:vehiculo-bcd-456.attestto.id",
     "vehicle": {
       "plate": "BCD-456",
       "vin": "JTDKN3DU5A0123456",
-      "ownerDID": "did:sns:maria-ejemplo",
+      "ownerDID": "did:web:maria-ejemplo.attestto.id",
       "registrationDate": "2024-06-15",
       "vehicleType": "sedan",
       "make": "Toyota",

@@ -5,11 +5,11 @@
   ],
   "id": "urn:uuid:a1b2c3d4-e5f6-7890-abcd-ef1234567890",
   "type": ["VerifiableCredential", "DrivingLicense"],
-  "issuer": "did:sns:cosevi",
+  "issuer": "did:web:cosevi.attestto.id",
   "issuanceDate": "2026-04-01T10:30:00Z",
   "expirationDate": "2032-04-01T23:59:59Z",
   "credentialSubject": {
-    "id": "did:sns:maria-ejemplo",
+    "id": "did:web:maria-ejemplo.attestto.id",
     "license": {
       "licenseNumber": "CR-2026-045678",
       "document_number": "CR-2026-045678",
@@ -27,7 +27,7 @@
       "status": "active",
       "bloodType": "O+",
       "restrictions": ["lentes correctivos"],
-      "issuingAuthority": "did:sns:cosevi",
+      "issuingAuthority": "did:web:cosevi.attestto.id",
       "issuing_authority": "Consejo de Seguridad Vial",
       "issuing_country": "CR",
       "un_distinguishing_sign": "CR",

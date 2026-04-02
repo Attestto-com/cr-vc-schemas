@@ -5,13 +5,13 @@
   ],
   "type": ["VerifiableCredential", "VehicleTechnicalReview"],
   "credentialSubject": {
-    "id": "did:sns:vehiculo-did",
+    "id": "did:web:vehiculo.attestto.id",
     "technicalReview": {
       "type": "VehicleTechnicalReviewValue",
       "result": "approved | failed | conditional",
       "inspectionDate": "date",
       "expiresAt": "date (1 ano desde inspeccion)",
-      "inspectorDID": "did:sns:inspector-did",
+      "inspectorDID": "did:web:inspector.attestto.id",
       "centerDID": "did:sns:centro-rtv-did",
       "centerName": "string",
       "defects": ["string (descripcion de defectos encontrados)"],
@@ -23,6 +23,6 @@
       "mileage": "integer (km)"
     }
   },
-  "issuer": "did:sns:centro-rtv",
+  "issuer": "did:web:centro-rtv.attestto.id",
   "issuanceDate": "dateTime"
 }

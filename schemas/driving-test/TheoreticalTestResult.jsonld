@@ -5,7 +5,7 @@
   ],
   "type": ["VerifiableCredential", "TheoreticalTestResult"],
   "credentialSubject": {
-    "id": "did:sns:conductor-did",
+    "id": "did:web:conductor.attestto.id",
     "theoreticalTest": {
       "type": "TheoreticalTestResultValue",
       "status": "approved | failed",
@@ -15,7 +15,7 @@
       "testDate": "dateTime",
       "expiresAt": "dateTime (resultado valido por 90 dias)",
       "modality": "online | in-person",
-      "testCenterDID": "did:sns:proveedor-certificado",
+      "testCenterDID": "did:web:proveedor.attestto.id",
       "testCenterName": "string",
       "examVersionHash": "string (SHA-256 del banco de preguntas utilizado)",
       "totalQuestions": "integer",
@@ -33,7 +33,7 @@
       "attemptNumber": "integer"
     }
   },
-  "issuer": "did:sns:dgev",
+  "issuer": "did:web:dgev.attestto.id",
   "issuanceDate": "dateTime",
   "credentialStatus": {
     "id": "https://status.attestto.org/cr/credentials/status/2",

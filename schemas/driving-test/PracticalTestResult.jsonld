@@ -5,7 +5,7 @@
   ],
   "type": ["VerifiableCredential", "PracticalTestResult"],
   "credentialSubject": {
-    "id": "did:sns:conductor-did",
+    "id": "did:web:conductor.attestto.id",
     "practicalTest": {
       "type": "PracticalTestResultValue",
       "status": "approved | failed",
@@ -38,7 +38,7 @@
       "timeOfDay": "string (diurno, nocturno, crepuscular)"
     }
   },
-  "issuer": "did:sns:dgev",
+  "issuer": "did:web:dgev.attestto.id",
   "issuanceDate": "dateTime",
   "credentialStatus": {
     "id": "https://status.attestto.org/cr/credentials/status/4",

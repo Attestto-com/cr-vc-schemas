@@ -5,7 +5,7 @@
   ],
   "type": ["VerifiableCredential", "TrafficViolation"],
   "credentialSubject": {
-    "id": "did:sns:conductor-did",
+    "id": "did:web:conductor.attestto.id",
     "violation": {
       "type": "TrafficViolationValue",
       "violationType": "string (exceso_velocidad, semaforo_rojo, conduccion_temeraria, etc.)",
@@ -16,12 +16,12 @@
       "latitude": "decimal",
       "longitude": "decimal",
       "timestamp": "dateTime",
-      "officerDID": "did:sns:oficial-transito",
-      "vehicleDID": "did:sns:vehiculo-did",
+      "officerDID": "did:web:oficial.attestto.id",
+      "vehicleDID": "did:web:vehiculo.attestto.id",
       "articleNumber": "string (articulo de la Ley de Transito)",
       "description": "string"
     }
   },
-  "issuer": "did:sns:cosevi",
+  "issuer": "did:web:cosevi.attestto.id",
   "issuanceDate": "dateTime"
 }

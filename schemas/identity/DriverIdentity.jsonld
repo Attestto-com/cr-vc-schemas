@@ -5,7 +5,7 @@
   ],
   "type": ["VerifiableCredential", "DriverIdentity"],
   "credentialSubject": {
-    "id": "did:sns:conductor-did",
+    "id": "did:web:conductor.attestto.id",
     "driverIdentity": {
       "type": "DriverIdentityValue",
       "nationalIdType": "cedula | dimex | pasaporte",
@@ -18,6 +18,6 @@
       "verifierDID": "did:sns:entidad-verificadora"
     }
   },
-  "issuer": "did:sns:tse | did:sns:dgme | did:sns:banco | did:sns:cosevi",
+  "issuer": "did:web:tse.attestto.id | did:web:dgme.attestto.id | did:web:banco.attestto.id | did:web:cosevi.attestto.id",
   "issuanceDate": "dateTime"
 }

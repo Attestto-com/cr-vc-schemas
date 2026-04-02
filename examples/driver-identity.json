@@ -5,10 +5,10 @@
   ],
   "id": "urn:uuid:f2a3b4c5-d6e7-8901-5678-9abcdef01234",
   "type": ["VerifiableCredential", "DriverIdentity"],
-  "issuer": "did:sns:cosevi",
+  "issuer": "did:web:cosevi.attestto.id",
   "issuanceDate": "2026-04-01T10:30:00Z",
   "credentialSubject": {
-    "id": "did:sns:maria-ejemplo",
+    "id": "did:web:maria-ejemplo.attestto.id",
     "driverIdentity": {
       "nationalIdType": "cedula",
       "nationalIdRef": "****-****-5678",
@@ -20,7 +20,7 @@
       "given_name": "Maria Isabel",
       "verificationMethod": "in-person-kyc",
       "verificationDate": "2026-04-01T10:15:00Z",
-      "verifierDID": "did:sns:cosevi"
+      "verifierDID": "did:web:cosevi.attestto.id"
     }
   }
 }

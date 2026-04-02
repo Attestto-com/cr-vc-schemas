@@ -5,10 +5,10 @@
   ],
   "id": "urn:uuid:b2c3d4e5-f6a7-8901-bcde-f12345678901",
   "type": ["VerifiableCredential", "TheoreticalTestResult"],
-  "issuer": "did:sns:dgev",
+  "issuer": "did:web:dgev.attestto.id",
   "issuanceDate": "2026-03-15T14:22:00Z",
   "credentialSubject": {
-    "id": "did:sns:maria-ejemplo",
+    "id": "did:web:maria-ejemplo.attestto.id",
     "theoreticalTest": {
       "status": "approved",
       "score": 88,
@@ -17,7 +17,7 @@
       "testDate": "2026-03-15T14:00:00Z",
       "expiresAt": "2026-06-13T23:59:59Z",
       "modality": "online",
-      "testCenterDID": "did:sns:academia-tica-conduccion",
+      "testCenterDID": "did:web:academia-tica-conduccion.attestto.id",
       "testCenterName": "Academia Tica de Conduccion S.A.",
       "examVersionHash": "sha256:e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8",
       "totalQuestions": 40,

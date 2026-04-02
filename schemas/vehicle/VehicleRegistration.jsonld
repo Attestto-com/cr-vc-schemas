@@ -5,7 +5,7 @@
   ],
   "type": ["VerifiableCredential", "VehicleRegistration"],
   "credentialSubject": {
-    "id": "did:sns:vehiculo-did",
+    "id": "did:web:vehiculo.attestto.id",
     "vehicle": {
       "type": "VehicleRegistrationValue",
       "plate": "string (ABC-123)",
@@ -21,6 +21,6 @@
       "seatingCapacity": "integer"
     }
   },
-  "issuer": "did:sns:registro-nacional",
+  "issuer": "did:web:registro-nacional.attestto.id",
   "issuanceDate": "dateTime"
 }

@@ -5,10 +5,10 @@
   ],
   "id": "urn:uuid:d0e1f2a3-b4c5-6789-3456-789abcdef012",
   "type": ["VerifiableCredential", "CirculationRights"],
-  "issuer": "did:sns:hacienda-cr",
+  "issuer": "did:web:hacienda.attestto.id",
   "issuanceDate": "2025-11-28T15:00:00Z",
   "credentialSubject": {
-    "id": "did:sns:vehiculo-bcd-456",
+    "id": "did:web:vehiculo-bcd-456.attestto.id",
     "circulationRights": {
       "fiscalYear": 2026,
       "paymentDate": "2025-11-28",
