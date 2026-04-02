@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.attestto.org/cr/driving/v1/DrivingLicense.schema.json",
+  "title": "Licencia de Conducir Digital (mDL)",
+  "description": "Esquema de validacion para la Credencial Verificable de Licencia de Conducir de Costa Rica, conforme a ISO/IEC 18013-5.",
+  "type": "object",
+  "required": ["credentialSubject"],
+  "properties": {
+    "credentialSubject": {
+      "type": "object",
+      "required": ["id", "license"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^did:",
+          "description": "DID del titular de la licencia"
+        },
+        "license": {
+          "type": "object",
+          "required": ["licenseNumber", "categories", "issueDate", "expiresAt", "status", "issuingAuthority"],
+          "properties": {
+            "licenseNumber": {
+              "type": "string",
+              "description": "Numero de licencia"
+            },
+            "categories": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["A1", "A2", "A3", "B", "B1", "B2", "B3", "B4", "C1", "C2", "C3", "D1", "D2", "D3", "E1", "E2", "E3"]
+              },
+              "minItems": 1,
+              "description": "Categorias de licencia autorizadas"
+            },
+            "issueDate": {
+              "type": "string",
+              "format": "date",
+              "description": "Fecha de emision"
+            },
+            "expiresAt": {
+              "type": "string",
+              "format": "date",
+              "description": "Fecha de vencimiento"
+            },
+            "photoHash": {
+              "type": "string",
+              "description": "Hash SHA-256 de la foto biometrica del titular"
+            },
+            "points": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 12,
+              "description": "Puntos restantes en el sistema de puntos (12 = maximo)"
+            },
+            "status": {
+              "type": "string",
+              "enum": ["active", "suspended", "revoked", "expired"],
+              "description": "Estado actual de la licencia"
+            },
+            "bloodType": {
+              "type": "string",
+              "enum": ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"],
+              "description": "Tipo de sangre (opcional)"
+            },
+            "restrictions": {
+              "type": "array",
+              "items": { "type": "string" },
+              "description": "Restricciones (lentes correctivos, solo diurno, etc.)"
+            },
+            "issuingAuthority": {
+              "type": "string",
+              "pattern": "^did:",
+              "description": "DID de la autoridad emisora (COSEVI/DGEV)"
+            }
+          }
+        }
+      }
+    }
+  }
+}

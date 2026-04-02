@@ -1,0 +1,28 @@
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://schemas.attestto.org/cr/driving/v1"
+  ],
+  "type": ["VerifiableCredential", "VehicleTechnicalReview"],
+  "credentialSubject": {
+    "id": "did:sns:vehiculo-did",
+    "technicalReview": {
+      "type": "VehicleTechnicalReviewValue",
+      "result": "approved | failed | conditional",
+      "inspectionDate": "date",
+      "expiresAt": "date (1 ano desde inspeccion)",
+      "inspectorDID": "did:sns:inspector-did",
+      "centerDID": "did:sns:centro-rtv-did",
+      "centerName": "string",
+      "defects": ["string (descripcion de defectos encontrados)"],
+      "emissions": {
+        "co2": "decimal (g/km)",
+        "hc": "decimal (ppm)",
+        "result": "pass | fail"
+      },
+      "mileage": "integer (km)"
+    }
+  },
+  "issuer": "did:sns:centro-rtv",
+  "issuanceDate": "dateTime"
+}

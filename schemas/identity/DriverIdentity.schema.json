@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.attestto.org/cr/driving/v1/DriverIdentity.schema.json",
+  "title": "Identidad del Conductor",
+  "description": "Credencial de identidad emitida en un punto de verificacion (TSE, DGME, banco, COSEVI). Referencia al documento de identidad nacional sin exponer el numero completo.",
+  "type": "object",
+  "required": ["credentialSubject"],
+  "properties": {
+    "credentialSubject": {
+      "type": "object",
+      "required": ["id", "driverIdentity"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^did:" },
+        "driverIdentity": {
+          "type": "object",
+          "required": ["nationalIdType", "nationalIdRef", "nationality", "dateOfBirth", "fullName", "verificationMethod", "verifierDID"],
+          "properties": {
+            "nationalIdType": { "type": "string", "enum": ["cedula", "dimex", "pasaporte"] },
+            "nationalIdRef": { "type": "string", "description": "Referencia parcial al documento (ultimos 4 digitos o hash)" },
+            "nationality": { "type": "string", "pattern": "^[A-Z]{2}$" },
+            "dateOfBirth": { "type": "string", "format": "date" },
+            "fullName": { "type": "string" },
+            "verificationMethod": { "type": "string", "enum": ["in-person-kyc", "remote-biometric", "firma-digital", "nfc-passport"] },
+            "verificationDate": { "type": "string", "format": "date-time" },
+            "verifierDID": { "type": "string", "pattern": "^did:" }
+          }
+        }
+      }
+    }
+  }
+}

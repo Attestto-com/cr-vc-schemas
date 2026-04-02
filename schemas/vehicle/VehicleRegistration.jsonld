@@ -1,0 +1,26 @@
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://schemas.attestto.org/cr/driving/v1"
+  ],
+  "type": ["VerifiableCredential", "VehicleRegistration"],
+  "credentialSubject": {
+    "id": "did:sns:vehiculo-did",
+    "vehicle": {
+      "type": "VehicleRegistrationValue",
+      "plate": "string (ABC-123)",
+      "vin": "string (Vehicle Identification Number)",
+      "ownerDID": "did:sns:propietario-did",
+      "registrationDate": "date",
+      "vehicleType": "string (sedan, SUV, motocicleta, camion, bus)",
+      "make": "string (Toyota, Hyundai, etc.)",
+      "model": "string",
+      "year": "integer",
+      "color": "string",
+      "engineNumber": "string",
+      "seatingCapacity": "integer"
+    }
+  },
+  "issuer": "did:sns:registro-nacional",
+  "issuanceDate": "dateTime"
+}

@@ -1,0 +1,38 @@
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://schemas.attestto.org/cr/driving/v1"
+  ],
+  "type": ["VerifiableCredential", "DrivingTestResult"],
+  "credentialSubject": {
+    "id": "did:sns:conductor-did",
+    "testResult": {
+      "type": "DrivingTestResultValue",
+      "status": "approved | failed",
+      "score": "integer (0-100)",
+      "passingScore": "integer",
+      "category": "string (B, C, D, E, F)",
+      "testDate": "dateTime",
+      "expiresAt": "dateTime (resultado valido por 90 dias)",
+      "testCenterId": "did:sns:proveedor-certificado",
+      "testCenterName": "string",
+      "examVersionHash": "string (hash SHA-256 del banco de preguntas utilizado)",
+      "proctoring": {
+        "method": "in-person | remote-biometric",
+        "telemetryHash": "string (hash WORM de la telemetria de la sesion)",
+        "sessionId": "string (UUID de la sesion)",
+        "anomaliesDetected": "integer"
+      },
+      "attemptNumber": "integer (numero de intento)"
+    }
+  },
+  "issuer": "did:sns:dgev",
+  "issuanceDate": "dateTime",
+  "credentialStatus": {
+    "id": "https://status.attestto.org/cr/credentials/status/2",
+    "type": "StatusList2021Entry",
+    "statusPurpose": "revocation",
+    "statusListIndex": "integer",
+    "statusListCredential": "https://status.attestto.org/cr/credentials/status-list/1"
+  }
+}

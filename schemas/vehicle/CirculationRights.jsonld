@@ -1,0 +1,23 @@
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://schemas.attestto.org/cr/driving/v1"
+  ],
+  "type": ["VerifiableCredential", "CirculationRights"],
+  "credentialSubject": {
+    "id": "did:sns:vehiculo-did",
+    "circulationRights": {
+      "type": "CirculationRightsValue",
+      "fiscalYear": "integer (2026)",
+      "paymentDate": "date",
+      "amount": "decimal",
+      "currency": "CRC",
+      "municipality": "string",
+      "validFrom": "date",
+      "validUntil": "date",
+      "receiptNumber": "string"
+    }
+  },
+  "issuer": "did:sns:hacienda",
+  "issuanceDate": "dateTime"
+}

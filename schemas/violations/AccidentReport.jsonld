@@ -1,0 +1,31 @@
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://schemas.attestto.org/cr/driving/v1"
+  ],
+  "type": ["VerifiableCredential", "AccidentReport"],
+  "credentialSubject": {
+    "id": "did:sns:reporte-id",
+    "accident": {
+      "type": "AccidentReportValue",
+      "timestamp": "dateTime",
+      "location": "string",
+      "latitude": "decimal",
+      "longitude": "decimal",
+      "severity": "minor | moderate | severe | fatal",
+      "parties": [
+        {
+          "conductorDID": "did:sns:conductor-1",
+          "vehicleDID": "did:sns:vehiculo-1",
+          "insurancePolicyRef": "string",
+          "role": "driver | passenger | pedestrian"
+        }
+      ],
+      "reportNumber": "string (numero de parte oficial)",
+      "officerDID": "did:sns:oficial-transito",
+      "description": "string"
+    }
+  },
+  "issuer": "did:sns:cosevi",
+  "issuanceDate": "dateTime"
+}

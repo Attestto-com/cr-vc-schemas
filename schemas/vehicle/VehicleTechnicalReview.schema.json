@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.attestto.org/cr/driving/v1/VehicleTechnicalReview.schema.json",
+  "title": "Revision Tecnica Vehicular (RTV)",
+  "description": "Resultado de la revision tecnica vehicular emitida por centro RTV autorizado.",
+  "type": "object",
+  "required": ["credentialSubject"],
+  "properties": {
+    "credentialSubject": {
+      "type": "object",
+      "required": ["id", "technicalReview"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^did:" },
+        "technicalReview": {
+          "type": "object",
+          "required": ["result", "inspectionDate", "expiresAt", "centerDID"],
+          "properties": {
+            "result": { "type": "string", "enum": ["approved", "failed", "conditional"] },
+            "inspectionDate": { "type": "string", "format": "date" },
+            "expiresAt": { "type": "string", "format": "date" },
+            "inspectorDID": { "type": "string", "pattern": "^did:" },
+            "centerDID": { "type": "string", "pattern": "^did:" },
+            "centerName": { "type": "string" },
+            "defects": { "type": "array", "items": { "type": "string" } },
+            "emissions": {
+              "type": "object",
+              "properties": {
+                "co2": { "type": "number" },
+                "hc": { "type": "number" },
+                "result": { "type": "string", "enum": ["pass", "fail"] }
+              }
+            },
+            "mileage": { "type": "integer", "minimum": 0 }
+          }
+        }
+      }
+    }
+  }
+}

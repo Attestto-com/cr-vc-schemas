@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.attestto.org/cr/driving/v1/CirculationRights.schema.json",
+  "title": "Derechos de Circulacion (Marchamo)",
+  "description": "Credencial de derechos de circulacion vehicular emitida por Hacienda/Municipalidad.",
+  "type": "object",
+  "required": ["credentialSubject"],
+  "properties": {
+    "credentialSubject": {
+      "type": "object",
+      "required": ["id", "circulationRights"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^did:" },
+        "circulationRights": {
+          "type": "object",
+          "required": ["fiscalYear", "paymentDate", "validFrom", "validUntil"],
+          "properties": {
+            "fiscalYear": { "type": "integer" },
+            "paymentDate": { "type": "string", "format": "date" },
+            "amount": { "type": "number" },
+            "currency": { "type": "string", "default": "CRC" },
+            "municipality": { "type": "string" },
+            "validFrom": { "type": "string", "format": "date" },
+            "validUntil": { "type": "string", "format": "date" },
+            "receiptNumber": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}

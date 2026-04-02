@@ -1,0 +1,27 @@
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://schemas.attestto.org/cr/driving/v1"
+  ],
+  "type": ["VerifiableCredential", "TrafficViolation"],
+  "credentialSubject": {
+    "id": "did:sns:conductor-did",
+    "violation": {
+      "type": "TrafficViolationValue",
+      "violationType": "string (exceso_velocidad, semaforo_rojo, conduccion_temeraria, etc.)",
+      "points": "integer (puntos deducidos)",
+      "fineAmount": "decimal",
+      "currency": "CRC",
+      "location": "string (descripcion de ubicacion)",
+      "latitude": "decimal",
+      "longitude": "decimal",
+      "timestamp": "dateTime",
+      "officerDID": "did:sns:oficial-transito",
+      "vehicleDID": "did:sns:vehiculo-did",
+      "articleNumber": "string (articulo de la Ley de Transito)",
+      "description": "string"
+    }
+  },
+  "issuer": "did:sns:cosevi",
+  "issuanceDate": "dateTime"
+}

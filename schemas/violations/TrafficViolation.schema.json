@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.attestto.org/cr/driving/v1/TrafficViolation.schema.json",
+  "title": "Multa de Transito",
+  "description": "Evento de infraccion de transito firmado digitalmente, vinculado al DID del conductor y del vehiculo.",
+  "type": "object",
+  "required": ["credentialSubject"],
+  "properties": {
+    "credentialSubject": {
+      "type": "object",
+      "required": ["id", "violation"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^did:" },
+        "violation": {
+          "type": "object",
+          "required": ["violationType", "points", "timestamp", "officerDID"],
+          "properties": {
+            "violationType": { "type": "string" },
+            "points": { "type": "integer", "minimum": 0 },
+            "fineAmount": { "type": "number" },
+            "currency": { "type": "string", "default": "CRC" },
+            "location": { "type": "string" },
+            "latitude": { "type": "number" },
+            "longitude": { "type": "number" },
+            "timestamp": { "type": "string", "format": "date-time" },
+            "officerDID": { "type": "string", "pattern": "^did:" },
+            "vehicleDID": { "type": "string", "pattern": "^did:" },
+            "articleNumber": { "type": "string" },
+            "description": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}

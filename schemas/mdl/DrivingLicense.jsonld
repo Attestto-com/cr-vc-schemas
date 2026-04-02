@@ -1,0 +1,33 @@
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://schemas.attestto.org/cr/driving/v1"
+  ],
+  "type": ["VerifiableCredential", "DrivingLicense"],
+  "credentialSubject": {
+    "id": "did:sns:conductor-did",
+    "license": {
+      "type": "DrivingLicenseValue",
+      "licenseNumber": "string",
+      "categories": ["B", "A1"],
+      "issueDate": "date (YYYY-MM-DD)",
+      "expiresAt": "date (YYYY-MM-DD)",
+      "photoHash": "string (SHA-256 hash of biometric photo)",
+      "points": "integer (0-12, remaining points)",
+      "status": "active | suspended | revoked | expired",
+      "bloodType": "string (optional)",
+      "restrictions": ["string (e.g. corrective lenses, daylight only)"],
+      "issuingAuthority": "did:sns:cosevi"
+    }
+  },
+  "issuer": "did:sns:cosevi",
+  "issuanceDate": "dateTime",
+  "expirationDate": "dateTime",
+  "credentialStatus": {
+    "id": "https://status.attestto.org/cr/credentials/status/1",
+    "type": "StatusList2021Entry",
+    "statusPurpose": "revocation",
+    "statusListIndex": "integer",
+    "statusListCredential": "https://status.attestto.org/cr/credentials/status-list/1"
+  }
+}

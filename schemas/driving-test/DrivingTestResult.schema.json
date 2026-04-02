@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.attestto.org/cr/driving/v1/DrivingTestResult.schema.json",
+  "title": "Resultado de Prueba Teorica de Manejo",
+  "description": "Esquema de validacion para la VC de resultado de prueba teorica, emitida por la DGEV o proveedor certificado.",
+  "type": "object",
+  "required": ["credentialSubject"],
+  "properties": {
+    "credentialSubject": {
+      "type": "object",
+      "required": ["id", "testResult"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^did:" },
+        "testResult": {
+          "type": "object",
+          "required": ["status", "score", "passingScore", "category", "testDate", "testCenterId", "examVersionHash"],
+          "properties": {
+            "status": { "type": "string", "enum": ["approved", "failed"] },
+            "score": { "type": "integer", "minimum": 0, "maximum": 100 },
+            "passingScore": { "type": "integer", "minimum": 0, "maximum": 100 },
+            "category": { "type": "string", "enum": ["A1", "A2", "A3", "B", "B1", "B2", "B3", "B4", "C1", "C2", "C3", "D1", "D2", "D3", "E1", "E2", "E3"] },
+            "testDate": { "type": "string", "format": "date-time" },
+            "expiresAt": { "type": "string", "format": "date-time", "description": "Resultado valido por 90 dias" },
+            "testCenterId": { "type": "string", "pattern": "^did:" },
+            "testCenterName": { "type": "string" },
+            "examVersionHash": { "type": "string", "description": "SHA-256 del banco de preguntas" },
+            "proctoring": {
+              "type": "object",
+              "properties": {
+                "method": { "type": "string", "enum": ["in-person", "remote-biometric"] },
+                "telemetryHash": { "type": "string", "description": "Hash WORM de telemetria" },
+                "sessionId": { "type": "string", "format": "uuid" },
+                "anomaliesDetected": { "type": "integer", "minimum": 0 }
+              }
+            },
+            "attemptNumber": { "type": "integer", "minimum": 1 }
+          }
+        }
+      }
+    }
+  }
+}

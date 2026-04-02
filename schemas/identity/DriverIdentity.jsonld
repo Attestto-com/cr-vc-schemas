@@ -1,0 +1,23 @@
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://schemas.attestto.org/cr/driving/v1"
+  ],
+  "type": ["VerifiableCredential", "DriverIdentity"],
+  "credentialSubject": {
+    "id": "did:sns:conductor-did",
+    "driverIdentity": {
+      "type": "DriverIdentityValue",
+      "nationalIdType": "cedula | dimex | pasaporte",
+      "nationalIdRef": "string (referencia al documento, NO el numero completo)",
+      "nationality": "string (ISO 3166-1 alpha-2)",
+      "dateOfBirth": "date",
+      "fullName": "string",
+      "verificationMethod": "in-person-kyc | remote-biometric | firma-digital",
+      "verificationDate": "dateTime",
+      "verifierDID": "did:sns:entidad-verificadora"
+    }
+  },
+  "issuer": "did:sns:tse | did:sns:dgme | did:sns:banco | did:sns:cosevi",
+  "issuanceDate": "dateTime"
+}

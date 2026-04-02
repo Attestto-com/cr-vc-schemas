@@ -1,0 +1,191 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "@protected": true,
+    "cr": "https://schemas.attestto.org/cr/driving/v1#",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "DrivingLicense": "cr:DrivingLicense",
+    "DrivingTestResult": "cr:DrivingTestResult",
+    "MedicalFitnessCredential": "cr:MedicalFitnessCredential",
+    "VehicleRegistration": "cr:VehicleRegistration",
+    "VehicleTechnicalReview": "cr:VehicleTechnicalReview",
+    "CirculationRights": "cr:CirculationRights",
+    "SOATCredential": "cr:SOATCredential",
+    "DriverIdentity": "cr:DriverIdentity",
+    "TrafficViolation": "cr:TrafficViolation",
+    "AccidentReport": "cr:AccidentReport",
+
+    "license": {
+      "@id": "cr:license",
+      "@context": {
+        "categories": { "@id": "cr:categories", "@container": "@set" },
+        "issueDate": { "@id": "cr:issueDate", "@type": "xsd:date" },
+        "expiresAt": { "@id": "cr:expiresAt", "@type": "xsd:date" },
+        "photoHash": { "@id": "cr:photoHash", "@type": "xsd:string" },
+        "points": { "@id": "cr:points", "@type": "xsd:integer" },
+        "status": { "@id": "cr:status", "@type": "xsd:string" },
+        "bloodType": { "@id": "cr:bloodType", "@type": "xsd:string" },
+        "restrictions": { "@id": "cr:restrictions", "@container": "@set" },
+        "licenseNumber": { "@id": "cr:licenseNumber", "@type": "xsd:string" },
+        "issuingAuthority": { "@id": "cr:issuingAuthority", "@type": "@id" }
+      }
+    },
+
+    "testResult": {
+      "@id": "cr:testResult",
+      "@context": {
+        "status": { "@id": "cr:status", "@type": "xsd:string" },
+        "score": { "@id": "cr:score", "@type": "xsd:integer" },
+        "passingScore": { "@id": "cr:passingScore", "@type": "xsd:integer" },
+        "category": { "@id": "cr:category", "@type": "xsd:string" },
+        "testDate": { "@id": "cr:testDate", "@type": "xsd:dateTime" },
+        "expiresAt": { "@id": "cr:expiresAt", "@type": "xsd:dateTime" },
+        "testCenterId": { "@id": "cr:testCenterId", "@type": "@id" },
+        "testCenterName": { "@id": "cr:testCenterName", "@type": "xsd:string" },
+        "examVersionHash": { "@id": "cr:examVersionHash", "@type": "xsd:string" },
+        "proctoring": {
+          "@id": "cr:proctoring",
+          "@context": {
+            "method": { "@id": "cr:method", "@type": "xsd:string" },
+            "telemetryHash": { "@id": "cr:telemetryHash", "@type": "xsd:string" },
+            "sessionId": { "@id": "cr:sessionId", "@type": "xsd:string" },
+            "anomaliesDetected": { "@id": "cr:anomaliesDetected", "@type": "xsd:integer" }
+          }
+        },
+        "attemptNumber": { "@id": "cr:attemptNumber", "@type": "xsd:integer" }
+      }
+    },
+
+    "fitness": {
+      "@id": "cr:fitness",
+      "@context": {
+        "status": { "@id": "cr:fitnessStatus", "@type": "xsd:string" },
+        "categories": { "@id": "cr:categories", "@container": "@set" },
+        "issuedDate": { "@id": "cr:issuedDate", "@type": "xsd:date" },
+        "expiresAt": { "@id": "cr:expiresAt", "@type": "xsd:dateTime" },
+        "physicianDID": { "@id": "cr:physicianDID", "@type": "@id" },
+        "physicianName": { "@id": "cr:physicianName", "@type": "xsd:string" },
+        "physicianLicense": { "@id": "cr:physicianLicense", "@type": "xsd:string" },
+        "clinicDID": { "@id": "cr:clinicDID", "@type": "@id" },
+        "clinicName": { "@id": "cr:clinicName", "@type": "xsd:string" },
+        "restrictions": { "@id": "cr:restrictions", "@container": "@set" }
+      }
+    },
+
+    "vehicle": {
+      "@id": "cr:vehicle",
+      "@context": {
+        "plate": { "@id": "cr:plate", "@type": "xsd:string" },
+        "vin": { "@id": "cr:vin", "@type": "xsd:string" },
+        "ownerDID": { "@id": "cr:ownerDID", "@type": "@id" },
+        "registrationDate": { "@id": "cr:registrationDate", "@type": "xsd:date" },
+        "vehicleType": { "@id": "cr:vehicleType", "@type": "xsd:string" },
+        "make": { "@id": "cr:make", "@type": "xsd:string" },
+        "model": { "@id": "cr:model", "@type": "xsd:string" },
+        "year": { "@id": "cr:year", "@type": "xsd:integer" },
+        "color": { "@id": "cr:color", "@type": "xsd:string" },
+        "engineNumber": { "@id": "cr:engineNumber", "@type": "xsd:string" },
+        "seatingCapacity": { "@id": "cr:seatingCapacity", "@type": "xsd:integer" }
+      }
+    },
+
+    "technicalReview": {
+      "@id": "cr:technicalReview",
+      "@context": {
+        "result": { "@id": "cr:result", "@type": "xsd:string" },
+        "inspectionDate": { "@id": "cr:inspectionDate", "@type": "xsd:date" },
+        "expiresAt": { "@id": "cr:expiresAt", "@type": "xsd:date" },
+        "inspectorDID": { "@id": "cr:inspectorDID", "@type": "@id" },
+        "centerDID": { "@id": "cr:centerDID", "@type": "@id" },
+        "centerName": { "@id": "cr:centerName", "@type": "xsd:string" },
+        "defects": { "@id": "cr:defects", "@container": "@set" },
+        "emissions": {
+          "@id": "cr:emissions",
+          "@context": {
+            "co2": { "@id": "cr:co2", "@type": "xsd:decimal" },
+            "hc": { "@id": "cr:hc", "@type": "xsd:decimal" },
+            "result": { "@id": "cr:emissionsResult", "@type": "xsd:string" }
+          }
+        },
+        "mileage": { "@id": "cr:mileage", "@type": "xsd:integer" }
+      }
+    },
+
+    "circulationRights": {
+      "@id": "cr:circulationRights",
+      "@context": {
+        "fiscalYear": { "@id": "cr:fiscalYear", "@type": "xsd:integer" },
+        "paymentDate": { "@id": "cr:paymentDate", "@type": "xsd:date" },
+        "amount": { "@id": "cr:amount", "@type": "xsd:decimal" },
+        "currency": { "@id": "cr:currency", "@type": "xsd:string" },
+        "municipality": { "@id": "cr:municipality", "@type": "xsd:string" },
+        "validFrom": { "@id": "cr:validFrom", "@type": "xsd:date" },
+        "validUntil": { "@id": "cr:validUntil", "@type": "xsd:date" },
+        "receiptNumber": { "@id": "cr:receiptNumber", "@type": "xsd:string" }
+      }
+    },
+
+    "insurance": {
+      "@id": "cr:insurance",
+      "@context": {
+        "policyNumber": { "@id": "cr:policyNumber", "@type": "xsd:string" },
+        "coverageType": { "@id": "cr:coverageType", "@type": "xsd:string" },
+        "issueDate": { "@id": "cr:issueDate", "@type": "xsd:date" },
+        "expiresAt": { "@id": "cr:expiresAt", "@type": "xsd:date" },
+        "insurer": { "@id": "cr:insurer", "@type": "xsd:string" },
+        "insurerDID": { "@id": "cr:insurerDID", "@type": "@id" },
+        "premium": { "@id": "cr:premium", "@type": "xsd:decimal" },
+        "currency": { "@id": "cr:currency", "@type": "xsd:string" }
+      }
+    },
+
+    "driverIdentity": {
+      "@id": "cr:driverIdentity",
+      "@context": {
+        "nationalIdType": { "@id": "cr:nationalIdType", "@type": "xsd:string" },
+        "nationalIdRef": { "@id": "cr:nationalIdRef", "@type": "xsd:string" },
+        "nationality": { "@id": "cr:nationality", "@type": "xsd:string" },
+        "dateOfBirth": { "@id": "cr:dateOfBirth", "@type": "xsd:date" },
+        "fullName": { "@id": "cr:fullName", "@type": "xsd:string" },
+        "verificationMethod": { "@id": "cr:verificationMethod", "@type": "xsd:string" },
+        "verificationDate": { "@id": "cr:verificationDate", "@type": "xsd:dateTime" },
+        "verifierDID": { "@id": "cr:verifierDID", "@type": "@id" }
+      }
+    },
+
+    "violation": {
+      "@id": "cr:violation",
+      "@context": {
+        "violationType": { "@id": "cr:violationType", "@type": "xsd:string" },
+        "points": { "@id": "cr:points", "@type": "xsd:integer" },
+        "fineAmount": { "@id": "cr:fineAmount", "@type": "xsd:decimal" },
+        "currency": { "@id": "cr:currency", "@type": "xsd:string" },
+        "location": { "@id": "cr:location", "@type": "xsd:string" },
+        "latitude": { "@id": "cr:latitude", "@type": "xsd:decimal" },
+        "longitude": { "@id": "cr:longitude", "@type": "xsd:decimal" },
+        "timestamp": { "@id": "cr:timestamp", "@type": "xsd:dateTime" },
+        "officerDID": { "@id": "cr:officerDID", "@type": "@id" },
+        "vehicleDID": { "@id": "cr:vehicleDID", "@type": "@id" },
+        "articleNumber": { "@id": "cr:articleNumber", "@type": "xsd:string" },
+        "description": { "@id": "cr:description", "@type": "xsd:string" }
+      }
+    },
+
+    "accident": {
+      "@id": "cr:accident",
+      "@context": {
+        "timestamp": { "@id": "cr:timestamp", "@type": "xsd:dateTime" },
+        "location": { "@id": "cr:location", "@type": "xsd:string" },
+        "latitude": { "@id": "cr:latitude", "@type": "xsd:decimal" },
+        "longitude": { "@id": "cr:longitude", "@type": "xsd:decimal" },
+        "severity": { "@id": "cr:severity", "@type": "xsd:string" },
+        "parties": { "@id": "cr:parties", "@container": "@set" },
+        "reportNumber": { "@id": "cr:reportNumber", "@type": "xsd:string" },
+        "officerDID": { "@id": "cr:officerDID", "@type": "@id" },
+        "description": { "@id": "cr:description", "@type": "xsd:string" }
+      }
+    }
+  }
+}

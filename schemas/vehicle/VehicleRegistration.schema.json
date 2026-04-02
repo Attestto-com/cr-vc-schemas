@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.attestto.org/cr/driving/v1/VehicleRegistration.schema.json",
+  "title": "Registro Vehicular (Placa)",
+  "description": "Credencial de registro de vehiculo emitida por el Registro Nacional de Costa Rica.",
+  "type": "object",
+  "required": ["credentialSubject"],
+  "properties": {
+    "credentialSubject": {
+      "type": "object",
+      "required": ["id", "vehicle"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^did:", "description": "DID del vehiculo" },
+        "vehicle": {
+          "type": "object",
+          "required": ["plate", "vin", "ownerDID", "registrationDate", "vehicleType"],
+          "properties": {
+            "plate": { "type": "string" },
+            "vin": { "type": "string", "minLength": 17, "maxLength": 17 },
+            "ownerDID": { "type": "string", "pattern": "^did:" },
+            "registrationDate": { "type": "string", "format": "date" },
+            "vehicleType": { "type": "string" },
+            "make": { "type": "string" },
+            "model": { "type": "string" },
+            "year": { "type": "integer", "minimum": 1900 },
+            "color": { "type": "string" },
+            "engineNumber": { "type": "string" },
+            "seatingCapacity": { "type": "integer", "minimum": 1 }
+          }
+        }
+      }
+    }
+  }
+}
