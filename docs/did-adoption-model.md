@@ -57,31 +57,76 @@ did:web:csv.go.cr
 
 ### Nivel 3: DID on-chain (maxima soberania)
 
-```
-did:sns:cosevi
-```
+La capa on-chain usa un **Smart Contract dedicado de registro de DIDs** en Solana (`did-registry-program`), desplegado y mantenido por Attestto Open. A diferencia de depender de Solana Name Service (SNS) — que es un registry de nombres generico no disenado para identidad — el DID registry es un programa Anchor especifico para:
 
-- DID registrado en Solana Name Service — no depende de ningun servidor
-- Resolucion descentralizada: no hay punto unico de falla
-- La institucion controla el dominio `.sol` con su keypair
-- Costo: ~$0.01/ano en renta de dominio SNS
-
-**Quien lo usa:** Instituciones que quieran independencia total de cualquier proveedor, incluyendo Attestto.
-
-## Diagrama de Progresion
+- Registrar DIDs institucionales con su DID document hash y clave publica
+- Anclar hashes de credenciales emitidas por cada DID
+- Revocar DIDs (desactivacion on-chain)
+- Todo en PDAs derivados del DID string — costo ~$0.002 por registro (solo tx fee)
 
 ```
-Dia 1                    Cuando este lista           Si quiere soberania total
+Instrucciones del programa:
+  register_did(did_string, did_document_hash, public_key)
+  update_did(did_string, new_document_hash, authority)
+  deactivate_did(did_string, authority)
+  anchor_credential(did_string, vc_hash, timestamp)
+```
+
+**Quien lo usa:** Instituciones que quieran independencia total de cualquier proveedor, incluyendo Attestto. Tambien sirve como capa de verificacion de ultimo recurso cuando los servidores web no estan disponibles.
+
+**Repositorio:** `Attestto-com/did-registry-program` (Apache 2.0, Anchor/Solana)
+
+## Tres Capas de Verificacion
+
+Cada credencial emitida en el ecosistema es verificable por tres vias independientes. Si una capa falla, las otras siguen funcionando:
+
+```
+Capa 1 (web):     did:web:csv.go.cr             ← La institucion (si su servidor funciona)
+Capa 2 (CDN):     did:web:cosevi.attestto.id     ← Attestto como respaldo (siempre disponible)
+Capa 3 (chain):   did-registry-program en Solana ← Hash on-chain (indestructible, sin servidor)
+```
+
+### Como funciona cada capa
+
+| Capa | Que verifica | Cuando se usa | Disponibilidad |
+|---|---|---|---|
+| **Web (institucion)** | DID document completo + clave publica | Cuando el servidor de la institucion esta online | Depende de la institucion (SSL, uptime) |
+| **CDN (Attestto)** | DID document completo + clave publica (copia respaldada) | Cuando el servidor de la institucion falla | 99.9% SLA |
+| **Chain (Solana)** | Hash del DID document + hashes de VCs emitidas + timestamps | Siempre — es la prueba de integridad definitiva | 100% (blockchain) |
+
+### Escenario: verificacion con servidor caido
+
+```
+1. Verificador recibe una VC firmada por did:web:csv.go.cr
+2. Intenta resolver did:web:csv.go.cr → ERROR (SSL expirado)
+3. Fallback: resuelve did:web:cosevi.attestto.id → EXITO (DID document disponible)
+4. Verifica la firma de la VC contra la clave publica del DID document
+5. Adicionalmente: consulta el did-registry-program en Solana
+   → Confirma que el hash de la VC coincide con el anclado on-chain
+   → Confirma que el DID no ha sido desactivado
+6. Resultado: credencial verificada con certeza criptografica
+```
+
+**La cadena no reemplaza al servidor web — es la prueba de que la credencial existio y no fue alterada.** Aunque ambos servidores (institucion + Attestto) se caigan, el hash en Solana demuestra que la VC fue emitida en X fecha con Y contenido.
+
+Esto responde directamente a la **observacion #5 del MICITT**: integridad documental con hashing y sellado de tiempo, blockchain opcional pero valorable. En nuestro modelo no es opcional — es la tercera capa de confianza que funciona sin servidores.
+
+## Diagrama de Adopcion Progresiva
+
+```
+Dia 1                    Cuando este lista           Maxima soberania
   |                           |                              |
   v                           v                              v
-did:web:cosevi.attestto.id  did:web:csv.go.cr              did:sns:cosevi
+did:web:cosevi.attestto.id  did:web:csv.go.cr              did-registry on-chain
   |                           |                              |
-  | Attestto hospeda          | Institucion hospeda          | Blockchain hospeda
+  | Attestto hospeda          | Institucion hospeda          | Solana hospeda
   | Zero infra                | Requiere SSL + uptime        | Zero servidor
-  | Activacion inmediata      | Requiere equipo TI           | Requiere keypair mgmt
+  | Activacion inmediata      | Requiere equipo TI           | Solo keypair
+  |                           |                              |
+  +------ Capa 3: hash siempre anclado en Solana via did-registry-program ------+
 ```
 
-**Lo importante:** Las credenciales emitidas en cualquier nivel son interoperables. Un verificador puede validar una VC firmada por `did:web:cosevi.attestto.id` o por `did:web:csv.go.cr` — el protocolo es el mismo. La migracion entre niveles no invalida las credenciales existentes.
+**Lo importante:** Las credenciales emitidas en cualquier nivel son interoperables. Un verificador puede validar una VC firmada por `did:web:cosevi.attestto.id` o por `did:web:csv.go.cr` — el protocolo es el mismo. La migracion entre niveles no invalida las credenciales existentes. Y en todos los niveles, el hash de la credencial esta anclado on-chain como prueba de integridad.
 
 ## El Servicio de Attestto
 
@@ -93,10 +138,11 @@ Para el Nivel 1, Attestto ofrece:
 4. **Trust Registry** — La institucion aparece automaticamente como emisor autorizado
 5. **Rotacion automatica de claves** — Sin intervencion de la institucion
 6. **Revocacion (StatusList2021)** — Revocar una credencial con una llamada API
-7. **Anclaje en blockchain** — Opcional, hash de cada VC anclado en Solana
-8. **SLA 99.9%** — Garantia de disponibilidad del endpoint DID
+7. **Anclaje automatico en blockchain** — Hash de cada VC anclado en Solana via `did-registry-program`
+8. **CDN de respaldo** — Si la institucion migra a Nivel 2, `attestto.id` sigue como fallback
+9. **SLA 99.9%** — Garantia de disponibilidad del endpoint DID
 
-La institucion no necesita entender DIDs, JSON-LD ni criptografia. Solo necesita llamar a un API con los datos de la credencial que quiere emitir.
+La institucion no necesita entender DIDs, JSON-LD, blockchain ni criptografia. Solo necesita llamar a un API con los datos de la credencial que quiere emitir. El anclaje on-chain, la resolucion DID y el respaldo CDN son automaticos.
 
 ## Relacion con la PKI Nacional (BCCR)
 
