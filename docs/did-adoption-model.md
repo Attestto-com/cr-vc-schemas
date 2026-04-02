@@ -119,7 +119,7 @@ El ecosistema tiene tres tipos de entidades, cada una con necesidades distintas 
 |---|---|---|---|---|
 | **Institucion** | `did:web:cosevi.attestto.id` | Si (SAS) | DID document hash, claves publicas | Ancla de confianza. Verificable sin servidor. |
 | **Persona** | `did:web:maria.attestto.id` | Si (solo hashes) | Indice de hashes de VCs recibidas | Recovery: si pierde el wallet, sabe que credenciales tenia y quien las emitio |
-| **Objeto/Vehiculo** | SBT via SAS | Si (historial completo) | Registro, RTV, seguro, multas, propietarios | Historial publico. Acumula credenciales de multiples emisores. No tiene wallet. |
+| **Objeto/Vehiculo** | Attestation SAS | Si (historial completo) | Registro, RTV, seguro, multas, propietarios | Historial publico. Acumula credenciales de multiples emisores. No tiene wallet. |
 
 ### Por que las personas necesitan on-chain
 
@@ -150,7 +150,7 @@ Si Maria pierde su telefono, pierde todas sus VCs. Sin un indice on-chain, tendr
 Un vehiculo no tiene wallet ni puede presentar credenciales. Su historial es publico y acumula credenciales de multiples emisores a lo largo de su vida:
 
 ```
-Vehiculo BCD-456 (SBT en Solana):
+Vehiculo BCD-456 (Attestation en Solana (SAS)):
   PDA: [placa "BCD-456"] → { vin, owner_did, status }
   Attestations vinculadas:
     VehicleRegistration   (Registro Nacional, al inscribir)

@@ -111,15 +111,43 @@ npx ajv validate -s schemas/mdl/DrivingLicense.schema.json -d mi-credencial.json
 }
 ```
 
+## Ecosistema
+
+Este repositorio es parte de un ecosistema de herramientas open source para identidad descentralizada:
+
+| Repositorio | Que hace | Estado |
+|---|---|---|
+| **[cr-vc-schemas](https://github.com/Attestto-com/cr-vc-schemas)** | Esquemas JSON-LD para el ecosistema vial CR (este repo) | Listo |
+| **[did-sns-spec](https://github.com/Attestto-com/did-sns-spec)** | Especificacion W3C CCG del metodo DID para Solana Name Service (`did:sns`) | Publicado en [spec.attestto.com](https://spec.attestto.com) |
+| **[wallet-identity-resolver](https://github.com/Attestto-com/wallet-identity-resolver)** | Resolucion de identidad on-chain: dado un wallet address, descubre DIDs, SBTs, attestations. Incluye resolver para SAS (Solana Attestation Service). | Publicado |
+| **[credential-wallet-connector](https://github.com/Attestto-com/credential-wallet-connector)** | Protocolo de descubrimiento universal de wallets de credenciales (como EIP-6963 para identidad). Sitios broadcast, wallets announce. | Publicado |
+| **[vLEI-Solana-Bridge](https://github.com/Attestto-com/vLei-Solana-Bridge)** | Programa Solana que convierte credenciales organizacionales vLEI (GLEIF) en attestations on-chain con verificacion ZKP (Groth16). | Deployado en mainnet |
+| **[did-method-checklist](https://github.com/Attestto-com/did-method-checklist)** | Framework de evaluacion para especificaciones de metodos DID — cobertura, interop, completitud. | Publicado |
+
+### Por construir
+
+| Repositorio | Que hara |
+|---|---|
+| **cr-vc-sdk-node** | SDK Node.js/TypeScript — emision, verificacion, holder operations, trust registry |
+| **cr-vc-sdk-dotnet** | SDK .NET/ASP — para consultorios, bancos, sistemas legacy del Estado |
+| **cr-vc-issuer-reference** | App emisora clonar-y-desplegar (Node.js + Docker) |
+| **cr-vc-verifier-reference** | App verificadora clonar-y-desplegar (Node.js + Docker) |
+| **cr-vc-wallet-reference** | Wallet movil minimalista (React Native) |
+| **cr-vc-officer-app** | App de verificacion en campo para oficiales de transito |
+| **cr-trust-registry** | Directorio de emisores autorizados por tipo de credencial |
+| **cr-vc-testkit** | Suite de pruebas de certificacion |
+
 ## Referencias
 
 - [W3C Verifiable Credentials Data Model v2.0](https://www.w3.org/TR/vc-data-model-2.0/)
 - [ISO/IEC 18013-5 (mDL)](https://www.iso.org/standard/69084.html)
+- [W3C CCG Verifiable Driver's License Vocabulary](https://w3c-ccg.github.io/vdl-vocab/)
 - [W3C StatusList2021](https://www.w3.org/TR/vc-status-list/)
 - [OpenID4VCI](https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html)
 - [OpenID4VP](https://openid.net/specs/openid-4-verifiable-presentations-1_0.html)
-- [ATT-152 — Arquitectura SSI Nacional](https://attestto.atlassian.net/browse/ATT-152)
-- [ATT-165 — Inventario SDK/Esquemas](https://attestto.atlassian.net/browse/ATT-165)
+- [Solana Attestation Service (SAS)](https://github.com/solana-labs/solana-attestation-service)
+- [INTEROP.md](./INTEROP.md) — Mapeo completo CR → ISO 18013-5 → W3C VDL
+- [docs/did-adoption-model.md](./docs/did-adoption-model.md) — Modelo de adopcion progresiva de DIDs
 
 ## Licencia
 
