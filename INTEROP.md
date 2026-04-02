@@ -1,6 +1,6 @@
 # Interoperabilidad con Estandares Internacionales
 
-Este documento describe como los esquemas CR Vial se alinean con los estandares internacionales de identidad digital y licencias de conducir.
+> **Nota:** Los esquemas en este repositorio son una **propuesta tecnica** de Attestto Open. Este documento describe como la propuesta se alinea con los estandares internacionales para facilitar la evaluacion por parte de las instituciones competentes.
 
 ## Estandares de Referencia
 

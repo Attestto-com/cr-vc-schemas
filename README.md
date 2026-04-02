@@ -1,8 +1,8 @@
 # cr-vc-schemas
 
-Esquemas JSON-LD y JSON Schema para Credenciales Verificables del ecosistema vial de Costa Rica.
+Propuesta de esquemas JSON-LD y JSON Schema para Credenciales Verificables del ecosistema vial de Costa Rica.
 
-> **Bien publico.** Estos esquemas definen el vocabulario comun para que cualquier institucion — COSEVI, INS, RTV, Hacienda, consultorios medicos, bancos — pueda emitir y verificar credenciales digitales interoperables sin acuerdos bilaterales.
+> **Propuesta tecnica abierta.** Este repositorio contiene una propuesta de esquemas para credenciales verificables del ecosistema vial costarricense, desarrollada por [Attestto Open](https://attestto.org). **No es un estandar oficial.** Los esquemas estan disenados para ser evaluados, modificados y adoptados por las instituciones competentes (COSEVI, MICITT, DGEV) a traves de un proceso de revision abierto. Invitamos a todas las partes interesadas a revisar, comentar y contribuir.
 
 ## Esquemas
 
@@ -65,9 +65,9 @@ Todos los esquemas usan el contexto compartido:
 }
 ```
 
-El contexto define los tipos y propiedades para todo el ecosistema vial en un solo namespace: `https://schemas.attestto.org/cr/driving/v1#`
+El contexto propuesto agrupa los tipos y propiedades en un namespace: `https://schemas.attestto.org/cr/driving/v1#`. Este namespace es provisional y puede cambiar si las instituciones competentes adoptan un dominio oficial (ej. `schemas.cosevi.go.cr`).
 
-## Principios de Diseno
+## Principios de Diseno (Propuestos)
 
 1. **Privacidad por defecto** — Los esquemas NUNCA incluyen datos de salud (solo resultado funcional), NUNCA exponen numeros de identidad completos (solo referencias parciales o hashes).
 

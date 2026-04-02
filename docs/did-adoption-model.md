@@ -1,5 +1,7 @@
 # Modelo de Adopcion Progresiva de DIDs Institucionales
 
+> **Propuesta tecnica** de Attestto Open. Este documento propone un modelo de adopcion gradual de identidad descentralizada para instituciones del Estado. No representa una posicion oficial de ninguna institucion gubernamental.
+
 ## El Problema
 
 Para que una institucion emita Credenciales Verificables, necesita un **Identificador Descentralizado (DID)** que la identifique como emisor confiable. El metodo `did:web` vincula el DID al dominio web de la institucion — por ejemplo, `did:web:tse.go.cr` significaria que el TSE hospeda su documento DID en `https://tse.go.cr/.well-known/did.json`.

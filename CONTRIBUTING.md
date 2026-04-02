@@ -1,6 +1,6 @@
 # Como Contribuir a los Esquemas CR Vial
 
-Este repositorio define los esquemas de Credenciales Verificables para el ecosistema vial de Costa Rica. Los esquemas son **bien publico** — cualquier institucion, proveedor o desarrollador puede proponer cambios.
+Este repositorio contiene una **propuesta** de esquemas de Credenciales Verificables para el ecosistema vial de Costa Rica, desarrollada por [Attestto Open](https://attestto.org). Los esquemas estan disenados para ser evaluados y mejorados de forma abierta — cualquier institucion, proveedor o desarrollador puede proponer cambios.
 
 ## Quien puede contribuir
 
