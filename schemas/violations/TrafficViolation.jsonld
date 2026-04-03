@@ -5,7 +5,7 @@
   ],
   "type": ["VerifiableCredential", "TrafficViolation"],
   "credentialSubject": {
-    "id": "did:web:conductor.attestto.id",
+    "id": "did:example:titular",
     "violation": {
       "type": "TrafficViolationValue",
       "violationType": "string (exceso_velocidad, semaforo_rojo, conduccion_temeraria, etc.)",
@@ -16,12 +16,12 @@
       "latitude": "decimal",
       "longitude": "decimal",
       "timestamp": "dateTime",
-      "officerDID": "did:web:oficial.attestto.id",
-      "vehicleDID": "did:web:vehiculo.attestto.id",
+      "officerDID": "did:example:oficial",
+      "vehicleDID": "did:example:vehiculo",
       "articleNumber": "string (articulo de la Ley de Transito)",
       "description": "string"
     }
   },
-  "issuer": "did:web:cosevi.attestto.id",
+  "issuer": "did:web:cosevi.go.cr",
   "issuanceDate": "dateTime"
 }

@@ -5,7 +5,7 @@
   ],
   "type": ["VerifiableCredential", "DriverIdentity"],
   "credentialSubject": {
-    "id": "did:web:conductor.attestto.id",
+    "id": "did:example:titular",
     "driverIdentity": {
       "type": "DriverIdentityValue",
       "nationalIdType": "cedula | dimex | pasaporte",
@@ -15,9 +15,9 @@
       "fullName": "string",
       "verificationMethod": "in-person-kyc | remote-biometric | firma-digital",
       "verificationDate": "dateTime",
-      "verifierDID": "did:sns:entidad-verificadora"
+      "verifierDID": "did:example:entidad-verificadora"
     }
   },
-  "issuer": "did:web:tse.attestto.id | did:web:dgme.attestto.id | did:web:banco.attestto.id | did:web:cosevi.attestto.id",
+  "issuer": "did:web:tse.go.cr | did:web:dgme.go.cr | did:web:banco.example | did:web:cosevi.go.cr",
   "issuanceDate": "dateTime"
 }

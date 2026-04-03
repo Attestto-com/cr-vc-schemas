@@ -5,7 +5,7 @@
   ],
   "id": "urn:uuid:b4c5d6e7-f8a9-0123-789a-bcdef0123456",
   "type": ["VerifiableCredential", "AccidentReport"],
-  "issuer": "did:web:cosevi.attestto.id",
+  "issuer": "did:web:cosevi.go.cr",
   "issuanceDate": "2026-03-25T16:20:00Z",
   "credentialSubject": {
     "id": "urn:uuid:accident-2026-03-25-001",
@@ -17,20 +17,20 @@
       "severity": "minor",
       "parties": [
         {
-          "conductorDID": "did:web:maria-ejemplo.attestto.id",
-          "vehicleDID": "did:web:vehiculo-bcd-456.attestto.id",
+          "conductorDID": "did:example:maria",
+          "vehicleDID": "did:example:vehiculo",
           "insurancePolicyRef": "INS-SOAT-2026-0089123",
           "role": "driver"
         },
         {
-          "conductorDID": "did:web:jorge-ejemplo.attestto.id",
-          "vehicleDID": "did:web:vehiculo-efg-789.attestto.id",
+          "conductorDID": "did:example:jorge",
+          "vehicleDID": "did:example:vehiculo",
           "insurancePolicyRef": "INS-SOAT-2026-0091456",
           "role": "driver"
         }
       ],
       "reportNumber": "COSEVI-ACC-2026-004521",
-      "officerDID": "did:web:oficial-ramirez-0789.attestto.id",
+      "officerDID": "did:example:oficial",
       "description": "Colision leve en interseccion. Vehiculo 1 procedia por Avenida 2 en direccion este. Vehiculo 2 ingreso por Calle 14 sin respetar senal de alto. Danos materiales menores en ambos vehiculos. Sin lesiones personales."
     }
   }

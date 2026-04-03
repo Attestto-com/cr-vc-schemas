@@ -5,19 +5,19 @@
   ],
   "id": "urn:uuid:a7b8c9d0-e1f2-3456-0123-456789abcdef",
   "type": ["VerifiableCredential", "MedicalFitnessCredential"],
-  "issuer": "did:web:clinica-salud-integral.attestto.id",
+  "issuer": "did:example:clinica-salud",
   "issuanceDate": "2026-03-05T11:00:00Z",
   "credentialSubject": {
-    "id": "did:web:maria-ejemplo.attestto.id",
+    "id": "did:example:maria",
     "fitness": {
       "status": "fit",
       "categories": ["B", "A1"],
       "issuedDate": "2026-03-05",
       "expiresAt": "2027-03-05T23:59:59Z",
-      "physicianDID": "did:web:dra-vargas-rojas.attestto.id",
+      "physicianDID": "did:example:dra-vargas",
       "physicianName": "Dra. Ana Vargas Rojas",
       "physicianLicense": "CM-12456",
-      "clinicDID": "did:web:clinica-salud-integral.attestto.id",
+      "clinicDID": "did:example:clinica-salud",
       "clinicName": "Clinica Salud Integral — Escazu",
       "restrictions": ["lentes correctivos"]
     }

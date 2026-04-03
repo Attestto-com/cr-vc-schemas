@@ -5,7 +5,7 @@
   ],
   "type": ["VerifiableCredential", "CirculationRights"],
   "credentialSubject": {
-    "id": "did:web:vehiculo.attestto.id",
+    "id": "did:example:vehiculo",
     "circulationRights": {
       "type": "CirculationRightsValue",
       "fiscalYear": "integer (2026)",
@@ -18,6 +18,6 @@
       "receiptNumber": "string"
     }
   },
-  "issuer": "did:web:hacienda.attestto.id",
+  "issuer": "did:web:ins.go.cr",
   "issuanceDate": "dateTime"
 }

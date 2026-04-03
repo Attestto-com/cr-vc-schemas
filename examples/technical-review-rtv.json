@@ -5,16 +5,16 @@
   ],
   "id": "urn:uuid:c9d0e1f2-a3b4-5678-2345-6789abcdef01",
   "type": ["VerifiableCredential", "VehicleTechnicalReview"],
-  "issuer": "did:web:riteve-heredia.attestto.id",
+  "issuer": "did:example:riteve-heredia",
   "issuanceDate": "2026-02-20T08:30:00Z",
   "credentialSubject": {
-    "id": "did:web:vehiculo-bcd-456.attestto.id",
+    "id": "did:example:vehiculo",
     "technicalReview": {
       "result": "approved",
       "inspectionDate": "2026-02-20",
       "expiresAt": "2027-02-20",
-      "inspectorDID": "did:web:inspector-mora-castro.attestto.id",
-      "centerDID": "did:web:riteve-heredia.attestto.id",
+      "inspectorDID": "did:example:inspector",
+      "centerDID": "did:example:riteve-heredia",
       "centerName": "RITEVE — Sede Heredia",
       "defects": [],
       "emissions": {

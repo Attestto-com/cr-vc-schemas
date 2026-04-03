@@ -5,10 +5,10 @@
   ],
   "id": "urn:uuid:d4e5f6a7-b8c9-0123-def0-123456789abc",
   "type": ["VerifiableCredential", "TheoreticalTestResult"],
-  "issuer": "did:web:dgev.attestto.id",
+  "issuer": "did:web:dgev.go.cr",
   "issuanceDate": "2026-03-10T10:45:00Z",
   "credentialSubject": {
-    "id": "did:web:carlos-ejemplo.attestto.id",
+    "id": "did:example:carlos",
     "theoreticalTest": {
       "status": "failed",
       "score": 55,
@@ -16,7 +16,7 @@
       "category": "B",
       "testDate": "2026-03-10T09:00:00Z",
       "modality": "in-person",
-      "testCenterDID": "did:web:sede-dgev-sanjose.attestto.id",
+      "testCenterDID": "did:web:dgev.go.cr:sede-sanjose",
       "testCenterName": "Sede DGEV San Jose — La Uruca",
       "examVersionHash": "sha256:e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8",
       "totalQuestions": 40,
