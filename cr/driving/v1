@@ -1,257 +1,230 @@
-{
-  "@context": {
-    "@version": 1.1,
-    "@protected": true,
-    "cr": "https://schemas.attestto.org/cr/driving/v1#",
-    "vdl": "https://w3id.org/vdl/v2#",
-    "aamva": "https://w3id.org/vdl/aamva/v1#",
-    "schema": "https://schema.org/",
-    "xsd": "http://www.w3.org/2001/XMLSchema#",
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>cr/driving/v1 — JSON-LD Context</title>
+  <link rel="alternate" type="application/ld+json" href="v1.jsonld">
+  <style>
+    :root { --bg: #0f172a; --surface: #1e293b; --border: #334155; --text: #e2e8f0; --dim: #94a3b8; --accent: #38bdf8; --green: #4ade80; --orange: #fb923c; --purple: #c084fc; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    .container { max-width: 960px; margin: 0 auto; padding: 2rem 1.5rem; }
+    header { margin-bottom: 2.5rem; }
+    h1 { font-size: 1.25rem; font-weight: 600; color: var(--accent); margin-bottom: 0.25rem; }
+    .namespace { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.8rem; color: var(--dim); margin-bottom: 0.5rem; }
+    .meta { display: flex; gap: 1.5rem; font-size: 0.75rem; color: var(--dim); margin-bottom: 1rem; flex-wrap: wrap; }
+    .meta a { color: var(--accent); text-decoration: none; }
+    .meta a:hover { text-decoration: underline; }
+    .badge { display: inline-block; padding: 0.15rem 0.5rem; border-radius: 3px; font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+    .badge-cr { background: #164e63; color: #67e8f9; }
+    .badge-vdl { background: #3b0764; color: #d8b4fe; }
+    .badge-proposal { background: #713f12; color: #fde68a; }
 
-    "DrivingLicense": "cr:DrivingLicense",
-    "TheoreticalTestResult": "cr:TheoreticalTestResult",
-    "PracticalTestResult": "cr:PracticalTestResult",
-    "MedicalFitnessCredential": "cr:MedicalFitnessCredential",
-    "VehicleRegistration": "cr:VehicleRegistration",
-    "VehicleTechnicalReview": "cr:VehicleTechnicalReview",
-    "CirculationRights": "cr:CirculationRights",
-    "SOATCredential": "cr:SOATCredential",
-    "DriverIdentity": "cr:DriverIdentity",
-    "TrafficViolation": "cr:TrafficViolation",
-    "AccidentReport": "cr:AccidentReport",
+    .section { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; margin-bottom: 1.5rem; overflow: hidden; }
+    .section-header { padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; cursor: pointer; }
+    .section-header:hover { background: rgba(56, 189, 248, 0.05); }
+    .section-header h2 { font-size: 0.9rem; font-weight: 600; }
+    .section-header .type-id { font-family: monospace; font-size: 0.75rem; color: var(--dim); }
+    .section-body { padding: 0; }
 
-    "license": {
-      "@id": "cr:license",
-      "@context": {
-        "licenseNumber": { "@id": "cr:licenseNumber", "@type": "xsd:string" },
-        "document_number": { "@id": "vdl:document_number", "@type": "xsd:string" },
-        "categories": { "@id": "cr:categories", "@container": "@set" },
-        "driving_privileges": { "@id": "vdl:driving_privileges" },
-        "issueDate": { "@id": "cr:issueDate", "@type": "xsd:date" },
-        "issue_date": { "@id": "vdl:issue_date", "@type": "xsd:date" },
-        "expiresAt": { "@id": "cr:expiresAt", "@type": "xsd:date" },
-        "expiry_date": { "@id": "vdl:expiry_date", "@type": "xsd:date" },
-        "photoHash": { "@id": "cr:photoHash", "@type": "xsd:string" },
-        "portrait": { "@id": "vdl:portrait", "@type": "xsd:base64Binary" },
-        "points": { "@id": "cr:points", "@type": "xsd:integer" },
-        "status": { "@id": "cr:status", "@type": "xsd:string" },
-        "bloodType": { "@id": "cr:bloodType", "@type": "xsd:string" },
-        "restrictions": { "@id": "cr:restrictions", "@container": "@set" },
-        "issuingAuthority": { "@id": "cr:issuingAuthority", "@type": "@id" },
-        "issuing_authority": { "@id": "vdl:issuing_authority", "@type": "xsd:string" },
-        "issuing_country": { "@id": "vdl:issuing_country", "@type": "xsd:string" },
-        "un_distinguishing_sign": { "@id": "vdl:un_distinguishing_sign", "@type": "xsd:string" },
-        "family_name": { "@id": "vdl:family_name", "@type": "xsd:string" },
-        "given_name": { "@id": "vdl:given_name", "@type": "xsd:string" },
-        "birth_date": { "@id": "vdl:birth_date", "@type": "xsd:date" },
-        "sex": { "@id": "vdl:sex", "@type": "xsd:integer" },
-        "height": { "@id": "vdl:height", "@type": "xsd:integer" },
-        "weight": { "@id": "vdl:weight", "@type": "xsd:integer" },
-        "eye_colour": { "@id": "vdl:eye_colour", "@type": "xsd:string" },
-        "hair_colour": { "@id": "vdl:hair_colour", "@type": "xsd:string" },
-        "resident_address": { "@id": "vdl:resident_address", "@type": "xsd:string" },
-        "portrait_capture_date": { "@id": "vdl:portrait_capture_date", "@type": "xsd:dateTime" },
-        "age_over_18": { "@id": "vdl:age_over_18", "@type": "xsd:boolean" },
-        "age_over_21": { "@id": "vdl:age_over_21", "@type": "xsd:boolean" },
-        "nationality": { "@id": "vdl:nationality", "@type": "xsd:string" },
-        "administrative_number": { "@id": "vdl:administrative_number", "@type": "xsd:string" }
-      }
-    },
+    table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+    th { text-align: left; padding: 0.5rem 1rem; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--dim); background: rgba(0,0,0,0.2); }
+    td { padding: 0.4rem 1rem; border-top: 1px solid var(--border); }
+    td:first-child { font-family: monospace; color: var(--green); white-space: nowrap; }
+    td:nth-child(2) { font-family: monospace; font-size: 0.75rem; color: var(--dim); }
+    td:nth-child(3) { font-family: monospace; font-size: 0.75rem; }
+    .ns-cr { color: var(--accent); }
+    .ns-vdl { color: var(--purple); }
+    .type-tag { font-size: 0.7rem; color: var(--orange); }
 
-    "theoreticalTest": {
-      "@id": "cr:theoreticalTest",
-      "@context": {
-        "status": { "@id": "cr:status", "@type": "xsd:string" },
-        "score": { "@id": "cr:score", "@type": "xsd:integer" },
-        "passingScore": { "@id": "cr:passingScore", "@type": "xsd:integer" },
-        "category": { "@id": "cr:category", "@type": "xsd:string" },
-        "testDate": { "@id": "cr:testDate", "@type": "xsd:dateTime" },
-        "expiresAt": { "@id": "cr:expiresAt", "@type": "xsd:dateTime" },
-        "modality": { "@id": "cr:modality", "@type": "xsd:string" },
-        "testCenterDID": { "@id": "cr:testCenterDID", "@type": "@id" },
-        "testCenterName": { "@id": "cr:testCenterName", "@type": "xsd:string" },
-        "examVersionHash": { "@id": "cr:examVersionHash", "@type": "xsd:string" },
-        "totalQuestions": { "@id": "cr:totalQuestions", "@type": "xsd:integer" },
-        "correctAnswers": { "@id": "cr:correctAnswers", "@type": "xsd:integer" },
-        "durationMinutes": { "@id": "cr:durationMinutes", "@type": "xsd:integer" },
-        "language": { "@id": "cr:language", "@type": "xsd:string" },
-        "proctoring": {
-          "@id": "cr:proctoring",
-          "@context": {
-            "method": { "@id": "cr:method", "@type": "xsd:string" },
-            "telemetryHash": { "@id": "cr:telemetryHash", "@type": "xsd:string" },
-            "sessionId": { "@id": "cr:sessionId", "@type": "xsd:string" },
-            "anomaliesDetected": { "@id": "cr:anomaliesDetected", "@type": "xsd:integer" },
-            "livenessVerified": { "@id": "cr:livenessVerified", "@type": "xsd:boolean" },
-            "identityVerified": { "@id": "cr:identityVerified", "@type": "xsd:boolean" }
-          }
-        },
-        "attemptNumber": { "@id": "cr:attemptNumber", "@type": "xsd:integer" }
-      }
-    },
+    .raw-link { display: inline-block; margin-top: 1.5rem; padding: 0.5rem 1rem; border: 1px solid var(--border); border-radius: 6px; color: var(--accent); text-decoration: none; font-size: 0.8rem; }
+    .raw-link:hover { background: var(--surface); }
 
-    "practicalTest": {
-      "@id": "cr:practicalTest",
-      "@context": {
-        "status": { "@id": "cr:status", "@type": "xsd:string" },
-        "category": { "@id": "cr:category", "@type": "xsd:string" },
-        "testDate": { "@id": "cr:testDate", "@type": "xsd:dateTime" },
-        "expiresAt": { "@id": "cr:expiresAt", "@type": "xsd:dateTime" },
-        "evaluatorDID": { "@id": "cr:evaluatorDID", "@type": "@id" },
-        "evaluatorName": { "@id": "cr:evaluatorName", "@type": "xsd:string" },
-        "evaluatorLicense": { "@id": "cr:evaluatorLicense", "@type": "xsd:string" },
-        "testCenterDID": { "@id": "cr:testCenterDID", "@type": "@id" },
-        "testCenterName": { "@id": "cr:testCenterName", "@type": "xsd:string" },
-        "vehicleDID": { "@id": "cr:vehicleDID", "@type": "@id" },
-        "vehiclePlate": { "@id": "cr:vehiclePlate", "@type": "xsd:string" },
-        "vehicleType": { "@id": "cr:vehicleType", "@type": "xsd:string" },
-        "route": {
-          "@id": "cr:route",
-          "@context": {
-            "description": { "@id": "cr:routeDescription", "@type": "xsd:string" },
-            "distanceKm": { "@id": "cr:distanceKm", "@type": "xsd:decimal" },
-            "durationMinutes": { "@id": "cr:durationMinutes", "@type": "xsd:integer" },
-            "conditions": { "@id": "cr:conditions", "@type": "xsd:string" }
-          }
-        },
-        "maneuvers": { "@id": "cr:maneuvers", "@container": "@set" },
-        "generalObservations": { "@id": "cr:generalObservations", "@type": "xsd:string" },
-        "weatherConditions": { "@id": "cr:weatherConditions", "@type": "xsd:string" },
-        "timeOfDay": { "@id": "cr:timeOfDay", "@type": "xsd:string" }
-      }
-    },
+    footer { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--border); font-size: 0.7rem; color: var(--dim); }
+    footer a { color: var(--accent); text-decoration: none; }
 
-    "fitness": {
-      "@id": "cr:fitness",
-      "@context": {
-        "status": { "@id": "cr:fitnessStatus", "@type": "xsd:string" },
-        "categories": { "@id": "cr:categories", "@container": "@set" },
-        "issuedDate": { "@id": "cr:issuedDate", "@type": "xsd:date" },
-        "expiresAt": { "@id": "cr:expiresAt", "@type": "xsd:dateTime" },
-        "physicianDID": { "@id": "cr:physicianDID", "@type": "@id" },
-        "physicianName": { "@id": "cr:physicianName", "@type": "xsd:string" },
-        "physicianLicense": { "@id": "cr:physicianLicense", "@type": "xsd:string" },
-        "clinicDID": { "@id": "cr:clinicDID", "@type": "@id" },
-        "clinicName": { "@id": "cr:clinicName", "@type": "xsd:string" },
-        "restrictions": { "@id": "cr:restrictions", "@container": "@set" }
-      }
-    },
+    .prefixes { font-size: 0.75rem; color: var(--dim); margin-bottom: 1.5rem; font-family: monospace; }
+    .prefixes span { margin-right: 1.5rem; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Costa Rica — Ecosistema Vial Digital</h1>
+      <div class="namespace">https://schemas.attestto.org/cr/driving/v1</div>
+      <div class="meta">
+        <span><span class="badge badge-proposal">Propuesta</span> No es un estándar oficial</span>
+        <span>Version: 1.1</span>
+        <a href="https://github.com/Attestto-com/cr-vc-schemas">GitHub</a>
+        <a href="https://w3c-ccg.github.io/vdl-vocab/">W3C VDL</a>
+        <a href="https://www.w3.org/TR/vc-data-model-2.0/">W3C VC v2.0</a>
+      </div>
+      <div class="prefixes">
+        <span><b>cr:</b> schemas.attestto.org/cr/driving/v1#</span>
+        <span><b>vdl:</b> w3id.org/vdl/v2#</span>
+        <span><b>xsd:</b> w3.org/2001/XMLSchema#</span>
+      </div>
+    </header>
 
-    "vehicle": {
-      "@id": "cr:vehicle",
-      "@context": {
-        "plate": { "@id": "cr:plate", "@type": "xsd:string" },
-        "vin": { "@id": "cr:vin", "@type": "xsd:string" },
-        "ownerDID": { "@id": "cr:ownerDID", "@type": "@id" },
-        "registrationDate": { "@id": "cr:registrationDate", "@type": "xsd:date" },
-        "vehicleType": { "@id": "cr:vehicleType", "@type": "xsd:string" },
-        "make": { "@id": "cr:make", "@type": "xsd:string" },
-        "model": { "@id": "cr:model", "@type": "xsd:string" },
-        "year": { "@id": "cr:year", "@type": "xsd:integer" },
-        "color": { "@id": "cr:color", "@type": "xsd:string" },
-        "engineNumber": { "@id": "cr:engineNumber", "@type": "xsd:string" },
-        "seatingCapacity": { "@id": "cr:seatingCapacity", "@type": "xsd:integer" }
-      }
-    },
+    <!-- Credential Types -->
+    <div class="section">
+      <div class="section-header">
+        <h2>Credential Types</h2>
+        <span class="type-id">11 types</span>
+      </div>
+      <div class="section-body">
+        <table>
+          <thead><tr><th>Type</th><th>Namespace</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td>DrivingLicense</td><td class="ns-cr">cr:</td><td>Licencia de conducir digital (mDL, ISO 18013-5)</td></tr>
+            <tr><td>TheoreticalTestResult</td><td class="ns-cr">cr:</td><td>Prueba teórica de conocimientos</td></tr>
+            <tr><td>PracticalTestResult</td><td class="ns-cr">cr:</td><td>Prueba práctica de conducción</td></tr>
+            <tr><td>MedicalFitnessCredential</td><td class="ns-cr">cr:</td><td>Dictamen médico de aptitud</td></tr>
+            <tr><td>VehicleRegistration</td><td class="ns-cr">cr:</td><td>Registro vehicular</td></tr>
+            <tr><td>VehicleTechnicalReview</td><td class="ns-cr">cr:</td><td>Revisión técnica vehicular (RTV)</td></tr>
+            <tr><td>CirculationRights</td><td class="ns-cr">cr:</td><td>Derechos de circulación (marchamo)</td></tr>
+            <tr><td>SOATCredential</td><td class="ns-cr">cr:</td><td>Seguro obligatorio (SOAT)</td></tr>
+            <tr><td>DriverIdentity</td><td class="ns-cr">cr:</td><td>Identidad del conductor</td></tr>
+            <tr><td>TrafficViolation</td><td class="ns-cr">cr:</td><td>Multa de tránsito</td></tr>
+            <tr><td>AccidentReport</td><td class="ns-cr">cr:</td><td>Parte de accidente</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
 
-    "technicalReview": {
-      "@id": "cr:technicalReview",
-      "@context": {
-        "result": { "@id": "cr:result", "@type": "xsd:string" },
-        "inspectionDate": { "@id": "cr:inspectionDate", "@type": "xsd:date" },
-        "expiresAt": { "@id": "cr:expiresAt", "@type": "xsd:date" },
-        "inspectorDID": { "@id": "cr:inspectorDID", "@type": "@id" },
-        "centerDID": { "@id": "cr:centerDID", "@type": "@id" },
-        "centerName": { "@id": "cr:centerName", "@type": "xsd:string" },
-        "defects": { "@id": "cr:defects", "@container": "@set" },
-        "emissions": {
-          "@id": "cr:emissions",
-          "@context": {
-            "co2": { "@id": "cr:co2", "@type": "xsd:decimal" },
-            "hc": { "@id": "cr:hc", "@type": "xsd:decimal" },
-            "result": { "@id": "cr:emissionsResult", "@type": "xsd:string" }
-          }
-        },
-        "mileage": { "@id": "cr:mileage", "@type": "xsd:integer" }
-      }
-    },
+    <!-- DrivingLicense -->
+    <div class="section">
+      <div class="section-header">
+        <h2>DrivingLicense <span class="badge badge-cr">CR</span> <span class="badge badge-vdl">VDL</span></h2>
+        <span class="type-id">cr:license</span>
+      </div>
+      <div class="section-body">
+        <table>
+          <thead><tr><th>Property</th><th>IRI</th><th>Type</th></tr></thead>
+          <tbody>
+            <tr><td>licenseNumber</td><td class="ns-cr">cr:licenseNumber</td><td class="type-tag">xsd:string</td></tr>
+            <tr><td>document_number</td><td class="ns-vdl">vdl:document_number</td><td class="type-tag">xsd:string</td></tr>
+            <tr><td>categories</td><td class="ns-cr">cr:categories</td><td class="type-tag">@set</td></tr>
+            <tr><td>driving_privileges</td><td class="ns-vdl">vdl:driving_privileges</td><td class="type-tag">—</td></tr>
+            <tr><td>issueDate</td><td class="ns-cr">cr:issueDate</td><td class="type-tag">xsd:date</td></tr>
+            <tr><td>issue_date</td><td class="ns-vdl">vdl:issue_date</td><td class="type-tag">xsd:date</td></tr>
+            <tr><td>expiresAt</td><td class="ns-cr">cr:expiresAt</td><td class="type-tag">xsd:date</td></tr>
+            <tr><td>expiry_date</td><td class="ns-vdl">vdl:expiry_date</td><td class="type-tag">xsd:date</td></tr>
+            <tr><td>photoHash</td><td class="ns-cr">cr:photoHash</td><td class="type-tag">xsd:string</td></tr>
+            <tr><td>portrait</td><td class="ns-vdl">vdl:portrait</td><td class="type-tag">xsd:base64Binary</td></tr>
+            <tr><td>points</td><td class="ns-cr">cr:points</td><td class="type-tag">xsd:integer</td></tr>
+            <tr><td>status</td><td class="ns-cr">cr:status</td><td class="type-tag">xsd:string</td></tr>
+            <tr><td>bloodType</td><td class="ns-cr">cr:bloodType</td><td class="type-tag">xsd:string</td></tr>
+            <tr><td>issuingAuthority</td><td class="ns-cr">cr:issuingAuthority</td><td class="type-tag">@id</td></tr>
+            <tr><td>issuing_authority</td><td class="ns-vdl">vdl:issuing_authority</td><td class="type-tag">xsd:string</td></tr>
+            <tr><td>family_name</td><td class="ns-vdl">vdl:family_name</td><td class="type-tag">xsd:string</td></tr>
+            <tr><td>given_name</td><td class="ns-vdl">vdl:given_name</td><td class="type-tag">xsd:string</td></tr>
+            <tr><td>birth_date</td><td class="ns-vdl">vdl:birth_date</td><td class="type-tag">xsd:date</td></tr>
+            <tr><td>age_over_18</td><td class="ns-vdl">vdl:age_over_18</td><td class="type-tag">xsd:boolean</td></tr>
+            <tr><td>nationality</td><td class="ns-vdl">vdl:nationality</td><td class="type-tag">xsd:string</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
 
-    "circulationRights": {
-      "@id": "cr:circulationRights",
-      "@context": {
-        "fiscalYear": { "@id": "cr:fiscalYear", "@type": "xsd:integer" },
-        "paymentDate": { "@id": "cr:paymentDate", "@type": "xsd:date" },
-        "amount": { "@id": "cr:amount", "@type": "xsd:decimal" },
-        "currency": { "@id": "cr:currency", "@type": "xsd:string" },
-        "municipality": { "@id": "cr:municipality", "@type": "xsd:string" },
-        "validFrom": { "@id": "cr:validFrom", "@type": "xsd:date" },
-        "validUntil": { "@id": "cr:validUntil", "@type": "xsd:date" },
-        "receiptNumber": { "@id": "cr:receiptNumber", "@type": "xsd:string" }
-      }
-    },
+    <!-- DriverIdentity -->
+    <div class="section">
+      <div class="section-header">
+        <h2>DriverIdentity <span class="badge badge-cr">CR</span> <span class="badge badge-vdl">VDL</span></h2>
+        <span class="type-id">cr:driverIdentity</span>
+      </div>
+      <div class="section-body">
+        <table>
+          <thead><tr><th>Property</th><th>IRI</th><th>Type</th></tr></thead>
+          <tbody>
+            <tr><td>nationalIdType</td><td class="ns-cr">cr:nationalIdType</td><td class="type-tag">xsd:string</td></tr>
+            <tr><td>nationalIdRef</td><td class="ns-cr">cr:nationalIdRef</td><td class="type-tag">xsd:string</td></tr>
+            <tr><td>fullName</td><td class="ns-cr">cr:fullName</td><td class="type-tag">xsd:string</td></tr>
+            <tr><td>family_name</td><td class="ns-vdl">vdl:family_name</td><td class="type-tag">xsd:string</td></tr>
+            <tr><td>given_name</td><td class="ns-vdl">vdl:given_name</td><td class="type-tag">xsd:string</td></tr>
+            <tr><td>dateOfBirth</td><td class="ns-cr">cr:dateOfBirth</td><td class="type-tag">xsd:date</td></tr>
+            <tr><td>birth_date</td><td class="ns-vdl">vdl:birth_date</td><td class="type-tag">xsd:date</td></tr>
+            <tr><td>nationality</td><td class="ns-vdl">vdl:nationality</td><td class="type-tag">xsd:string</td></tr>
+            <tr><td>verificationMethod</td><td class="ns-cr">cr:verificationMethod</td><td class="type-tag">xsd:string</td></tr>
+            <tr><td>verificationDate</td><td class="ns-cr">cr:verificationDate</td><td class="type-tag">xsd:dateTime</td></tr>
+            <tr><td>verifierDID</td><td class="ns-cr">cr:verifierDID</td><td class="type-tag">@id</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
 
-    "insurance": {
-      "@id": "cr:insurance",
-      "@context": {
-        "policyNumber": { "@id": "cr:policyNumber", "@type": "xsd:string" },
-        "coverageType": { "@id": "cr:coverageType", "@type": "xsd:string" },
-        "issueDate": { "@id": "cr:issueDate", "@type": "xsd:date" },
-        "expiresAt": { "@id": "cr:expiresAt", "@type": "xsd:date" },
-        "insurer": { "@id": "cr:insurer", "@type": "xsd:string" },
-        "insurerDID": { "@id": "cr:insurerDID", "@type": "@id" },
-        "premium": { "@id": "cr:premium", "@type": "xsd:decimal" },
-        "currency": { "@id": "cr:currency", "@type": "xsd:string" }
-      }
-    },
+    <!-- Vehicle schemas -->
+    <div class="section">
+      <div class="section-header">
+        <h2>VehicleRegistration <span class="badge badge-cr">CR</span></h2>
+        <span class="type-id">cr:vehicle</span>
+      </div>
+      <div class="section-body">
+        <table>
+          <thead><tr><th>Property</th><th>IRI</th><th>Type</th></tr></thead>
+          <tbody>
+            <tr><td>plate</td><td class="ns-cr">cr:plate</td><td class="type-tag">xsd:string</td></tr>
+            <tr><td>vin</td><td class="ns-cr">cr:vin</td><td class="type-tag">xsd:string</td></tr>
+            <tr><td>ownerDID</td><td class="ns-cr">cr:ownerDID</td><td class="type-tag">@id</td></tr>
+            <tr><td>make</td><td class="ns-cr">cr:make</td><td class="type-tag">xsd:string</td></tr>
+            <tr><td>model</td><td class="ns-cr">cr:model</td><td class="type-tag">xsd:string</td></tr>
+            <tr><td>year</td><td class="ns-cr">cr:year</td><td class="type-tag">xsd:integer</td></tr>
+            <tr><td>color</td><td class="ns-cr">cr:color</td><td class="type-tag">xsd:string</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
 
-    "driverIdentity": {
-      "@id": "cr:driverIdentity",
-      "@context": {
-        "nationalIdType": { "@id": "cr:nationalIdType", "@type": "xsd:string" },
-        "nationalIdRef": { "@id": "cr:nationalIdRef", "@type": "xsd:string" },
-        "nationality": { "@id": "vdl:nationality", "@type": "xsd:string" },
-        "dateOfBirth": { "@id": "cr:dateOfBirth", "@type": "xsd:date" },
-        "birth_date": { "@id": "vdl:birth_date", "@type": "xsd:date" },
-        "fullName": { "@id": "cr:fullName", "@type": "xsd:string" },
-        "family_name": { "@id": "vdl:family_name", "@type": "xsd:string" },
-        "given_name": { "@id": "vdl:given_name", "@type": "xsd:string" },
-        "verificationMethod": { "@id": "cr:verificationMethod", "@type": "xsd:string" },
-        "verificationDate": { "@id": "cr:verificationDate", "@type": "xsd:dateTime" },
-        "verifierDID": { "@id": "cr:verifierDID", "@type": "@id" }
-      }
-    },
+    <!-- Technical Review -->
+    <div class="section">
+      <div class="section-header">
+        <h2>VehicleTechnicalReview <span class="badge badge-cr">CR</span></h2>
+        <span class="type-id">cr:technicalReview</span>
+      </div>
+      <div class="section-body">
+        <table>
+          <thead><tr><th>Property</th><th>IRI</th><th>Type</th></tr></thead>
+          <tbody>
+            <tr><td>result</td><td class="ns-cr">cr:result</td><td class="type-tag">xsd:string</td></tr>
+            <tr><td>inspectionDate</td><td class="ns-cr">cr:inspectionDate</td><td class="type-tag">xsd:date</td></tr>
+            <tr><td>expiresAt</td><td class="ns-cr">cr:expiresAt</td><td class="type-tag">xsd:date</td></tr>
+            <tr><td>centerName</td><td class="ns-cr">cr:centerName</td><td class="type-tag">xsd:string</td></tr>
+            <tr><td>defects</td><td class="ns-cr">cr:defects</td><td class="type-tag">@set</td></tr>
+            <tr><td>emissions.co2</td><td class="ns-cr">cr:co2</td><td class="type-tag">xsd:decimal</td></tr>
+            <tr><td>mileage</td><td class="ns-cr">cr:mileage</td><td class="type-tag">xsd:integer</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
 
-    "violation": {
-      "@id": "cr:violation",
-      "@context": {
-        "violationType": { "@id": "cr:violationType", "@type": "xsd:string" },
-        "points": { "@id": "cr:points", "@type": "xsd:integer" },
-        "fineAmount": { "@id": "cr:fineAmount", "@type": "xsd:decimal" },
-        "currency": { "@id": "cr:currency", "@type": "xsd:string" },
-        "location": { "@id": "cr:location", "@type": "xsd:string" },
-        "latitude": { "@id": "cr:latitude", "@type": "xsd:decimal" },
-        "longitude": { "@id": "cr:longitude", "@type": "xsd:decimal" },
-        "timestamp": { "@id": "cr:timestamp", "@type": "xsd:dateTime" },
-        "officerDID": { "@id": "cr:officerDID", "@type": "@id" },
-        "vehicleDID": { "@id": "cr:vehicleDID", "@type": "@id" },
-        "articleNumber": { "@id": "cr:articleNumber", "@type": "xsd:string" },
-        "description": { "@id": "cr:description", "@type": "xsd:string" }
-      }
-    },
+    <!-- Remaining types (compact) -->
+    <div class="section">
+      <div class="section-header">
+        <h2>CirculationRights · SOATCredential · TheoreticalTestResult · PracticalTestResult · MedicalFitnessCredential · TrafficViolation · AccidentReport</h2>
+      </div>
+      <div class="section-body">
+        <table>
+          <thead><tr><th>Schema</th><th>Key Properties</th><th>Issuer</th></tr></thead>
+          <tbody>
+            <tr><td>CirculationRights</td><td>fiscalYear, amount, validFrom, validUntil</td><td>INS</td></tr>
+            <tr><td>SOATCredential</td><td>policyNumber, coverageType, premium, expiresAt</td><td>INS</td></tr>
+            <tr><td>TheoreticalTestResult</td><td>score, passingScore, category, modality, proctoring</td><td>DGEV</td></tr>
+            <tr><td>PracticalTestResult</td><td>evaluatorDID, vehiclePlate, route, maneuvers</td><td>DGEV</td></tr>
+            <tr><td>MedicalFitnessCredential</td><td>status (apto/no apto), physicianDID, restrictions</td><td>Consultorio autorizado</td></tr>
+            <tr><td>TrafficViolation</td><td>violationType, points, fineAmount, location</td><td>COSEVI</td></tr>
+            <tr><td>AccidentReport</td><td>severity, parties, reportNumber, location</td><td>COSEVI / INS</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
 
-    "accident": {
-      "@id": "cr:accident",
-      "@context": {
-        "timestamp": { "@id": "cr:timestamp", "@type": "xsd:dateTime" },
-        "location": { "@id": "cr:location", "@type": "xsd:string" },
-        "latitude": { "@id": "cr:latitude", "@type": "xsd:decimal" },
-        "longitude": { "@id": "cr:longitude", "@type": "xsd:decimal" },
-        "severity": { "@id": "cr:severity", "@type": "xsd:string" },
-        "parties": { "@id": "cr:parties", "@container": "@set" },
-        "reportNumber": { "@id": "cr:reportNumber", "@type": "xsd:string" },
-        "officerDID": { "@id": "cr:officerDID", "@type": "@id" },
-        "description": { "@id": "cr:description", "@type": "xsd:string" }
-      }
-    }
-  }
-}
+    <a class="raw-link" href="v1.jsonld">View raw JSON-LD context →</a>
+
+    <footer>
+      <a href="https://attestto.org">Attestto Open</a> — Propuesta técnica abierta. No es un estándar oficial.
+      Los esquemas están diseñados para ser evaluados y adoptados por las instituciones competentes (COSEVI, MICITT, DGEV).
+    </footer>
+  </div>
+</body>
+</html>
