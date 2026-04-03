@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Attestto Open — Schemas</title>
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; max-width: 720px; margin: 4rem auto; padding: 0 1.5rem; color: #1e293b; line-height: 1.6; }
+    h1 { font-size: 1.5rem; margin-bottom: 0.25rem; }
+    .subtitle { color: #64748b; margin-bottom: 2rem; }
+    table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+    th, td { text-align: left; padding: 0.5rem 0.75rem; border-bottom: 1px solid #e2e8f0; }
+    th { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: #64748b; }
+    a { color: #2563eb; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    code { background: #f1f5f9; padding: 0.15rem 0.35rem; border-radius: 3px; font-size: 0.875rem; }
+    footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e2e8f0; font-size: 0.8rem; color: #94a3b8; }
+  </style>
+</head>
+<body>
+  <h1>Attestto Open — Schemas</h1>
+  <p class="subtitle">JSON-LD contexts and JSON Schema definitions for verifiable credentials.</p>
+
+  <h2>Available Contexts</h2>
+  <table>
+    <thead>
+      <tr><th>Context</th><th>Version</th><th>Description</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a href="/cr/driving/v1"><code>cr/driving/v1</code></a></td>
+        <td>v1</td>
+        <td>Costa Rica — Ecosistema vial (licencias, vehículos, seguros, infracciones)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Usage</h2>
+  <pre><code>{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://schemas.attestto.org/cr/driving/v1"
+  ],
+  "type": ["VerifiableCredential", "DrivingLicense"]
+}</code></pre>
+
+  <h2>Source</h2>
+  <p>
+    Schemas: <a href="https://github.com/Attestto-com/cr-vc-schemas">github.com/Attestto-com/cr-vc-schemas</a><br>
+    Standards: <a href="https://www.w3.org/TR/vc-data-model-2.0/">W3C VC Data Model v2.0</a>,
+    <a href="https://www.iso.org/standard/69084.html">ISO 18013-5</a>,
+    <a href="https://w3c-ccg.github.io/vdl-vocab/">W3C VDL Vocabulary</a>
+  </p>
+
+  <footer>
+    <a href="https://attestto.org">Attestto Open</a> — Propuesta técnica abierta. No es un estándar oficial.
+  </footer>
+</body>
+</html>
