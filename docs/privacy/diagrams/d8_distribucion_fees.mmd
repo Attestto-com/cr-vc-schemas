@@ -1,0 +1,30 @@
+---
+title: "Distribución Atómica de Fees — Renovación Digital ₡1,000"
+---
+graph TD
+    subgraph ciudadano["Ciudadano paga ₡1,000"]
+        pago["Renovación digital de licencia<br/>Desde wallet o app del banco"]
+    end
+
+    pago --> contrato["Contrato Inteligente<br/>Distribución atómica — todas las partes<br/>reciben en la MISMA transacción"]
+
+    contrato --> cosevi["COSEVI<br/>₡400 · 40%<br/>Ingreso institucional directo<br/>Confirmación inmediata"]
+    contrato --> proveedor["Proveedor de interfaz<br/>₡300 · 30%<br/>La app que usó el ciudadano<br/>Múltiples proveedores compiten"]
+    contrato --> infra["Operador de infraestructura<br/>₡150 · 15%<br/>Nodos, SDKs, esquemas<br/>Verificación de credenciales"]
+    contrato --> fondo["Fondo de ecosistema<br/>₡100 · 10%<br/>Nuevas integraciones<br/>Auditorías · Investigación"]
+    contrato --> reserva["Reserva de mantenimiento<br/>₡50 · 5%<br/>Actualizaciones de protocolo<br/>Soporte de largo plazo"]
+
+    subgraph comparacion["Comparación"]
+        actual["Modelo actual<br/>₡13,000 → un solo proveedor<br/>Conciliación mensual"]
+        abierto["Modelo abierto<br/>₡1,000 → 5 actores automáticamente<br/>Conciliación: cero"]
+    end
+
+    style ciudadano fill:#FFF3E0,stroke:#F57C00
+    style contrato fill:#E8EAF6,stroke:#3F51B5
+    style cosevi fill:#E8F5E9,stroke:#4CAF50
+    style proveedor fill:#E8F5E9,stroke:#4CAF50
+    style infra fill:#E8F5E9,stroke:#4CAF50
+    style fondo fill:#E1F5FE,stroke:#0288D1
+    style reserva fill:#E1F5FE,stroke:#0288D1
+    style actual fill:#FFEBEE,stroke:#E53935
+    style abierto fill:#E8F5E9,stroke:#4CAF50

@@ -1,0 +1,45 @@
+---
+title: "Modelo de Financiamiento — ¿Quién Paga?"
+---
+graph TB
+    subgraph componentes["Componente de Infraestructura"]
+        codigo["Código open source<br/>Schemas · SDKs · DID resolver · Specs"]
+        auditoria["Auditoría on-chain<br/>Contratos inteligentes · Seguridad"]
+        integracion["Integración institucional<br/>COSEVI · Municipalidades · Otras"]
+        bridge["Puente SINPE<br/>On-ramp / off-ramp"]
+        operacion["Operación y mantenimiento<br/>Nodos · SDKs · Soporte"]
+        supervision["Supervisión y gobernanza<br/>Estándares · Cumplimiento"]
+    end
+
+    subgraph financiadores["Quién lo financia"]
+        attestto["Attestto<br/>Operación comercial"]
+        solana["Solana Foundation<br/>Programa de grants"]
+        fondo["Fondo de ecosistema<br/>10% de cada transacción"]
+        bancofin["Banco / fintech<br/>Su modelo de negocio"]
+        txfee["15% de cada transacción<br/>Distribución automática"]
+        micitt["Presupuesto ordinario MICITT<br/>Mandato existente"]
+    end
+
+    attestto -->|"₡0 para el Estado"| codigo
+    solana -->|"₡0 para el Estado"| auditoria
+    fondo -->|"₡0 para el Estado"| integracion
+    bancofin -->|"₡0 para el Estado"| bridge
+    txfee -->|"₡0 para el Estado"| operacion
+    micitt -->|"₡0 adicional"| supervision
+
+    subgraph costo["Inversión Pública Requerida"]
+        cero["₡0<br/>El Estado no financia la infraestructura<br/>Se conecta a ella"]
+    end
+
+    subgraph estado["Lo que el Estado SÍ aporta"]
+        e1["Participar en gobernanza · multisig"]
+        e2["Definir estándares · con soporte técnico"]
+        e3["Supervisar cumplimiento"]
+        e4["Conectar sistemas existentes"]
+    end
+
+    style componentes fill:#E3F2FD,stroke:#1565C0
+    style financiadores fill:#E8F5E9,stroke:#2E7D32
+    style costo fill:#FFEBEE,stroke:#C62828
+    style cero fill:#FFEBEE,stroke:#C62828,color:#C62828
+    style estado fill:#FFF3E0,stroke:#E65100

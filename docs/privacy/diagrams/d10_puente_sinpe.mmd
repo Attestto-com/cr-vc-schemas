@@ -1,0 +1,39 @@
+---
+title: "Puente SINPE — Cómo Fluyen los Fondos entre Ambos Mundos"
+---
+graph LR
+    subgraph onchain["Mundo On-chain"]
+        wallet["Wallet del ciudadano<br/>Stablecoin CRC<br/>Token-2022"]
+        comercio["Wallet del comercio<br/>Recibe pagos<br/>24/7"]
+        cosevi["Wallet COSEVI<br/>Recibe fees<br/>Confirmación inmediata"]
+    end
+
+    subgraph puente["Puente — Entidad Regulada"]
+        banco["Banco o fintech<br/>Supervisado por SUGEF<br/>Reserva 1:1 en colones<br/>Reporta según normativa AML/CFT"]
+    end
+
+    subgraph sinpe["Mundo SINPE"]
+        cuenta["Cuenta bancaria<br/>Colones"]
+        sinpemovil["SINPE Móvil<br/>Transferencias"]
+        nomina["Nómina · Préstamos<br/>Domiciliaciones"]
+    end
+
+    wallet -->|"stablecoin CRC"| banco
+    banco -->|"colones"| cuenta
+    cuenta -->|"colones"| banco
+    banco -->|"stablecoin CRC"| wallet
+
+    comercio -->|"liquidación"| banco
+    banco -->|"colones"| cuenta
+
+    subgraph ruteo["Ruteo Automático"]
+        r1["Multa vehicular → rieles on-chain"]
+        r2["Nómina → SINPE"]
+        r3["Turista paga → USDC on-chain"]
+        r4["Comercio liquida → puente → cuenta bancaria"]
+    end
+
+    style onchain fill:#E8F5E9,stroke:#2E7D32
+    style puente fill:#E8EAF6,stroke:#3F51B5
+    style sinpe fill:#FFF3E0,stroke:#F57C00
+    style ruteo fill:#F5F5F5,stroke:#9E9E9E

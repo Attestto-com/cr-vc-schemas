@@ -1,0 +1,38 @@
+---
+title: "Tres Capas de Privacidad Transaccional"
+---
+graph TB
+    subgraph capa1["Capa 1 — Transferencias Confidenciales · Token-2022"]
+        c1a["Montos cifrados<br/>Twisted ElGamal"]
+        c1b["Range proofs<br/>Bulletproofs"]
+        c1c["Auditor key<br/>SUGEF / BCCR"]
+        c1r["Resultado: el público ve QUE ocurrió<br/>una transacción, pero NO cuánto"]
+    end
+
+    subgraph capa2["Capa 2 — Wallets Pseudónimos"]
+        c2a["Wallet de identidad<br/>DIDs + VCs + mDL"]
+        c2b["Wallet de pagos<br/>Dirección pseudónima"]
+        c2c["Vinculación conocida solo por:<br/>ciudadano · tenant · regulador con orden"]
+        c2r["Resultado: identidad y pagos<br/>viajan por canales separados"]
+    end
+
+    subgraph capa3["Capa 3 — Cumplimiento ZKP en Lote"]
+        c3a["Prueba mensual/trimestral<br/>N transacciones · todas ≤ umbral AML<br/>todos con KYC vigente"]
+        c3b["Escalamiento progresivo<br/>ZKP lote → auditor key →<br/>DID↔wallet → orden judicial"]
+        c3r["Resultado: el regulador verifica<br/>cumplimiento sin ver transacciones individuales"]
+    end
+
+    capa1 --> capa2 --> capa3
+
+    subgraph resultado["Privacidad + Auditoría"]
+        r1["Ciudadano: privacidad real"]
+        r2["Regulador: auditoría completa"]
+        r3["Verificación: matemática, no confianza"]
+    end
+
+    capa3 --> resultado
+
+    style capa1 fill:#E3F2FD,stroke:#1565C0
+    style capa2 fill:#E8F5E9,stroke:#2E7D32
+    style capa3 fill:#FFF3E0,stroke:#E65100
+    style resultado fill:#F3E5F5,stroke:#6A1B9A
