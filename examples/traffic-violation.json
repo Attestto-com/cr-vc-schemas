@@ -5,10 +5,10 @@
   ],
   "id": "urn:uuid:a3b4c5d6-e7f8-9012-6789-abcdef012345",
   "type": ["VerifiableCredential", "TrafficViolation"],
-  "issuer": "did:web:cosevi.attestto.id",
+  "issuer": "did:web:cosevi.go.cr",
   "issuanceDate": "2026-03-28T19:45:00Z",
   "credentialSubject": {
-    "id": "did:web:carlos-ejemplo.attestto.id",
+    "id": "did:example:carlos",
     "violation": {
       "violationType": "exceso_velocidad",
       "points": 2,
@@ -18,8 +18,8 @@
       "latitude": 9.9234,
       "longitude": -84.1567,
       "timestamp": "2026-03-28T19:30:00Z",
-      "officerDID": "did:web:oficial-perez-0456.attestto.id",
-      "vehicleDID": "did:web:vehiculo-xyz-789.attestto.id",
+      "officerDID": "did:example:oficial",
+      "vehicleDID": "did:example:vehiculo",
       "articleNumber": "Art. 131 inc. c) Ley de Transito",
       "description": "Exceso de velocidad: 95 km/h en zona de 60 km/h"
     }

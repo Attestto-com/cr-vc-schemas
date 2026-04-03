@@ -5,7 +5,7 @@
   ],
   "type": ["VerifiableCredential", "AccidentReport"],
   "credentialSubject": {
-    "id": "did:web:reporte.attestto.id",
+    "id": "did:example:reporte",
     "accident": {
       "type": "AccidentReportValue",
       "timestamp": "dateTime",
@@ -15,17 +15,17 @@
       "severity": "minor | moderate | severe | fatal",
       "parties": [
         {
-          "conductorDID": "did:web:conductor-1.attestto.id",
-          "vehicleDID": "did:web:vehiculo-1.attestto.id",
+          "conductorDID": "did:example:conductor-1",
+          "vehicleDID": "did:example:vehiculo-1",
           "insurancePolicyRef": "string",
           "role": "driver | passenger | pedestrian"
         }
       ],
       "reportNumber": "string (numero de parte oficial)",
-      "officerDID": "did:web:oficial.attestto.id",
+      "officerDID": "did:example:oficial",
       "description": "string"
     }
   },
-  "issuer": "did:web:cosevi.attestto.id",
+  "issuer": "did:web:cosevi.go.cr",
   "issuanceDate": "dateTime"
 }

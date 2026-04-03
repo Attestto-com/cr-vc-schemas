@@ -5,17 +5,17 @@
   ],
   "id": "urn:uuid:e1f2a3b4-c5d6-7890-4567-89abcdef0123",
   "type": ["VerifiableCredential", "SOATCredential"],
-  "issuer": "did:web:ins.attestto.id",
+  "issuer": "did:web:ins.go.cr",
   "issuanceDate": "2025-12-01T10:00:00Z",
   "credentialSubject": {
-    "id": "did:web:vehiculo-bcd-456.attestto.id",
+    "id": "did:example:vehiculo",
     "insurance": {
       "policyNumber": "INS-SOAT-2026-0089123",
       "coverageType": "SOAT",
       "issueDate": "2025-12-01",
       "expiresAt": "2026-12-01",
       "insurer": "Instituto Nacional de Seguros",
-      "insurerDID": "did:web:ins.attestto.id",
+      "insurerDID": "did:web:ins.go.cr",
       "premium": 42000.00,
       "currency": "CRC"
     }

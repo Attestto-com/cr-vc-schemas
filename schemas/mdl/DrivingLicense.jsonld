@@ -5,7 +5,7 @@
   ],
   "type": ["VerifiableCredential", "DrivingLicense"],
   "credentialSubject": {
-    "id": "did:web:conductor.attestto.id",
+    "id": "did:example:titular",
     "license": {
       "type": "DrivingLicenseValue",
       "licenseNumber": "string",
@@ -17,10 +17,10 @@
       "status": "active | suspended | revoked | expired",
       "bloodType": "string (optional)",
       "restrictions": ["string (e.g. corrective lenses, daylight only)"],
-      "issuingAuthority": "did:web:cosevi.attestto.id"
+      "issuingAuthority": "did:web:cosevi.go.cr"
     }
   },
-  "issuer": "did:web:cosevi.attestto.id",
+  "issuer": "did:web:cosevi.go.cr",
   "issuanceDate": "dateTime",
   "expirationDate": "dateTime",
   "credentialStatus": {

@@ -5,12 +5,12 @@
   ],
   "type": ["VerifiableCredential", "VehicleRegistration"],
   "credentialSubject": {
-    "id": "did:web:vehiculo.attestto.id",
+    "id": "did:example:vehiculo",
     "vehicle": {
       "type": "VehicleRegistrationValue",
       "plate": "string (ABC-123)",
       "vin": "string (Vehicle Identification Number)",
-      "ownerDID": "did:sns:propietario-did",
+      "ownerDID": "did:example:propietario",
       "registrationDate": "date",
       "vehicleType": "string (sedan, SUV, motocicleta, camion, bus)",
       "make": "string (Toyota, Hyundai, etc.)",
@@ -21,6 +21,6 @@
       "seatingCapacity": "integer"
     }
   },
-  "issuer": "did:web:registro-nacional.attestto.id",
+  "issuer": "did:web:registronacional.go.cr",
   "issuanceDate": "dateTime"
 }

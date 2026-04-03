@@ -5,19 +5,19 @@
   ],
   "type": ["VerifiableCredential", "PracticalTestResult"],
   "credentialSubject": {
-    "id": "did:web:conductor.attestto.id",
+    "id": "did:example:titular",
     "practicalTest": {
       "type": "PracticalTestResultValue",
       "status": "approved | failed",
       "category": "string (B, C, D, etc.)",
       "testDate": "dateTime",
       "expiresAt": "dateTime (resultado valido por 90 dias)",
-      "evaluatorDID": "did:sns:evaluador-did",
+      "evaluatorDID": "did:example:evaluador",
       "evaluatorName": "string",
       "evaluatorLicense": "string (numero de habilitacion como evaluador)",
-      "testCenterDID": "did:sns:centro-evaluacion",
+      "testCenterDID": "did:example:centro-evaluacion",
       "testCenterName": "string",
-      "vehicleDID": "did:sns:vehiculo-usado-en-prueba",
+      "vehicleDID": "did:example:vehiculo-prueba",
       "vehiclePlate": "string",
       "vehicleType": "string (sedan, motocicleta, camion, bus)",
       "route": {
@@ -38,7 +38,7 @@
       "timeOfDay": "string (diurno, nocturno, crepuscular)"
     }
   },
-  "issuer": "did:web:dgev.attestto.id",
+  "issuer": "did:web:dgev.go.cr",
   "issuanceDate": "dateTime",
   "credentialStatus": {
     "id": "https://status.attestto.org/cr/credentials/status/4",
