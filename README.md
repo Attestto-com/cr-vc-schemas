@@ -14,7 +14,7 @@ Propuesta de esquemas JSON-LD y JSON Schema para Credenciales Verificables del e
 | **MedicalFitnessCredential** | Dictamen medico de aptitud | Consultorio autorizado | `schemas/medical/` |
 | **VehicleRegistration** | Registro vehicular (placa) | Registro Nacional | `schemas/vehicle/` |
 | **VehicleTechnicalReview** | Revision tecnica (RTV) | Centro RTV | `schemas/vehicle/` |
-| **CirculationRights** | Derechos de circulacion (marchamo) | Hacienda / Municipalidad | `schemas/vehicle/` |
+| **CirculationRights** | Derechos de circulacion (marchamo) | INS | `schemas/vehicle/` |
 | **SOATCredential** | Seguro obligatorio (SOAT) | INS | `schemas/insurance/` |
 | **DriverIdentity** | Identidad del conductor | TSE / DGME / banco / COSEVI | `schemas/identity/` |
 | **TrafficViolation** | Multa de transito | COSEVI | `schemas/violations/` |
@@ -181,7 +181,7 @@ Este repositorio es parte de un ecosistema de herramientas open source para iden
 | **[wallet-identity-resolver](https://github.com/Attestto-com/wallet-identity-resolver)** | Resolucion de identidad on-chain: dado un wallet address, descubre DIDs, SBTs, attestations. Incluye resolver para SAS (Solana Attestation Service). | Publicado |
 | **[credential-wallet-connector](https://github.com/Attestto-com/credential-wallet-connector)** | Protocolo de descubrimiento universal de wallets de credenciales (como EIP-6963 para identidad). Sitios broadcast, wallets announce. | Publicado |
 | **[vLEI-Solana-Bridge](https://github.com/Attestto-com/vLei-Solana-Bridge)** | Programa Solana que convierte credenciales organizacionales vLEI (GLEIF) en attestations on-chain con verificacion ZKP (Groth16). | Deployado en mainnet |
-| **[did-method-checklist](https://github.com/Attestto-com/did-method-checklist)** | Framework de evaluacion para especificaciones de metodos DID — cobertura, interop, completitud. | Publicado |
+| **[did-method-checklist](https://github.com/Attestto-com/did-method-checklist)** | Framework de evaluacion para especificaciones de metodos DID — cobertura, interop, completitud. | En progreso |
 
 ### Por construir
 
