@@ -1,0 +1,9 @@
+{
+  "network": "devnet",
+  "authority": "Att2ARRaK2VrAbmUvNzwUGJUom8cPVCYe65azSbb9oR5",
+  "credential": "GfqJFXiUVBFLHk1J7nooR9Vv1AaK3J8M3Ygz3RrzrM6u",
+  "deployedAt": "2026-04-03T06:43:32.542Z",
+  "schema_INSTITUTION": "CzvQmmyFtQg6yLr6hRJvfjAyAaA38paGcXiRTQQVHAmW",
+  "schema_CREDENTIAL-ANCHOR": "CsvrCdCyiE8QyV8uZF2xZ5Cj9PpfoKkdSK7dG7K9hSW5",
+  "schema_VEHICLE-HISTORY": "6Gn5M2q3BezbqaWQdrrh1w3xuizaJjgmdhwRpNnWjzJZ"
+}

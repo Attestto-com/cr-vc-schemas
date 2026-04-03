@@ -1,0 +1,28 @@
+{
+  "name": "@attestto-open/cr-vc-sas-deploy",
+  "version": "0.1.0",
+  "description": "Deploy CR vial ecosystem credential + schemas to Solana via SAS",
+  "type": "module",
+  "scripts": {
+    "deploy:devnet": "tsx src/deploy.ts --cluster devnet",
+    "deploy:mainnet": "tsx src/deploy.ts --cluster mainnet",
+    "demo:attest": "tsx src/demo-attestations.ts",
+    "verify": "tsx src/verify.ts"
+  },
+  "dependencies": {
+    "sas-lib": "^1.0.10",
+    "gill": "^0.10.2"
+  },
+  "devDependencies": {
+    "tsx": "^4.20.6",
+    "typescript": "^5.8.3",
+    "@types/node": "^24.0.4"
+  },
+  "license": "Apache-2.0",
+  "author": "Attestto Open <open@attestto.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Attestto-com/cr-vc-schemas.git",
+    "directory": "scripts"
+  }
+}
