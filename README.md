@@ -201,6 +201,7 @@ Este repositorio es parte de un ecosistema de herramientas open source para iden
 ## Referencias
 
 - [W3C Verifiable Credentials Data Model v2.0](https://www.w3.org/TR/vc-data-model-2.0/)
+- [W3C VC Use Cases](https://www.w3.org/TR/vc-use-cases/) — bounds of authority, verification vs validation, verifier business rules
 - [ISO/IEC 18013-5 (mDL)](https://www.iso.org/standard/69084.html)
 - [W3C CCG Verifiable Driver's License Vocabulary](https://w3c-ccg.github.io/vdl-vocab/)
 - [W3C StatusList2021](https://www.w3.org/TR/vc-status-list/)
