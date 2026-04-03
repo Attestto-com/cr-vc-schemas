@@ -14,6 +14,16 @@ Dirección de Gobernanza Digital y Centro de Facilitación de Datos (DGDCFD)
 
 ---
 
+> **Nota Aclaratoria — Naturaleza del Documento**
+>
+> Este documento es una **arquitectura de referencia abierta**, no una oferta de adjudicación. Attestto Open no cumple con los requisitos de experiencia establecidos en el pliego de condiciones — entre ellos la emisión de más de 450,000 licencias por año y la gestión de más de 50,000 documentos de seguridad por año — y está **técnicamente descalificado para participar como oferente** en la licitación 2026LY-000001-0012400001.
+>
+> El propósito de esta contribución es exclusivamente **definir el estándar abierto** que cualquier oferente adjudicatario pueda adoptar, garantizando interoperabilidad, portabilidad y no dependencia de proveedor — alineado con las observaciones del MICITT (MICITT-DGDCFD-OF-198-2025).
+>
+> Attestto Open es la única voz objetiva en este proceso porque **no puede ganar el contrato**.
+
+---
+
 ## Presentación
 
 Este documento presenta una **arquitectura de referencia abierta** para la infraestructura digital del ecosistema vial costarricense, elaborada en respuesta a la licitación 2026LY-000001-0012400001 (COSEVI/MOPT) y a las observaciones técnicas formuladas por el MICITT (MICITT-DGDCFD-OF-198-2025).
