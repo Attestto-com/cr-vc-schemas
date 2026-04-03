@@ -77,6 +77,65 @@ El contexto propuesto agrupa los tipos y propiedades en un namespace: `https://s
 
 4. **Neutralidad tecnologica** — Los esquemas no dependen de ningun proveedor, plataforma ni blockchain especificos. Son compatibles con cualquier implementacion que soporte JSON-LD + W3C VC.
 
+## Anclaje On-Chain (Solana Attestation Service)
+
+Los esquemas de este repositorio estan anclados en Solana via el [Solana Attestation Service (SAS)](https://attest.solana.com/) — un protocolo abierto y permisionless de la Solana Foundation. No se requiere un programa propio.
+
+### Despliegue actual (Devnet)
+
+| Entidad | PDA | Red |
+|---|---|---|
+| **CR-VIAL-ECOSYSTEM** (credencial) | `GfqJFXiUVBFLHk1J7nooR9Vv1AaK3J8M3Ygz3RrzrM6u` | devnet |
+| **INSTITUTION** (esquema) | `CzvQmmyFtQg6yLr6hRJvfjAyAaA38paGcXiRTQQVHAmW` | devnet |
+| **CREDENTIAL-ANCHOR** (esquema) | `CsvrCdCyiE8QyV8uZF2xZ5Cj9PpfoKkdSK7dG7K9hSW5` | devnet |
+| **VEHICLE-HISTORY** (esquema) | `6Gn5M2q3BezbqaWQdrrh1w3xuizaJjgmdhwRpNnWjzJZ` | devnet |
+
+Ver [`docs/deployment-devnet.json`](./docs/deployment-devnet.json) para el registro completo.
+
+### Tres esquemas, tres tipos de entidad
+
+1. **INSTITUTION** — Anclas de confianza. Registra instituciones autorizadas (COSEVI, DGEV, bancos, consultorios) y los tipos de credencial que pueden emitir. Un verificador consulta este esquema para validar que el emisor de una VC esta autorizado.
+
+2. **CREDENTIAL-ANCHOR** — Anclaje de hashes de VCs para personas. Modelo de verificacion en 3 capas: web (emisor) → CDN (attestto.id) → cadena (SAS). Tambien sirve como indice de recuperacion si el titular pierde su dispositivo. Sin PII on-chain — solo hashes.
+
+3. **VEHICLE-HISTORY** — Historial de vida del vehiculo. Registros de matricula, RTV, marchamo, SOAT. Transferible (los vehiculos cambian de dueno). Historial publico, sin PII.
+
+### Modelo de gobernanza on-chain
+
+**Devnet (actual):** Autoridad de desarrollo — `Att2ARRaK2VrAbmUvNzwUGJUom8cPVCYe65azSbb9oR5`
+
+**Mainnet (planificado):** Multisig multi-institucional via [Squads Protocol v4](https://v4.squads.so):
+
+| Firmante | Rol |
+|---|---|
+| **COSEVI / MOPT** | Regulador — gobierno del ecosistema vial |
+| **MICITT** | Supervision tecnica — neutralidad y estandares |
+| **Desarrollador(es)** | Operacion tecnica — Attestto Open u otro proveedor |
+
+Threshold 2-of-3: ninguna parte puede unilateralmente agregar/remover anclas de confianza, pausar esquemas o revocar attestations. La infraestructura no pertenece al contratista.
+
+Este modelo responde directamente a las observaciones del MICITT:
+- **Obs. 1 (Neutralidad tecnologica):** La infraestructura es un protocolo abierto, no un producto propietario.
+- **Obs. 7 (Reversibilidad y portabilidad):** La autoridad es transferible — el Estado puede asumir control total en cualquier momento.
+
+### Scripts de despliegue
+
+```bash
+cd scripts && pnpm install
+
+# Desplegar credencial + esquemas en devnet
+pnpm deploy:devnet
+
+# Crear attestations de demo
+pnpm demo:attest
+
+# Verificar estado de los esquemas on-chain
+pnpm verify
+
+# Verificar un attestation especifico
+pnpm verify -- --schema INSTITUTION --nonce <address>
+```
+
 ## Uso
 
 ### Validar una VC contra un esquema
