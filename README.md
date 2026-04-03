@@ -154,21 +154,23 @@ npx ajv validate -s schemas/mdl/DrivingLicense.schema.json -d mi-credencial.json
     "https://schemas.attestto.org/cr/driving/v1"
   ],
   "type": ["VerifiableCredential", "DrivingLicense"],
-  "issuer": "did:sns:cosevi",
+  "issuer": "did:web:cosevi.go.cr",
   "credentialSubject": {
-    "id": "did:sns:conductor",
+    "id": "did:example:titular",
     "license": {
-      "licenseNumber": "CR-2026-001234",
+      "licenseNumber": "CI-100000000",
       "categories": ["B"],
       "issueDate": "2026-04-01",
       "expiresAt": "2032-04-01",
       "status": "active",
       "points": 12,
-      "issuingAuthority": "did:sns:cosevi"
+      "issuingAuthority": "did:web:cosevi.go.cr"
     }
   }
 }
 ```
+
+> **Nota:** El numero de licencia en Costa Rica es el mismo numero de cedula del titular (formato `CI-XXXXXXXXX`). El metodo DID del ejemplo (`did:web`) es ilustrativo — el metodo definitivo se define por las instituciones competentes.
 
 ## Ecosistema
 

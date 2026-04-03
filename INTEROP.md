@@ -113,10 +113,10 @@ Un verificador que entienda W3C VDL puede leer una licencia CR si el emisor incl
   ],
   "type": ["VerifiableCredential", "DrivingLicense"],
   "credentialSubject": {
-    "id": "did:sns:conductor",
+    "id": "did:example:titular",
     "license": {
-      "licenseNumber": "CR-2026-001234",
-      "document_number": "CR-2026-001234",
+      "licenseNumber": "CI-100000000",
+      "document_number": "CI-100000000",
       "categories": ["B"],
       "driving_privileges": [{"vehicle_category_code": "B"}],
       "issueDate": "2026-04-01",

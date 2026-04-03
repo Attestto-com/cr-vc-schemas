@@ -85,14 +85,14 @@ schemas/<dominio>/
   ],
   "type": ["VerifiableCredential", "NombreDelEsquema"],
   "credentialSubject": {
-    "id": "did:sns:sujeto-did",
+    "id": "did:example:sujeto-did",
     "propiedad": {
       "type": "NombreDelEsquemaValue",
       "campo1": "descripcion del tipo y valores posibles",
       "campo2": "descripcion del tipo y valores posibles"
     }
   },
-  "issuer": "did:sns:emisor-did",
+  "issuer": "did:web:institucion.go.cr",
   "issuanceDate": "dateTime",
   "credentialStatus": {
     "type": "StatusList2021Entry",
