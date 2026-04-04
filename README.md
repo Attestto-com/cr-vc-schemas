@@ -174,29 +174,17 @@ npx ajv validate -s schemas/mdl/DrivingLicense.schema.json -d mi-credencial.json
 
 ## Ecosistema
 
-Este repositorio es parte de un ecosistema de herramientas open source para identidad descentralizada:
+Indice completo: [Attestto-com/attestto-open](https://github.com/Attestto-com/attestto-open)
 
-| Repositorio | Que hace | Estado |
-|---|---|---|
-| **[cr-vc-schemas](https://github.com/Attestto-com/cr-vc-schemas)** | Esquemas JSON-LD para el ecosistema vial CR (este repo) | Listo |
-| **[did-sns-spec](https://github.com/Attestto-com/did-sns-spec)** | Especificacion W3C CCG del metodo DID para Solana Name Service (`did:sns`) | Publicado en [spec.attestto.com](https://spec.attestto.com) |
-| **[wallet-identity-resolver](https://github.com/Attestto-com/wallet-identity-resolver)** | Resolucion de identidad on-chain: dado un wallet address, descubre DIDs, SBTs, attestations. Incluye resolver para SAS (Solana Attestation Service). | Publicado |
-| **[credential-wallet-connector](https://github.com/Attestto-com/credential-wallet-connector)** | Protocolo de descubrimiento universal de wallets de credenciales (como EIP-6963 para identidad). Sitios broadcast, wallets announce. | Publicado |
-| **[vLEI-Solana-Bridge](https://github.com/Attestto-com/vLei-Solana-Bridge)** | Programa Solana que convierte credenciales organizacionales vLEI (GLEIF) en attestations on-chain con verificacion ZKP (Groth16). | Deployado en mainnet |
-| **[did-method-checklist](https://github.com/Attestto-com/did-method-checklist)** | Framework de evaluacion para especificaciones de metodos DID — cobertura, interop, completitud. | En progreso |
-
-### Por construir
-
-| Repositorio | Que hara |
+| Repositorio | Que hace |
 |---|---|
-| **cr-vc-sdk-node** | SDK Node.js/TypeScript — emision, verificacion, holder operations, trust registry |
-| **cr-vc-sdk-dotnet** | SDK .NET/ASP — para consultorios, bancos, sistemas legacy del Estado |
-| **cr-vc-issuer-reference** | App emisora clonar-y-desplegar (Node.js + Docker) |
-| **cr-vc-verifier-reference** | App verificadora clonar-y-desplegar (Node.js + Docker) |
-| **cr-vc-wallet-reference** | Wallet movil minimalista (React Native) |
-| **cr-vc-officer-app** | App de verificacion en campo para oficiales de transito |
-| **cr-trust-registry** | Directorio de emisores autorizados por tipo de credencial |
-| **cr-vc-testkit** | Suite de pruebas de certificacion |
+| [vc-sdk](https://github.com/Attestto-com/vc-sdk) | SDK universal W3C VC (TypeScript) |
+| [cr-vc-sdk](https://github.com/Attestto-com/cr-vc-sdk) | SDK ecosistema vial CR (TypeScript) |
+| [cr-vc-sdk-dotnet](https://github.com/Attestto-com/cr-vc-sdk-dotnet) | SDK ecosistema vial CR (.NET 8) |
+| [did-sns-spec](https://github.com/Attestto-com/did-sns-spec) | Especificacion W3C del metodo `did:sns` |
+| [did-sns-resolver](https://github.com/Attestto-com/did-sns-resolver) | Universal Resolver para did:sns |
+| [did-method-checklist](https://github.com/Attestto-com/did-method-checklist) | Framework de evaluacion de metodos DID |
+| [id-wallet-adapter](https://github.com/Attestto-com/id-wallet-adapter) | Descubrimiento de wallets |
 
 ## Referencias
 
