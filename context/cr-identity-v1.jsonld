@@ -1,0 +1,70 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "@protected": true,
+    "att": "https://schemas.attestto.org/cr/identity/v1#",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "IdentityVC": "att:IdentityVC",
+    "NaturalPerson": "att:NaturalPerson",
+
+    "nationalId": {
+      "@id": "att:nationalId",
+      "@context": {
+        "type": { "@id": "att:nationalIdType", "@type": "xsd:string" },
+        "number": { "@id": "att:nationalIdNumber", "@type": "xsd:string" },
+        "country": { "@id": "att:nationalIdCountry", "@type": "xsd:string" }
+      }
+    },
+
+    "fullName": { "@id": "att:fullName", "@type": "xsd:string" },
+    "dateOfBirth": { "@id": "att:dateOfBirth", "@type": "xsd:date" },
+    "nationality": { "@id": "att:nationality", "@type": "xsd:string" },
+    "maritalStatus": { "@id": "att:maritalStatus", "@type": "xsd:string" },
+    "photoHash": { "@id": "att:photoHash", "@type": "xsd:string" },
+
+    "notarialAttestation": {
+      "@id": "att:notarialAttestation",
+      "@context": {
+        "protocolNumber": { "@id": "att:protocolNumber", "@type": "xsd:string" },
+        "attestedAt": { "@id": "att:attestedAt", "@type": "xsd:dateTime" }
+      }
+    },
+
+    "organizationRoles": {
+      "@id": "att:organizationRoles",
+      "@container": "@set",
+      "@context": {
+        "organization": {
+          "@id": "att:organization",
+          "@context": {
+            "legalName": { "@id": "att:legalName", "@type": "xsd:string" },
+            "taxId": { "@id": "att:taxId", "@type": "xsd:string" },
+            "lei": { "@id": "att:lei", "@type": "xsd:string" },
+            "jurisdiction": { "@id": "att:jurisdiction", "@type": "xsd:string" },
+            "entityDid": { "@id": "att:entityDid", "@type": "@id" }
+          }
+        },
+        "role": { "@id": "att:role", "@type": "xsd:string" },
+        "ownershipPercentage": { "@id": "att:ownershipPercentage", "@type": "xsd:decimal" },
+        "hasVotingControl": { "@id": "att:hasVotingControl", "@type": "xsd:boolean" },
+        "hasAppointmentRights": { "@id": "att:hasAppointmentRights", "@type": "xsd:boolean" },
+        "hasVetoRights": { "@id": "att:hasVetoRights", "@type": "xsd:boolean" },
+        "poderType": { "@id": "att:poderType", "@type": "xsd:string" },
+        "position": { "@id": "att:position", "@type": "xsd:string" }
+      }
+    },
+
+    "carneNumber": { "@id": "att:carneNumber", "@type": "xsd:string" },
+    "colegioId": { "@id": "att:colegioId", "@type": "@id" },
+
+    "NotarialVerification": "att:NotarialVerification",
+    "method": { "@id": "att:method", "@type": "xsd:string" },
+    "documentsChecked": { "@id": "att:documentsChecked", "@container": "@set" },
+    "biometricMatch": { "@id": "att:biometricMatch", "@type": "xsd:boolean" },
+    "verifiedAt": { "@id": "att:verifiedAt", "@type": "xsd:dateTime" },
+
+    "HolderKeyBinding": "att:HolderKeyBinding"
+  }
+}

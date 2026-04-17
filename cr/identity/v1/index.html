@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>cr/identity/v1 — JSON-LD Context</title>
+  <link rel="alternate" type="application/ld+json" href="../v1.jsonld">
+  <style>
+    :root { --bg: #0f172a; --surface: #1e293b; --border: #334155; --text: #e2e8f0; --dim: #94a3b8; --accent: #38bdf8; --green: #4ade80; --orange: #fb923c; --purple: #c084fc; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    .container { max-width: 960px; margin: 0 auto; padding: 2rem 1.5rem; }
+    header { margin-bottom: 2.5rem; }
+    h1 { font-size: 1.25rem; font-weight: 600; color: var(--accent); margin-bottom: 0.25rem; }
+    .namespace { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.8rem; color: var(--dim); margin-bottom: 0.5rem; }
+    .meta { display: flex; gap: 1.5rem; font-size: 0.75rem; color: var(--dim); margin-bottom: 1rem; flex-wrap: wrap; }
+    .meta a { color: var(--accent); text-decoration: none; }
+    .meta a:hover { text-decoration: underline; }
+    .badge { display: inline-block; padding: 0.15rem 0.5rem; border-radius: 3px; font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+    .badge-cr { background: #164e63; color: #67e8f9; }
+    .badge-proposal { background: #713f12; color: #fde68a; }
+
+    .section { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; margin-bottom: 1.5rem; overflow: hidden; }
+    .section-header { padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+    .section-header h2 { font-size: 0.9rem; font-weight: 600; }
+    .section-header .type-id { font-family: monospace; font-size: 0.75rem; color: var(--dim); }
+    .section-body { padding: 0; }
+
+    table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+    th { text-align: left; padding: 0.5rem 1rem; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--dim); background: rgba(0,0,0,0.2); }
+    td { padding: 0.4rem 1rem; border-top: 1px solid var(--border); }
+    td:first-child { font-family: monospace; color: var(--green); white-space: nowrap; }
+    td:nth-child(2) { font-family: monospace; font-size: 0.75rem; color: var(--dim); }
+    td:nth-child(3) { font-family: monospace; font-size: 0.75rem; }
+    .type-tag { font-size: 0.7rem; color: var(--orange); }
+
+    .raw-link { display: inline-block; margin-top: 1.5rem; padding: 0.5rem 1rem; border: 1px solid var(--border); border-radius: 6px; color: var(--accent); text-decoration: none; font-size: 0.8rem; }
+    .raw-link:hover { background: var(--surface); }
+
+    footer { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--border); font-size: 0.7rem; color: var(--dim); }
+    footer a { color: var(--accent); text-decoration: none; }
+
+    .prefixes { font-size: 0.75rem; color: var(--dim); margin-bottom: 1.5rem; font-family: monospace; }
+    .prefixes span { margin-right: 1.5rem; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Costa Rica — Identidad Digital</h1>
+      <div class="namespace">https://schemas.attestto.org/cr/identity/v1</div>
+      <div class="meta">
+        <span><span class="badge badge-proposal">Propuesta</span> No es un estandar oficial</span>
+        <span>Version: 1.1</span>
+        <a href="https://github.com/Attestto-com/cr-vc-schemas">GitHub</a>
+        <a href="https://www.w3.org/TR/vc-data-model-2.0/">W3C VC v2.0</a>
+      </div>
+      <div class="prefixes">
+        <span><b>att:</b> schemas.attestto.org/cr/identity/v1#</span>
+        <span><b>schema:</b> schema.org/</span>
+        <span><b>xsd:</b> w3.org/2001/XMLSchema#</span>
+      </div>
+    </header>
+
+    <!-- Credential Types -->
+    <div class="section">
+      <div class="section-header">
+        <h2>Credential Types</h2>
+        <span class="type-id">2 types</span>
+      </div>
+      <div class="section-body">
+        <table>
+          <thead><tr><th>Type</th><th>Namespace</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td>IdentityVC</td><td>att:</td><td>Credencial de identidad verificable</td></tr>
+            <tr><td>NaturalPerson</td><td>att:</td><td>Persona fisica</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Core Identity -->
+    <div class="section">
+      <div class="section-header">
+        <h2>Core Identity <span class="badge badge-cr">CR</span></h2>
+        <span class="type-id">credentialSubject (flat)</span>
+      </div>
+      <div class="section-body">
+        <table>
+          <thead><tr><th>Property</th><th>IRI</th><th>Type</th></tr></thead>
+          <tbody>
+            <tr><td>nationalId</td><td>att:nationalId</td><td class="type-tag">object</td></tr>
+            <tr><td>nationalId.type</td><td>att:nationalIdType</td><td class="type-tag">xsd:string</td></tr>
+            <tr><td>nationalId.number</td><td>att:nationalIdNumber</td><td class="type-tag">xsd:string</td></tr>
+            <tr><td>nationalId.country</td><td>att:nationalIdCountry</td><td class="type-tag">xsd:string</td></tr>
+            <tr><td>fullName</td><td>att:fullName</td><td class="type-tag">xsd:string</td></tr>
+            <tr><td>dateOfBirth</td><td>att:dateOfBirth</td><td class="type-tag">xsd:date</td></tr>
+            <tr><td>nationality</td><td>att:nationality</td><td class="type-tag">xsd:string</td></tr>
+            <tr><td>maritalStatus</td><td>att:maritalStatus</td><td class="type-tag">xsd:string</td></tr>
+            <tr><td>photoHash</td><td>att:photoHash</td><td class="type-tag">xsd:string</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Notarial Attestation -->
+    <div class="section">
+      <div class="section-header">
+        <h2>Notarial Attestation <span class="badge badge-cr">CR</span></h2>
+        <span class="type-id">att:notarialAttestation</span>
+      </div>
+      <div class="section-body">
+        <table>
+          <thead><tr><th>Property</th><th>IRI</th><th>Type</th></tr></thead>
+          <tbody>
+            <tr><td>protocolNumber</td><td>att:protocolNumber</td><td class="type-tag">xsd:string</td></tr>
+            <tr><td>attestedAt</td><td>att:attestedAt</td><td class="type-tag">xsd:dateTime</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Organization Roles -->
+    <div class="section">
+      <div class="section-header">
+        <h2>Organization Roles <span class="badge badge-cr">CR</span></h2>
+        <span class="type-id">att:organizationRoles (@set)</span>
+      </div>
+      <div class="section-body">
+        <table>
+          <thead><tr><th>Property</th><th>IRI</th><th>Type</th></tr></thead>
+          <tbody>
+            <tr><td>organization.legalName</td><td>att:legalName</td><td class="type-tag">xsd:string</td></tr>
+            <tr><td>organization.taxId</td><td>att:taxId</td><td class="type-tag">xsd:string</td></tr>
+            <tr><td>organization.lei</td><td>att:lei</td><td class="type-tag">xsd:string</td></tr>
+            <tr><td>organization.jurisdiction</td><td>att:jurisdiction</td><td class="type-tag">xsd:string</td></tr>
+            <tr><td>organization.entityDid</td><td>att:entityDid</td><td class="type-tag">@id</td></tr>
+            <tr><td>role</td><td>att:role</td><td class="type-tag">xsd:string</td></tr>
+            <tr><td>ownershipPercentage</td><td>att:ownershipPercentage</td><td class="type-tag">xsd:decimal</td></tr>
+            <tr><td>hasVotingControl</td><td>att:hasVotingControl</td><td class="type-tag">xsd:boolean</td></tr>
+            <tr><td>hasAppointmentRights</td><td>att:hasAppointmentRights</td><td class="type-tag">xsd:boolean</td></tr>
+            <tr><td>hasVetoRights</td><td>att:hasVetoRights</td><td class="type-tag">xsd:boolean</td></tr>
+            <tr><td>poderType</td><td>att:poderType</td><td class="type-tag">xsd:string</td></tr>
+            <tr><td>position</td><td>att:position</td><td class="type-tag">xsd:string</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Issuer Metadata -->
+    <div class="section">
+      <div class="section-header">
+        <h2>Issuer Metadata</h2>
+        <span class="type-id">Notario / Profesional</span>
+      </div>
+      <div class="section-body">
+        <table>
+          <thead><tr><th>Property</th><th>IRI</th><th>Type</th></tr></thead>
+          <tbody>
+            <tr><td>carneNumber</td><td>att:carneNumber</td><td class="type-tag">xsd:string</td></tr>
+            <tr><td>colegioId</td><td>att:colegioId</td><td class="type-tag">@id</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Verification -->
+    <div class="section">
+      <div class="section-header">
+        <h2>Verification Types</h2>
+      </div>
+      <div class="section-body">
+        <table>
+          <thead><tr><th>Type / Property</th><th>IRI</th><th>Type</th></tr></thead>
+          <tbody>
+            <tr><td>NotarialVerification</td><td>att:NotarialVerification</td><td class="type-tag">class</td></tr>
+            <tr><td>method</td><td>att:method</td><td class="type-tag">xsd:string</td></tr>
+            <tr><td>documentsChecked</td><td>att:documentsChecked</td><td class="type-tag">@set</td></tr>
+            <tr><td>biometricMatch</td><td>att:biometricMatch</td><td class="type-tag">xsd:boolean</td></tr>
+            <tr><td>verifiedAt</td><td>att:verifiedAt</td><td class="type-tag">xsd:dateTime</td></tr>
+            <tr><td>HolderKeyBinding</td><td>att:HolderKeyBinding</td><td class="type-tag">class</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <a class="raw-link" href="../v1.jsonld">View raw JSON-LD context →</a>
+
+    <footer>
+      <a href="https://attestto.org">Attestto Open</a> — Propuesta tecnica abierta. No es un estandar oficial.
+      Los esquemas de identidad estan disenados para ser evaluados por las instituciones competentes.
+    </footer>
+  </div>
+</body>
+</html>
