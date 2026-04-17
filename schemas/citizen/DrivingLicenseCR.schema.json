@@ -1,0 +1,120 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.attestto.org/cr/identity/v1/DrivingLicenseCR.schema.json",
+  "title": "Licencia de Conducir de Costa Rica",
+  "description": "Credencial verificable de licencia de conducir costarricense. Auto-atestada por el ciudadano mediante escaneo OCR del documento fisico.",
+  "type": "object",
+  "required": ["credentialSubject", "evidence"],
+  "properties": {
+    "credentialSubject": {
+      "type": "object",
+      "required": ["id", "cedula", "fullName", "dateOfBirth", "dateOfExpiry", "categories", "points", "status"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^did:",
+          "description": "DID del ciudadano (vault DID)"
+        },
+        "cedula": {
+          "type": "string",
+          "pattern": "^\\d-\\d{4}-\\d{4}$",
+          "description": "Numero de cedula de identidad (formato X-XXXX-XXXX)"
+        },
+        "fullName": {
+          "type": "string",
+          "description": "Nombre completo del titular"
+        },
+        "dateOfBirth": {
+          "type": "string",
+          "format": "date",
+          "description": "Fecha de nacimiento"
+        },
+        "dateOfExpiry": {
+          "type": "string",
+          "format": "date",
+          "description": "Fecha de vencimiento de la licencia"
+        },
+        "categories": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["code", "from", "to"],
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "Codigo de categoria (e.g. B1, A2, C1)"
+              },
+              "from": {
+                "type": "string",
+                "format": "date",
+                "description": "Fecha de vigencia desde"
+              },
+              "to": {
+                "type": "string",
+                "format": "date",
+                "description": "Fecha de vigencia hasta"
+              }
+            }
+          },
+          "description": "Categorias de licencia autorizadas con vigencia"
+        },
+        "points": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 12,
+          "description": "Puntos restantes en el sistema de puntos"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["active", "suspended", "revoked"],
+          "description": "Estado actual de la licencia"
+        },
+        "restrictions": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Restricciones (lentes correctivos, solo diurno, etc.)"
+        },
+        "bloodType": {
+          "type": "string",
+          "description": "Tipo de sangre"
+        },
+        "photoHash": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$",
+          "description": "SHA-256 hash de la foto del documento. No se almacena datos biometricos en la VC."
+        }
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["type", "method", "ocrConfidence", "scannedAt"],
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["SelfAttestation"]
+          },
+          "method": {
+            "type": "string",
+            "enum": ["document-scan"],
+            "description": "Metodo de captura del documento"
+          },
+          "ocrConfidence": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1,
+            "description": "Confianza del OCR (0.0 a 1.0)"
+          },
+          "scannedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Fecha y hora del escaneo"
+          }
+        }
+      }
+    }
+  }
+}

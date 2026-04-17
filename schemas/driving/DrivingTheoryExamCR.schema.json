@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.attestto.org/cr/driving/v1/DrivingTheoryExamCR.schema.json",
+  "title": "Resultado de Examen Teorico de Conduccion CR",
+  "description": "Resultado de examen teorico de manejo — mapea a TheoreticalTestResult con el nombre usado en codigo. Incluye puntaje, hash de integridad de sesion, y estado de proctoring.",
+  "type": "object",
+  "required": ["credentialSubject"],
+  "properties": {
+    "credentialSubject": {
+      "type": "object",
+      "required": ["id", "examDate", "category", "score", "passed", "totalQuestions", "correctAnswers", "examSessionId", "proctored", "integrityHash"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^did:",
+          "description": "DID del examinado"
+        },
+        "examDate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Fecha y hora del examen"
+        },
+        "category": {
+          "type": "string",
+          "description": "Categoria de licencia evaluada (e.g. B1)"
+        },
+        "score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Puntaje obtenido (0-100)"
+        },
+        "passed": {
+          "type": "boolean",
+          "description": "Si el examinado aprobo el examen"
+        },
+        "totalQuestions": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Numero total de preguntas en el examen"
+        },
+        "correctAnswers": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Numero de respuestas correctas"
+        },
+        "examSessionId": {
+          "type": "string",
+          "description": "Identificador unico de la sesion del examen"
+        },
+        "proctored": {
+          "type": "boolean",
+          "description": "Si el examen fue supervisado (proctored)"
+        },
+        "integrityHash": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$",
+          "description": "Hash chain SHA-256 de la sesion del examen para verificacion de integridad"
+        }
+      }
+    }
+  }
+}

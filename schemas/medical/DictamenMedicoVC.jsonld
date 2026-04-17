@@ -1,0 +1,31 @@
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://schemas.attestto.org/cr/medical/v1"
+  ],
+  "type": ["VerifiableCredential", "DictamenMedicoVC"],
+  "credentialSubject": {
+    "id": "did:example:paciente",
+    "assessmentType": "string (e.g. aptitud-laboral)",
+    "result": "apto | no-apto | condicional",
+    "assessedBy": "did:example:medico",
+    "physicianName": "string",
+    "physicianLicense": "string (numero de colegiatura)",
+    "assessedAt": "dateTime",
+    "validUntil": "date",
+    "notes": "string (opcional)"
+  },
+  "issuer": "did:example:medico",
+  "issuanceDate": "dateTime",
+  "credentialSchema": {
+    "id": "https://schemas.attestto.org/cr/medical/v1/DictamenMedicoVC.schema.json",
+    "type": "JsonSchema"
+  },
+  "credentialStatus": {
+    "id": "https://status.attestto.org/cr/credentials/status/4",
+    "type": "StatusList2021Entry",
+    "statusPurpose": "revocation",
+    "statusListIndex": "integer",
+    "statusListCredential": "https://status.attestto.org/cr/credentials/status-list/1"
+  }
+}

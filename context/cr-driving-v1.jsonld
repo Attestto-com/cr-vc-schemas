@@ -10,6 +10,7 @@
 
     "DrivingLicense": "cr:DrivingLicense",
     "TheoreticalTestResult": "cr:TheoreticalTestResult",
+    "DrivingTheoryExamCR": "cr:DrivingTheoryExamCR",
     "PracticalTestResult": "cr:PracticalTestResult",
     "MedicalFitnessCredential": "cr:MedicalFitnessCredential",
     "VehicleRegistration": "cr:VehicleRegistration",

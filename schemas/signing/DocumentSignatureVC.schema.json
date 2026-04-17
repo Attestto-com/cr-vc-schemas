@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.attestto.org/cr/signing/v1/DocumentSignatureVC.schema.json",
+  "title": "Credencial de Firma de Documento",
+  "description": "Credencial verificable emitida cuando un usuario firma un documento a traves del modulo doc-signing. Registra el tipo de documento, nivel de riesgo, hash del PDF, y la recomendacion del analisis previo.",
+  "type": "object",
+  "required": ["credentialSubject"],
+  "properties": {
+    "credentialSubject": {
+      "type": "object",
+      "required": ["id", "documentType", "riskLevel", "pdfHash", "fileName", "questionsAnswered", "recommendation", "flaggedClausesCount"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^did:",
+          "description": "Signer's vault DID"
+        },
+        "documentType": {
+          "type": "string",
+          "description": "Type of document being signed (e.g. contract, NDA, power-of-attorney)"
+        },
+        "riskLevel": {
+          "type": "string",
+          "enum": ["low", "medium", "high"],
+          "description": "Risk level determined by document analysis"
+        },
+        "pdfHash": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$",
+          "description": "SHA-256 hash of the signed PDF"
+        },
+        "fileName": {
+          "type": "string",
+          "description": "Original file name of the document"
+        },
+        "questionsAnswered": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of comprehension questions answered before signing"
+        },
+        "recommendation": {
+          "type": "string",
+          "enum": ["sign", "review", "legal"],
+          "description": "System recommendation based on document analysis"
+        },
+        "flaggedClausesCount": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of clauses flagged for attention during analysis"
+        }
+      }
+    }
+  }
+}

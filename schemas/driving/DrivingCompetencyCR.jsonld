@@ -1,0 +1,30 @@
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://schemas.attestto.org/cr/driving/v1"
+  ],
+  "type": ["VerifiableCredential", "DrivingCompetencyCR"],
+  "credentialSubject": {
+    "id": "did:example:citizen-vault",
+    "competencyLevel": "novice | competent | proficient | expert",
+    "examsPassed": "integer",
+    "masteryScore": "number (0-100)",
+    "categories": ["string (e.g. B, B1, C1)"],
+    "lastAssessedAt": "dateTime",
+    "decayRate": "string (e.g. standard, accelerated, frozen)",
+    "renewalDue": "date"
+  },
+  "issuer": "did:web:dgev.go.cr",
+  "issuanceDate": "dateTime",
+  "credentialSchema": {
+    "id": "https://schemas.attestto.org/cr/driving/v1/DrivingCompetencyCR.schema.json",
+    "type": "JsonSchema"
+  },
+  "credentialStatus": {
+    "id": "https://status.attestto.org/cr/credentials/status/5",
+    "type": "StatusList2021Entry",
+    "statusPurpose": "revocation",
+    "statusListIndex": "integer",
+    "statusListCredential": "https://status.attestto.org/cr/credentials/status-list/1"
+  }
+}

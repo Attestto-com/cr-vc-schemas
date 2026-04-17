@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.attestto.org/cr/driving/v1/DrivingCompetencyCR.schema.json",
+  "title": "Competencia de Conduccion (Costa Rica)",
+  "description": "Credencial de maestria que demuestra competencia continua para conducir (teoria y practica). Sujeta a modelo de decaimiento — la competencia se degrada con el tiempo y requiere renovacion periodica.",
+  "type": "object",
+  "required": ["credentialSubject"],
+  "properties": {
+    "credentialSubject": {
+      "type": "object",
+      "required": ["id", "competencyLevel", "examsPassed", "masteryScore", "categories", "lastAssessedAt", "decayRate", "renewalDue"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^did:",
+          "description": "Citizen's vault DID"
+        },
+        "competencyLevel": {
+          "type": "string",
+          "enum": ["novice", "competent", "proficient", "expert"],
+          "description": "Current mastery tier based on accumulated assessments"
+        },
+        "examsPassed": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Total number of exams passed (theory + practical)"
+        },
+        "masteryScore": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Composite mastery score (0-100) factoring in decay"
+        },
+        "categories": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1,
+          "description": "License categories covered by this competency (e.g. B, B1, C1)"
+        },
+        "lastAssessedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp of the most recent competency assessment"
+        },
+        "decayRate": {
+          "type": "string",
+          "description": "Decay rate tier (e.g. standard, accelerated, frozen)"
+        },
+        "renewalDue": {
+          "type": "string",
+          "format": "date",
+          "description": "Date by which renewal assessment must be completed"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://schemas.attestto.org/cr/driving/v1"
+  ],
+  "type": ["VerifiableCredential", "DrivingTheoryExamCR"],
+  "credentialSubject": {
+    "id": "did:example:examinado",
+    "examDate": "dateTime",
+    "category": "string (e.g. B1)",
+    "score": "number (0-100)",
+    "passed": "boolean",
+    "totalQuestions": "integer",
+    "correctAnswers": "integer",
+    "examSessionId": "string",
+    "proctored": "boolean",
+    "integrityHash": "sha256:<hex>"
+  },
+  "issuer": "did:web:dgev.go.cr",
+  "issuanceDate": "dateTime",
+  "credentialSchema": {
+    "id": "https://schemas.attestto.org/cr/driving/v1/DrivingTheoryExamCR.schema.json",
+    "type": "JsonSchema"
+  },
+  "credentialStatus": {
+    "id": "https://status.attestto.org/cr/credentials/status/2",
+    "type": "StatusList2021Entry",
+    "statusPurpose": "revocation",
+    "statusListIndex": "integer",
+    "statusListCredential": "https://status.attestto.org/cr/credentials/status-list/1"
+  }
+}

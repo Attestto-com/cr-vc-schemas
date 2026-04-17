@@ -8,6 +8,10 @@
 
     "IdentityVC": "att:IdentityVC",
     "NaturalPerson": "att:NaturalPerson",
+    "CedulaIdentidadCR": "att:CedulaIdentidadCR",
+    "DrivingLicenseCR": "att:DrivingLicenseCR",
+    "PassportCR": "att:PassportCR",
+    "BasicDigitalLiteracyCredential": "att:BasicDigitalLiteracyCredential",
 
     "nationalId": {
       "@id": "att:nationalId",

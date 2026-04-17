@@ -1,0 +1,28 @@
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://schemas.attestto.org/attestto/signing/v1"
+  ],
+  "type": ["VerifiableCredential", "AttesttoPdfSignature"],
+  "credentialSubject": {
+    "id": "did:example:signer-vault",
+    "documentHash": "sha256:<hex>",
+    "fileName": "string",
+    "level": "self-attested",
+    "mode": "final | open",
+    "reason": "string (optional)"
+  },
+  "issuer": "did:example:signer-vault",
+  "issuanceDate": "dateTime",
+  "proof": {
+    "type": "Ed25519Signature2020",
+    "created": "dateTime",
+    "verificationMethod": "did:example:signer-vault#key-1",
+    "proofPurpose": "assertionMethod",
+    "proofValue": "string"
+  },
+  "credentialSchema": {
+    "id": "https://schemas.attestto.org/cr/signing/v1/AttesttoPdfSignature.schema.json",
+    "type": "JsonSchema"
+  }
+}

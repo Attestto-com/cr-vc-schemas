@@ -1,0 +1,30 @@
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://schemas.attestto.org/attestto/signing/v1"
+  ],
+  "type": ["VerifiableCredential", "DocumentSignatureVC"],
+  "credentialSubject": {
+    "id": "did:example:signer-vault",
+    "documentType": "string (e.g. contract, NDA, power-of-attorney)",
+    "riskLevel": "low | medium | high",
+    "pdfHash": "sha256:<hex>",
+    "fileName": "string",
+    "questionsAnswered": "integer",
+    "recommendation": "sign | review | legal",
+    "flaggedClausesCount": "integer"
+  },
+  "issuer": "did:example:signer-vault",
+  "issuanceDate": "dateTime",
+  "proof": {
+    "type": "Ed25519Signature2020",
+    "created": "dateTime",
+    "verificationMethod": "did:example:signer-vault#key-1",
+    "proofPurpose": "assertionMethod",
+    "proofValue": "string"
+  },
+  "credentialSchema": {
+    "id": "https://schemas.attestto.org/cr/signing/v1/DocumentSignatureVC.schema.json",
+    "type": "JsonSchema"
+  }
+}

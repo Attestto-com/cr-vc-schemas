@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.attestto.org/cr/medical/v1/DictamenMedicoVC.schema.json",
+  "title": "Dictamen Medico Profesional",
+  "description": "Evaluacion medica para profesionales (modulo cr-medical). Diferente de MedicalFitnessCredential que es especifico para conduccion. Emite resultado funcional sin diagnostico clinico.",
+  "type": "object",
+  "required": ["credentialSubject"],
+  "properties": {
+    "credentialSubject": {
+      "type": "object",
+      "required": ["id", "assessmentType", "result", "assessedBy", "physicianName", "physicianLicense", "assessedAt", "validUntil"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^did:",
+          "description": "DID del paciente evaluado"
+        },
+        "assessmentType": {
+          "type": "string",
+          "description": "Tipo de evaluacion medica (e.g. aptitud-laboral, aptitud-profesional)"
+        },
+        "result": {
+          "type": "string",
+          "enum": ["apto", "no-apto", "condicional"],
+          "description": "Resultado funcional de la evaluacion"
+        },
+        "assessedBy": {
+          "type": "string",
+          "pattern": "^did:",
+          "description": "DID del medico evaluador"
+        },
+        "physicianName": {
+          "type": "string",
+          "description": "Nombre completo del medico evaluador"
+        },
+        "physicianLicense": {
+          "type": "string",
+          "description": "Numero de colegiatura del Colegio de Medicos"
+        },
+        "assessedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Fecha y hora de la evaluacion"
+        },
+        "validUntil": {
+          "type": "string",
+          "format": "date",
+          "description": "Fecha de vencimiento del dictamen"
+        },
+        "notes": {
+          "type": "string",
+          "description": "Observaciones adicionales del medico (opcional)"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "@protected": true,
+    "sig": "https://schemas.attestto.org/cr/signing/v1#",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "DocumentSignatureVC": "sig:DocumentSignatureVC",
+    "AttesttoPdfSignature": "sig:AttesttoPdfSignature",
+
+    "documentHash": { "@id": "sig:documentHash", "@type": "xsd:string" },
+    "pdfHash": { "@id": "sig:pdfHash", "@type": "xsd:string" },
+    "fileName": { "@id": "sig:fileName", "@type": "xsd:string" },
+    "documentType": { "@id": "sig:documentType", "@type": "xsd:string" },
+    "riskLevel": { "@id": "sig:riskLevel", "@type": "xsd:string" },
+    "recommendation": { "@id": "sig:recommendation", "@type": "xsd:string" },
+    "mode": { "@id": "sig:mode", "@type": "xsd:string" },
+    "level": { "@id": "sig:level", "@type": "xsd:string" }
+  }
+}

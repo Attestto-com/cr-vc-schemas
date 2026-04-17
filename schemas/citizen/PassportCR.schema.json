@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.attestto.org/cr/identity/v1/PassportCR.schema.json",
+  "title": "Pasaporte de Costa Rica",
+  "description": "Credencial verificable de pasaporte costarricense. Auto-atestada por el ciudadano mediante escaneo OCR de la zona MRZ (TD3).",
+  "type": "object",
+  "required": ["credentialSubject", "evidence"],
+  "properties": {
+    "credentialSubject": {
+      "type": "object",
+      "required": ["id", "documentNumber", "surname", "givenNames", "nationality", "dateOfBirth", "sex", "dateOfExpiry", "issuingCountry", "photoHash"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^did:",
+          "description": "DID del ciudadano (vault DID)"
+        },
+        "documentNumber": {
+          "type": "string",
+          "description": "Numero de pasaporte"
+        },
+        "surname": {
+          "type": "string",
+          "description": "Apellidos tal como aparecen en el MRZ"
+        },
+        "givenNames": {
+          "type": "string",
+          "description": "Nombres de pila tal como aparecen en el MRZ"
+        },
+        "nationality": {
+          "type": "string",
+          "pattern": "^[A-Z]{2}$",
+          "description": "Nacionalidad (ISO 3166-1 alpha-2)"
+        },
+        "dateOfBirth": {
+          "type": "string",
+          "format": "date",
+          "description": "Fecha de nacimiento"
+        },
+        "sex": {
+          "type": "string",
+          "enum": ["M", "F"],
+          "description": "Sexo segun documento"
+        },
+        "dateOfExpiry": {
+          "type": "string",
+          "format": "date",
+          "description": "Fecha de vencimiento del pasaporte"
+        },
+        "issuingCountry": {
+          "type": "string",
+          "pattern": "^[A-Z]{2}$",
+          "description": "Pais emisor (ISO 3166-1 alpha-2)"
+        },
+        "photoHash": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$",
+          "description": "SHA-256 hash de la foto del documento. No se almacena datos biometricos en la VC."
+        }
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["type", "method", "ocrConfidence", "scannedAt"],
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["SelfAttestation"]
+          },
+          "method": {
+            "type": "string",
+            "enum": ["document-scan"],
+            "description": "Metodo de captura del documento (escaneo MRZ TD3)"
+          },
+          "ocrConfidence": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1,
+            "description": "Confianza del OCR (0.0 a 1.0)"
+          },
+          "scannedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Fecha y hora del escaneo"
+          }
+        }
+      }
+    }
+  }
+}

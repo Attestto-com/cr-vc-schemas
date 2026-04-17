@@ -1,0 +1,33 @@
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://schemas.attestto.org/cr/identity/v1"
+  ],
+  "type": ["VerifiableCredential", "PassportCR"],
+  "credentialSubject": {
+    "id": "did:example:citizen-vault",
+    "documentNumber": "string (numero de pasaporte)",
+    "surname": "string (apellidos MRZ)",
+    "givenNames": "string (nombres MRZ)",
+    "nationality": "string (ISO 3166-1 alpha-2)",
+    "dateOfBirth": "date",
+    "sex": "M | F",
+    "dateOfExpiry": "date",
+    "issuingCountry": "string (ISO 3166-1 alpha-2)",
+    "photoHash": "sha256:<hex>"
+  },
+  "issuer": "did:example:citizen-vault (self-attested)",
+  "issuanceDate": "dateTime",
+  "evidence": [
+    {
+      "type": "SelfAttestation",
+      "method": "document-scan",
+      "ocrConfidence": "number (0.0 - 1.0)",
+      "scannedAt": "dateTime"
+    }
+  ],
+  "credentialSchema": {
+    "id": "https://schemas.attestto.org/cr/identity/v1/PassportCR.schema.json",
+    "type": "JsonSchema"
+  }
+}

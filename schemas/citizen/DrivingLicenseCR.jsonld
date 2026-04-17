@@ -1,0 +1,41 @@
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://schemas.attestto.org/cr/identity/v1"
+  ],
+  "type": ["VerifiableCredential", "DrivingLicenseCR"],
+  "credentialSubject": {
+    "id": "did:example:citizen-vault",
+    "cedula": "string (formato X-XXXX-XXXX)",
+    "fullName": "string (nombre completo)",
+    "dateOfBirth": "date",
+    "dateOfExpiry": "date",
+    "categories": [
+      {
+        "type": "LicenseCategoryValue",
+        "code": "string (e.g. B1, A2, C1)",
+        "from": "date",
+        "to": "date"
+      }
+    ],
+    "points": "integer (0-12)",
+    "status": "active | suspended | revoked",
+    "restrictions": ["string (e.g. lentes correctivos, solo diurno)"],
+    "bloodType": "string",
+    "photoHash": "sha256:<hex>"
+  },
+  "issuer": "did:example:citizen-vault (self-attested)",
+  "issuanceDate": "dateTime",
+  "evidence": [
+    {
+      "type": "SelfAttestation",
+      "method": "document-scan",
+      "ocrConfidence": "number (0.0 - 1.0)",
+      "scannedAt": "dateTime"
+    }
+  ],
+  "credentialSchema": {
+    "id": "https://schemas.attestto.org/cr/identity/v1/DrivingLicenseCR.schema.json",
+    "type": "JsonSchema"
+  }
+}

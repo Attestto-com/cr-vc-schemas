@@ -1,0 +1,34 @@
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://schemas.attestto.org/cr/identity/v1"
+  ],
+  "type": ["VerifiableCredential", "CedulaIdentidadCR"],
+  "credentialSubject": {
+    "id": "did:example:citizen-vault",
+    "cedula": "string (formato X-XXXX-XXXX)",
+    "fullName": "string (nombre completo)",
+    "apellido1": "string (primer apellido)",
+    "apellido2": "string (segundo apellido)",
+    "nombre": "string (nombre de pila)",
+    "dateOfBirth": "date",
+    "dateOfExpiry": "date",
+    "nationality": "string (ISO 3166-1 alpha-2)",
+    "sex": "M | F",
+    "photoHash": "sha256:<hex>"
+  },
+  "issuer": "did:example:citizen-vault (self-attested)",
+  "issuanceDate": "dateTime",
+  "evidence": [
+    {
+      "type": "SelfAttestation",
+      "method": "document-scan",
+      "ocrConfidence": "number (0.0 - 1.0)",
+      "scannedAt": "dateTime"
+    }
+  ],
+  "credentialSchema": {
+    "id": "https://schemas.attestto.org/cr/identity/v1/CedulaIdentidadCR.schema.json",
+    "type": "JsonSchema"
+  }
+}
