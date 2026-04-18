@@ -1,0 +1,171 @@
+# cr-vc-schemas
+
+> JSON-LD schemas and JSON Schemas for W3C Verifiable Credentials in the Costa Rica driving and identity ecosystem.
+
+An open technical proposal by [Attestto Open](https://attestto.org). **Not an official standard.** These schemas are designed to be evaluated, modified, and adopted by the competent institutions (COSEVI, MICITT, DGEV) through an open review process. All stakeholders are invited to review, comment, and contribute.
+
+## What this repo contains
+
+- **JSON-LD context files** — shared vocabulary for CR credential types
+- **JSON Schema files** — for validation of individual credential shapes
+- **Example credentials** — complete sample VCs with fictional data
+- **On-chain anchoring** — schemas anchored to Solana via Solana Attestation Service (SAS)
+- **Deployment scripts** — for devnet/mainnet SAS deployment
+
+## Schema inventory
+
+| Type | Category | Typical issuer |
+|---|---|---|
+| `DrivingLicense` | `schemas/mdl/` | COSEVI / DGEV |
+| `TheoreticalTestResult` | `schemas/driving-test/` | DGEV / certified provider |
+| `PracticalTestResult` | `schemas/driving-test/` | DGEV / certified provider |
+| `MedicalFitnessCredential` | `schemas/medical/` | Authorized clinic |
+| `VehicleRegistration` | `schemas/vehicle/` | Registro Nacional |
+| `VehicleTechnicalReview` | `schemas/vehicle/` | RTV center |
+| `CirculationRights` | `schemas/vehicle/` | Hacienda / Municipality |
+| `SOATCredential` | `schemas/insurance/` | INS |
+| `DriverIdentity` | `schemas/identity/` | TSE / DGME / bank / COSEVI |
+| `TrafficViolation` | `schemas/violations/` | COSEVI |
+| `AccidentReport` | `schemas/violations/` | COSEVI / INS |
+| `IdentityVC` | `schemas/notarial/` | Notary (Colegio de Abogados) |
+
+## Repo layout
+
+```
+cr-vc-schemas/
+  context/
+    cr-driving-v1.jsonld    — shared vocab for driving, vehicles, traffic
+    cr-identity-v1.jsonld   — shared vocab for notarial identity, UBO, representation
+  schemas/
+    mdl/
+      DrivingLicense.jsonld
+      DrivingLicense.schema.json
+    driving-test/
+      TheoreticalTestResult.{jsonld,schema.json}
+      PracticalTestResult.{jsonld,schema.json}
+    medical/
+      MedicalFitnessCredential.{jsonld,schema.json}
+    vehicle/
+      VehicleRegistration.{jsonld,schema.json}
+      VehicleTechnicalReview.{jsonld,schema.json}
+      CirculationRights.{jsonld,schema.json}
+    insurance/
+      SOATCredential.{jsonld,schema.json}
+    identity/
+      DriverIdentity.{jsonld,schema.json}
+    violations/
+      TrafficViolation.{jsonld,schema.json}
+      AccidentReport.{jsonld,schema.json}
+    notarial/
+      IdentityVC.{jsonld,schema.json}
+  examples/          — complete sample VCs with fictional data
+  docs/              — adoption model, deployment records, interop mapping
+  scripts/           — SAS deployment and verification scripts
+```
+
+## JSON-LD contexts
+
+All driving/vehicle/traffic credentials reference:
+```json
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://schemas.attestto.org/cr/driving/v1"
+  ]
+}
+```
+
+Notarial identity credentials reference:
+```json
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://schemas.attestto.org/cr/identity/v1"
+  ]
+}
+```
+
+These context URLs are provisional. If institutions adopt official domains (e.g. `schemas.cosevi.go.cr`), the schemas migrate accordingly.
+
+## Validate a credential against a schema
+
+```bash
+npx ajv validate -s schemas/mdl/DrivingLicense.schema.json -d my-credential.json
+```
+
+## On-chain anchoring (Solana Attestation Service)
+
+Schemas are anchored to Solana via [SAS](https://attest.solana.com/) — an open, permissionless protocol from the Solana Foundation. No proprietary program required.
+
+### Three on-chain schema types
+
+**INSTITUTION** — Trust anchors. Registers authorized issuers (COSEVI, DGEV, banks, clinics) and the credential types each is permitted to issue. A verifier reads this to confirm the VC issuer is authorized for that credential type.
+
+**CREDENTIAL-ANCHOR** — Hash anchoring for individual credentials. Three-layer verification: web (issuer) → CDN (attestto.id) → chain (SAS). Also serves as a recovery index if a holder loses their device. No PII on-chain — hashes only.
+
+**VEHICLE-HISTORY** — Lifetime record of a vehicle. Registration, RTV, marchamo, SOAT entries. Transferable (vehicles change ownership). Public history, no PII.
+
+### Current deployment (devnet)
+
+| Entity | PDA |
+|---|---|
+| CR-VIAL-ECOSYSTEM | `GfqJFXiUVBFLHk1J7nooR9Vv1AaK3J8M3Ygz3RrzrM6u` |
+| INSTITUTION schema | `CzvQmmyFtQg6yLr6hRJvfjAyAaA38paGcXiRTQQVHAmW` |
+| CREDENTIAL-ANCHOR schema | `CsvrCdCyiE8QyV8uZF2xZ5Cj9PpfoKkdSK7dG7K9hSW5` |
+| VEHICLE-HISTORY schema | `6Gn5M2q3BezbqaWQdrrh1w3xuizaJjgmdhwRpNnWjzJZ` |
+
+See `docs/deployment-devnet.json` for the full record.
+
+### Planned mainnet governance
+
+Multi-institutional multisig via Squads Protocol v4 (2-of-3 threshold):
+
+| Signer | Role |
+|---|---|
+| COSEVI / MOPT | Regulator — driving ecosystem governance |
+| MICITT | Technical oversight — neutrality and standards |
+| Developer(s) | Technical operation — Attestto Open or another provider |
+
+No single party can unilaterally add/remove trust anchors, pause schemas, or revoke attestations.
+
+### Deployment scripts
+
+```bash
+cd scripts && pnpm install
+
+pnpm deploy:devnet   # deploy credential + schemas to devnet
+pnpm demo:attest     # create demo attestations
+pnpm verify          # check on-chain schema status
+pnpm verify -- --schema INSTITUTION --nonce <address>
+```
+
+## Design principles
+
+- **Privacy by default** — schemas never include raw health data (only functional result), never expose full identity numbers (only partial references or hashes)
+- **Interoperability** — W3C VC Data Model v2.0, JSON-LD, OpenID4VCI / OpenID4VP compatible
+- **Offline verification** — every VC includes `credentialStatus` (StatusList2021) for revocation checks without a centralized server
+- **Technology neutrality** — schemas do not depend on any specific vendor, platform, or blockchain
+
+## Related packages
+
+| Repo | Purpose |
+|---|---|
+| `@attestto-com/cr-vc-sdk` | TypeScript SDK with these schemas pre-registered |
+| `@attestto-com/vc-sdk` | Universal VC SDK the cr-vc-sdk is built on |
+| `wallet-identity-resolver` | On-chain identity resolution including SAS |
+| `did-sns-spec` | `did:sns` DID method for human-readable issuer DIDs |
+
+## References
+
+- [W3C VC Data Model v2.0](https://www.w3.org/TR/vc-data-model-2.0/)
+- [ISO/IEC 18013-5 (mDL)](https://www.iso.org/standard/69084.html)
+- [W3C CCG Verifiable Driver's License Vocabulary](https://w3c-ccg.github.io/vdl-vocab/)
+- [W3C StatusList2021](https://www.w3.org/TR/vc-status-list/)
+- [OpenID4VCI](https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html)
+- [Solana Attestation Service](https://github.com/solana-labs/solana-attestation-service)
+- `INTEROP.md` — full CR → ISO 18013-5 → W3C VDL mapping
+- `docs/did-adoption-model.md` — progressive DID adoption model
+
+## License
+
+Apache 2.0 — [Attestto Open](https://attestto.org)
